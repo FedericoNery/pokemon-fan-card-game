@@ -1,0 +1,121 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "POKEMON API by Fede Nery",
+    "description": "",
+    "version": "1.0"
+  },
+  "produces": ["application/json"],
+  "host": "localhost:5000",
+  "basePath": "/",
+  "paths": {
+    "/cartasenergia": {
+      "get": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "swagTest",
+        "tags": ["Cartas Energia"],
+        "description": "",
+        "parameters": [{ "name": "numero", "type": "integer" }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Cartas_Energias"
+            }
+          }
+        }
+      }
+    },
+    "/cartaspokemon": {
+      "get": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "swagTest",
+        "tags": ["Cartas Pokemon"],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/juego": {
+      "get": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "swagTest",
+        "tags": ["Juego"],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/mazos": {
+      "get": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "swagTest",
+        "tags": ["Mazos"],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/usuarios": {
+      "get": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "swagTest",
+        "tags": ["Usuarios"],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    }
+  },
+  "definitions": {
+    "Carta_Energia": {
+      "properties": {
+        "numero": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "energias": {
+          "properties": {
+            "numero": { "type": "integer" },
+            "nombre": { "type": "string" }
+          }
+        }
+      }
+    },
+    "Cartas_Energias": {
+      "type": "Array",
+      "$ref": "#/definitions/Carta_Energia"
+    },
+    "Usuario": {
+      "required": [
+        "numero",
+        "nombre_usuario",
+        "nombre",
+        "apellido",
+        "monedas",
+        "rol_usuario",
+        "email"
+      ],
+      "properties": {
+        "numero": { "type": "integer" },
+        "nombre_usuario": { "type": "string" },
+        "nombre": { "type": "string" },
+        "apellido": { "type": "string" },
+        "monedas": { "type": "integer" },
+        "rol_usuario": { "type": "string" },
+        "email": { "type": "string" },
+        "mazos": { "type": "Array" }
+      }
+    },
+    "Mazo": {
+      "required": ["numero", "nombre"],
+      "properties": {
+        "numero": { "type": "integer" },
+        "nombre": { "type": "string" },
+        "cartas": { "type": "Array" }
+      }
+    }
+  }
+}
