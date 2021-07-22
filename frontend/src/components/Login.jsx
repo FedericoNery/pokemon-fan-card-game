@@ -16,7 +16,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import login_background from "../images/login_background.png";
 import { withRouter } from 'react-router';
 import { ROUTES, To } from '../utils/routes';
-import { compose } from 'redux'
+import { bindActionCreators, compose } from 'redux'
+import {connect} from 'react-redux'
+import { iniciarSesion } from '../core/services/authentication';
+import { loguearse } from '../redux/actionCreators/authenticate';
 
 function Copyright() {
     return (
@@ -63,8 +66,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = (props) => {
-    const { history } = props
+    const { history, loguearse } = props
     const classes = useStyles();
+
+    const onLogin = async (event) => {
+        debugger
+        event.preventDefault();
+        const payload = { username: event.target.email.value, password: event.target.password.value }
+        try{
+            await loguearse(payload)
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
 
     return (
         <Grid container component="main" className={classes.root}>
@@ -78,7 +93,7 @@ const Login = (props) => {
                     <Typography component="h1" variant="h5">
                         Sign in
           </Typography>
-                    <form className={classes.form} noValidate>
+                    <form className={classes.form} noValidate onSubmit={(values) => onLogin(values)}>
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -106,12 +121,12 @@ const Login = (props) => {
                             label="Remember me"
                         />
                         <Button
-                            //type="submit"
+                            type="submit"
                             fullWidth
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onClick={() => history.push(To.menuPrincipal())}
+                            //onClick={() => history.push(To.menuPrincipal())}
                         >
                             Sign In
             </Button>
@@ -137,6 +152,13 @@ const Login = (props) => {
     );
 }
 
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators(
+        { loguearse }, dispatch
+    )
+}
+
 export default compose(
-    withRouter
+    withRouter,
+    connect(null, mapDispatchToProps)
 )(Login)

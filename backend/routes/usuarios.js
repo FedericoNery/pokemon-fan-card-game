@@ -2,9 +2,19 @@ const router = require('express').Router();
 let Usuario = require('../models/usuario.model');
 
 /*OBTENER TODOS LOS USUARIOS*/
-router.route('/getlist').get((req, res) => {
+router.route('/').get((req, res) => {
   Usuario.find()
     .then(usuarios => res.json(usuarios))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/authenticate').post((req, res) => {
+  const { email } = req.body
+  console.log(email)
+  Usuario.findOne({ email: email })
+    .then(usuario => 
+      res.json(usuario)
+    )
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -47,7 +57,7 @@ router.route('/add').post((req, res) => {
 });
 
 /*GET BY ID USUARIO*/
-router.route('/get/:id').get((req, res) => {
+router.route('/:id').get((req, res) => {
   const id = req.body.id;
   Usuario.findById(id)
     .then(() => res.json('Usuario obtenido!'))
@@ -65,7 +75,7 @@ router.route('/nombre/:nombre').get((req, res) => {
 
 
 /*DELETE BY ID USUARIO*/
-router.route('/remove').post((req, res) => {
+router.route('/remove').delete((req, res) => {
   const id = req.body.id;
   Usuario.findByIdAndDelete(id)
     .then(() => res.json('User eliminado!'))

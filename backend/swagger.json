@@ -28,8 +28,8 @@
     },
     "/cartaspokemon": {
       "get": {
-        "x-swagger-router-controller": "middleware-name1",
-        "operationId": "swagTest",
+        "x-swagger-router-controller": "cartaspokemon",
+        "operationId": "1",
         "tags": ["Cartas Pokemon"],
         "description": "",
         "parameters": [],
@@ -38,8 +38,8 @@
     },
     "/juego": {
       "get": {
-        "x-swagger-router-controller": "middleware-name1",
-        "operationId": "swagTest",
+        "x-swagger-router-controller": "juego",
+        "operationId": "2",
         "tags": ["Juego"],
         "description": "",
         "parameters": [],
@@ -58,12 +58,29 @@
     },
     "/usuarios": {
       "get": {
-        "x-swagger-router-controller": "middleware-name1",
-        "operationId": "swagTest",
+        "x-swagger-router-controller": "usuarios",
+        "operationId": "1",
         "tags": ["Usuarios"],
         "description": "",
         "parameters": [],
         "responses": {}
+      }
+    },
+    "/usuarios/authenticate": {
+      "post": {
+        "x-swagger-router-controller": "usuarios",
+        "operationId": "2",
+        "tags": ["Usuarios"],
+        "description": "",
+        "parameters": [{ "name": "authentication", "in" : "body", "schema" :{"$ref": "#/definitions/UsuarioAuthentication"} ,"type": "string"}],
+        "responses": {
+          "200": {
+          "description": "OK",
+          "schema": {
+            "$ref": "#/definitions/Usuario"
+          }
+        }
+      }
       }
     }
   },
@@ -107,6 +124,14 @@
         "rol_usuario": { "type": "string" },
         "email": { "type": "string" },
         "mazos": { "type": "Array" }
+      }
+    },
+    "UsuarioAuthentication": {
+      "required": [
+        "email"
+      ],
+      "properties": {
+        "email": { "type": "string" }
       }
     },
     "Mazo": {
