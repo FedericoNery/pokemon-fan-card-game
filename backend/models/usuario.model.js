@@ -10,7 +10,7 @@ const usuarioSchema = new Schema({
   monedas: {  type: Number, required: true},
   rol_usuario: {  type: String, required: true, trim: true, minlength: 1},
   email: {  type: String, required: true, trim: true, minlength: 3},
-  mazos: [[Number]],
+  mazos: [Number],
 }, 
 { 
 	timestamps: true,

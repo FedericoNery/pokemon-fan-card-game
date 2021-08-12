@@ -9,8 +9,13 @@ const authenticateSlice = createSlice({
     name: "authenticate",
     initialState: initialState,
     reducers: {
-        loguearse(state, action){},
-        desloguearse(state, action){},
+        loguearse(state, action){
+            state.usuario = action.payload
+            state.estaLogueado = true
+        },
+        desloguearse(state, action){
+            state = initialState
+        },
     }
 })
 

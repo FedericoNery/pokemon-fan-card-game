@@ -3,7 +3,6 @@ import { authenticateActions } from "../reducers/authenticateReducer"
 
 export const loguearse = (payload) => async dispatch => {
     try{
-        debugger
         const response = await iniciarSesion(payload)
         const usuarioLogueado = response.data
         if(usuarioLogueado){
@@ -12,6 +11,17 @@ export const loguearse = (payload) => async dispatch => {
         else{
             
         }    
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+
+export const desloguearse = (payload) => async dispatch => {
+    try{
+        //const response = await cerrarSesion(payload)
+        //const usuarioLogueado = response.data
+        dispatch(authenticateActions.desloguearse())
     }
     catch(error){
         console.log(error)

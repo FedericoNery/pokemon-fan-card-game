@@ -48,12 +48,50 @@
     },
     "/mazos": {
       "get": {
-        "x-swagger-router-controller": "middleware-name1",
-        "operationId": "swagTest",
+        "x-swagger-router-controller": "mazos",
+        "operationId": "mazos1",
         "tags": ["Mazos"],
         "description": "",
         "parameters": [],
         "responses": {}
+      }
+    },
+    "/mazos/{id}": {
+      "get": {
+        "x-swagger-router-controller": "mazos",
+        "operationId": "mazos2",
+        "tags": ["Mazos"],
+        "description": "",
+        "parameters": [
+          { "name": "id", "type": "integer", "in": "path", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Mazo"
+            }
+          }
+        }
+      }
+    },
+    "/mazos/{id}/cartas": {
+      "get": {
+        "x-swagger-router-controller": "mazos",
+        "operationId": "mazos3",
+        "tags": ["Mazos"],
+        "description": "",
+        "parameters": [
+          { "name": "id", "type": "integer", "in": "path", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Cartas_Mazo"
+            }
+          }
+        }
       }
     },
     "/usuarios": {
@@ -72,20 +110,28 @@
         "operationId": "2",
         "tags": ["Usuarios"],
         "description": "",
-        "parameters": [{ "name": "authentication", "in" : "body", "schema" :{"$ref": "#/definitions/UsuarioAuthentication"} ,"type": "string"}],
+        "parameters": [
+          {
+            "name": "authentication",
+            "in": "body",
+            "schema": { "$ref": "#/definitions/UsuarioAuthentication" },
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
-          "description": "OK",
-          "schema": {
-            "$ref": "#/definitions/Usuario"
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            }
           }
         }
-      }
       }
     }
   },
   "definitions": {
     "Carta_Energia": {
+      "type": "object",
       "properties": {
         "numero": {
           "type": "string"
@@ -101,9 +147,27 @@
         }
       }
     },
+    "Carta_Pokemon": {
+      "type": "object",
+      "properties": {
+        "numero": { "type": "string" },
+        "pokemon": { "type": "string" },
+        "ps": { "type": "string" },
+        "ataque": { "type": "string" },
+        "defensa": { "type": "string" },
+        "ataque_esp": { "type": "string" },
+        "defensa_esp": { "type": "string" },
+        "velocidad": { "type": "string" },
+        "suma": { "type": "string" },
+        "tipo_energia": { "type": "string" },
+        "cantidad_energia": { "type": "integer" }
+      }
+    },
     "Cartas_Energias": {
-      "type": "Array",
-      "$ref": "#/definitions/Carta_Energia"
+      "type": "array",
+      "items":{
+        "$ref": "#/definitions/Carta_Energia"
+      }
     },
     "Usuario": {
       "required": [
@@ -123,13 +187,11 @@
         "monedas": { "type": "integer" },
         "rol_usuario": { "type": "string" },
         "email": { "type": "string" },
-        "mazos": { "type": "Array" }
+        "mazos": { "type": "array" }
       }
     },
     "UsuarioAuthentication": {
-      "required": [
-        "email"
-      ],
+      "required": ["email"],
       "properties": {
         "email": { "type": "string" }
       }
@@ -139,7 +201,24 @@
       "properties": {
         "numero": { "type": "integer" },
         "nombre": { "type": "string" },
-        "cartas": { "type": "Array" }
+        "cartas": { 
+          "type": "array",
+          "items":{
+            "type":   "string"
+          } 
+        }
+      }
+    },
+    "Cartas_Mazo": {
+      "type": "array",
+      "items": {
+        "oneOf":{
+          "$ref": "#/definitions/Carta_Energia",
+          "$ref": "#/definitions/Carta_Pokemon"
+        },
+        "discriminator":{
+          "propertyName": "pet_type"
+        }
       }
     }
   }

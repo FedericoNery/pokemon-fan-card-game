@@ -70,11 +70,11 @@ const Login = (props) => {
     const classes = useStyles();
 
     const onLogin = async (event) => {
-        debugger
         event.preventDefault();
-        const payload = { username: event.target.email.value, password: event.target.password.value }
+        const payload = { email: event.target.email.value, password: event.target.password.value }
         try{
             await loguearse(payload)
+            history.push(To.menuPrincipal())
         }
         catch(error){
             console.log(error)

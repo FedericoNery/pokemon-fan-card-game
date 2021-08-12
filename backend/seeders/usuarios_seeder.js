@@ -7,7 +7,7 @@ const usuarios = [
         monedas: 10,
         rol_usuario: "jugador",
         email: "email@email.com",
-        mazos: [],
+        mazos: [1,2,3],
     },
     {
         numero: 2,
@@ -17,7 +17,7 @@ const usuarios = [
         monedas: 10,
         rol_usuario: "jugador",
         email: "email1@email.com",
-        mazos: [],
+        mazos: [1,2,3],
     }
 ]
 

@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Carta = (props) => {
+const CartaEnergia = (props) => {
   const classes = useStyles();
 
   return (
@@ -54,4 +54,4 @@ const Carta = (props) => {
   );
 }
 
-export default Carta
+export default CartaEnergia

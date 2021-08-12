@@ -30,7 +30,7 @@ const cartasEnergiaRouter = require('./routes/cartasenergia');
 app.use('/cartasenergia', cartasEnergiaRouter);
 
 const mazoRouter = require('./routes/mazos');
-app.use('/mazo', mazoRouter);
+app.use('/mazos', mazoRouter);
 
 
 /*app.get('*', (req, res) => {

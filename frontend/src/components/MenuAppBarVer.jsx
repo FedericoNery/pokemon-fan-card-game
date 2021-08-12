@@ -14,7 +14,11 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { MenuItem, Menu } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ListJugador from './opciones-menu-lateral/ListJugador';
-import DashboardJugador from './DashboardJugador';
+import { bindActionCreators, compose } from 'redux';
+import { connect } from 'react-redux';
+import { desloguearse } from '../redux/actionCreators/authenticate';
+import { withRouter } from 'react-router';
+import { To } from '../utils/routes';
 
 const drawerWidth = 240;
 
@@ -88,7 +92,8 @@ const data = [
   { country: 'Ganadas perdiendo dos rondas', area: 25 },
 ]
 
-export default function MenuAppBarVer() {
+const MenuAppBarVer = (props) => {
+  const { history, desloguearse } = props
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -96,6 +101,12 @@ export default function MenuAppBarVer() {
   const [auth, setAuth] = React.useState(true);
 
   const openMenuAppBar = Boolean(anchorEl);
+
+  const onLogout = () => {
+    desloguearse()
+    history.push(To.login())
+  }
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -164,6 +175,7 @@ export default function MenuAppBarVer() {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={onLogout}>Logout</MenuItem>
               </Menu>
             </div>
           )}
@@ -192,8 +204,19 @@ export default function MenuAppBarVer() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <DashboardJugador />
+        {props.children}
       </main>
     </div>
   );
 }
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+      { desloguearse }, dispatch
+  )
+}
+
+export default compose(
+  withRouter,
+  connect(null, mapDispatchToProps)
+)(MenuAppBarVer)
