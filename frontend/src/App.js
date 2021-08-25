@@ -13,7 +13,7 @@ import ConfigurarMazos from './components/ConfigurarMazos';
 import Tienda from './components/Tienda';
 import AuthRoute from './components/routes/AuthRoute';
 import Dashboard from './components/Dashboard';
-import CartasDelMazo from './components/CartasDelMazo';
+import ContainerEdicionDelMazo from './components/ContainerEdicionDelMazo';
 
 const App = (props) => {
   return <>
@@ -31,7 +31,7 @@ const App = (props) => {
               <Route exact path={ROUTES.JUEGO_FINALIZADO} component={JuegoFinalizado} />
               <Route exact path={ROUTES.DATOS_USUARIO} component={DatosUsuario} />
               <Route exact path={ROUTES.TIENDA} component={Tienda} />
-              <Route exact path={ROUTES.MAZO_DETALLADO_WITH_ID} component={CartasDelMazo} />
+              <Route exact path={ROUTES.MAZO_DETALLADO_WITH_ID} component={ContainerEdicionDelMazo} />
             </MenuPrincipal>
           </AuthRoute>
           <Route path="/" render={() => <Login />} />

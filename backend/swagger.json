@@ -11,11 +11,11 @@
   "paths": {
     "/cartasenergia": {
       "get": {
-        "x-swagger-router-controller": "middleware-name1",
+        "x-swagger-router-controller": "cartasenergia",
         "operationId": "swagTest",
         "tags": ["Cartas Energia"],
         "description": "",
-        "parameters": [{ "name": "numero", "type": "integer" }],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK",
@@ -33,7 +33,14 @@
         "tags": ["Cartas Pokemon"],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Cartas_Pokemon"
+            }
+          }
+        }
       }
     },
     "/juego": {
@@ -167,6 +174,12 @@
       "type": "array",
       "items":{
         "$ref": "#/definitions/Carta_Energia"
+      }
+    },
+    "Cartas_Pokemon": {
+      "type": "array",
+      "items":{
+        "$ref": "#/definitions/Carta_Pokemon"
       }
     },
     "Usuario": {

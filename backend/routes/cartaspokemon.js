@@ -2,14 +2,14 @@ const router = require('express').Router();
 let CartaPokemon = require('../models/cartapokemon.model');
 
 /*OBTENER TODOS LOS POKEMON*/
-router.route('/getall').get((req, res) => {
+router.route('/').get((req, res) => {
   CartaPokemon.find()
     .then(cartas_pokemon => res.json(cartas_pokemon))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 /*GET BY PARAMS POKEMON*/
-router.route('/').get((req, res) => {
+/* router.route('/').get((req, res) => {
   const numero = req.query.numero.toString();
   const nombre = req.params.nombre.toString();
   const ps = req.params.ps.toString();
@@ -41,6 +41,6 @@ router.route('/').get((req, res) => {
         return res.json(card);
       }
     }); 
-});
+}); */
 
 module.exports = router;

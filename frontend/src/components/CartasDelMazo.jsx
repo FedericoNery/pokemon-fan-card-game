@@ -2,12 +2,11 @@ import { Grid } from '@material-ui/core'
 import React, { memo, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getCartasDelMazoById } from '../core/services/mazos'
-import CartaEnergia from './CartaEnergia'
-import CartaPokemon from './CartaPokemon'
+import CartaPokemonDraggeable from './cartas/cartas-draggeables/CartaPokemonDraggeable'
+import CartaEnergiaDraggeable from './cartas/cartas-draggeables/CartaEnergiaDraggeable'
 
-const CartasDelMazo = () => {
-    const { id } = useParams();
-    const [cartas, setCartas] = useState([])
+const CartasDelMazo = ({cartas}) => {
+/*     const { id } = useParams();
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(async () => {
@@ -15,20 +14,22 @@ const CartasDelMazo = () => {
         const res = await getCartasDelMazoById(id)
         setCartas(res.data)
         setIsLoading(false)
-    }, [])
+    }, []) */
 
-    return (!isLoading && cartas.length > 0) && <Grid container spacing={1}>
+    return cartas.length > 0 && <Grid container spacing={1}>
         {
-            cartas.map(x => {
+            cartas.map((x, index) => {
                 const { numero } = x
                 if (numero.includes("P")) {
                     return <Grid item xs={6} sm={6} md={4}>
-                        <CartaPokemon {...x} />
+                        <CartaPokemonDraggeable {...x} index={index} itemObject={{ id: `${numero}cm` }}/>
+                        {/* <CartaPokemon {...x} /> */}
                     </Grid>
                 }
                 if (numero.includes("E")) {
                     return <Grid item xs={6} sm={6} md={4}>
-                        <CartaEnergia {...x} />
+                        <CartaEnergiaDraggeable {...x} index={index} itemObject={{ id: `${numero}cm` }}/>
+                        {/* <CartaEnergia {...x} /> */}
                     </Grid>
                 }
                 return <></>
@@ -38,4 +39,4 @@ const CartasDelMazo = () => {
     </Grid>
 }
 
-export default React.memo(CartasDelMazo);
+export default CartasDelMazo;

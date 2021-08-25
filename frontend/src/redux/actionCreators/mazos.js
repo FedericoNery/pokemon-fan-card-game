@@ -3,7 +3,6 @@ import { mazosActions } from "../reducers/mazosReducer"
 
 export const cargarDatosGeneralesMazos = (idsDeLosMazos) => async dispatch => {
     try {
-        debugger
         const mazos = Promise.all(idsDeLosMazos.map(async (x) => {
             try {
                 const res = await getMazoById(x)
@@ -13,7 +12,6 @@ export const cargarDatosGeneralesMazos = (idsDeLosMazos) => async dispatch => {
                 console.log(error)
             }
         })).then((data) => {
-            debugger
             dispatch(mazosActions.guardarMazosDatosGenerales(data))
         })
     }

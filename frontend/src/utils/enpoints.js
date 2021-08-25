@@ -8,3 +8,11 @@ export const MAZOS = {
     BY_ID_CARTAS: (id) => `mazos/${id}/cartas`,
     BY_ID : (id) => `/${id}`,
 }
+
+export const CARTAS_POKEMON = {
+    BASE : "cartaspokemon",
+}
+
+export const CARTAS_ENERGIA = {
+    BASE : "cartasenergia",
+}
