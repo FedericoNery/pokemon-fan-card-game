@@ -1,9 +1,9 @@
 class Juego {
-    constructor(jugador1, jugador2, campo1, campo2) {
+    constructor(jugador1, jugador2, mazo1, mazo2) {
       this.jugador1 = jugador1;
       this.jugador2 = jugador2;
-      this.campo1 = campo1;
-      this.campo2 = campo2;
+      this.mazo1 = mazo1;
+      this.mazo2 = mazo2;
     }
     
     static iniciarJuego (turno) {

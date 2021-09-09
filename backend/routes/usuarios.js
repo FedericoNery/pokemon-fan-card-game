@@ -10,7 +10,6 @@ router.route('/').get((req, res) => {
 
 router.route('/authenticate').post((req, res) => {
   const { email } = req.body
-  console.log(email)
   Usuario.findOne({ email: email })
     .then(usuario => 
       res.json(usuario)
@@ -67,7 +66,6 @@ router.route('/:id').get((req, res) => {
 /*GET BY ID USUARIO*/
 router.route('/nombre/:nombre').get((req, res) => {
   const nombre = req.params.nombre;
-  console.log(nombre)
   Usuario.find({nombre_usuario: nombre}).limit(1)
     .then(usuario => res.json(usuario))
     .catch(err => res.status(400).json('Error: ' + err));

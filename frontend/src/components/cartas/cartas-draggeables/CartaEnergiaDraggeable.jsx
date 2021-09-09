@@ -60,11 +60,10 @@ const CartaEnergiaDraggeable = (props) => {
                         alt=""
                         className={classes.media}
                         title="Contemplative Reptile"
-                        component="img"
                         src={`../../images/energias/${energias[0].nombre}.png`}
                         classes={classes}
                     />
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom variant="h5" component="h2" align="center">
                         {nombre}
                     </Typography>
                 </div>

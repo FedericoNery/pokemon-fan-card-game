@@ -46,10 +46,25 @@
     "/juego": {
       "get": {
         "x-swagger-router-controller": "juego",
-        "operationId": "2",
+        "operationId": "juego1",
         "tags": ["Juego"],
         "description": "",
         "parameters": [],
+        "responses": {}
+      }
+    },
+    "/juego/iniciar": {
+      "post": {
+        "x-swagger-router-controller": "juego",
+        "operationId": "juego2",
+        "tags": ["Juego"],
+        "description": "",
+        "parameters": [{
+          "name": "iniciarJuego",
+          "in": "body",
+          "schema": { "$ref": "#/definitions/IniciarJuego" },
+          "type": "string"
+        }],
         "responses": {}
       }
     },
@@ -207,6 +222,13 @@
       "required": ["email"],
       "properties": {
         "email": { "type": "string" }
+      }
+    },
+    "IniciarJuego": {
+      "required": ["idJugadorLogueado", "idMazoSeleccionado"],
+      "properties": {
+        "idJugadorLogueado": { "type": "integer" },
+        "idMazoSeleccionado": { "type": "integer" }
       }
     },
     "Mazo": {

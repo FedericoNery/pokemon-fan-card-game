@@ -2,8 +2,19 @@ const router = require('express').Router();
 const FASES_JUEGO = require('../utils/enums').FASES_JUEGO;
 const juegoService = require('../services/juegoService')
 
-router.route('/fase').get((req, res) => {
-  res.json(juegoService.iniciarJuego())           
+let estadoDelJuego = null
+
+router.route('/iniciar').post(async (req, res) => {
+  const { idJugadorLogueado, idMazoSeleccionado } = req.body
+  estadoDelJuego = await juegoService.iniciarJuego(idJugadorLogueado, idMazoSeleccionado).then(res => res)
+  console.log("ESTADO DEL JUEGO")
+  console.log(estadoDelJuego)
+  if(estadoDelJuego !== null){
+    res.sendStatus(200)
+  }
+  else{
+    res.sendStatus(500)
+  }
 });
 
 /*GET BY NUMERO Carta ENERGIA*/

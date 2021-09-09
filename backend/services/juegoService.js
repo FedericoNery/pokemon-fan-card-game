@@ -1,9 +1,20 @@
 const resultados = require('../utils/enums').FASES_JUEGO
 const Juego = require('../domain/Juego')
 const mazoService = require('../services/mazoService')
+const iniciarJuegoService = require('../services/iniciarJuegoService')
+const usuariosService = require('../services/usuariosService')
 
-const iniciarJuego = (jugador1, jugador2, campo1, campo2) => {
-    const juego = new Juego(jugador1, jugador2, campo1, campo2)
+
+const iniciarJuego = async (idJugadorLogueado, idMazoSeleccionado) => {
+    //Jugador logueado, selecciona mazo con el que desea jugar
+    var jugadorLogueado = await usuariosService.getUsuarioBy(idJugadorLogueado)
+    var mazoJugadorLogueado = await iniciarJuegoService.getMazoById(idMazoSeleccionado)
+
+    //Jugador rival aleatorio, mazo aleatorio
+    var rival = await iniciarJuegoService.getRandomUsuario().then(res => res)
+    var mazoRival = await iniciarJuegoService.getRandomMazoByUsuarioId(rival.numero).then(res => res)
+
+    const juego = new Juego(jugadorLogueado, rival, mazoJugadorLogueado, mazoRival)
     return juego
 }
 
