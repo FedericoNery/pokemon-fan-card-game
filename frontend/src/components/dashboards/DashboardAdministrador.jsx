@@ -1,8 +1,10 @@
-import { Grid, makeStyles, Paper } from '@material-ui/core';
+import { Grid } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import React from 'react'
-import SimpleCard from './SimpleCard';
-
-const useStyles = makeStyles((theme) => ({
+import SimpleCard from '../SimpleCard';
+import { createTheme } from '@mui/material';
+const theme = createTheme()
+const useStyles = makeStyles(() => ({
     root: {
       flexGrow: 1,
     },
@@ -14,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const DashboardJugador = (props) => {
+const DashboardAdministrador = (props) => {
     const classes = useStyles();
 
     return <Grid container spacing={3}>
@@ -45,4 +47,4 @@ const DashboardJugador = (props) => {
  */}  </Grid>
 }
  
-export default DashboardJugador;
+export default DashboardAdministrador;

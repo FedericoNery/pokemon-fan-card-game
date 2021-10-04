@@ -1,21 +1,21 @@
-import { Badge, Grid } from '@material-ui/core';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@mui/styles';
 import React from 'react';
-import { getBackgroundPredominanteColorEnergia } from '../utils/functions';
-import BadgeEnergias from './BadgeEnergias';
+import { getBackgroundPredominanteColorEnergia } from '../../utils/functions';
+import BadgeEnergias from '../BadgeEnergias';
+import Grid from '@mui/material/Grid';
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 
 const CartaEnergia = (props) => {
-  const { nombre, numero, energias } = props
+  const { nombre, numero, energias, indice,
+    onClick, isSeleccionada } = props
 
   const useStyles = makeStyles({
     root: {
       maxWidth: 345,
       backgroundColor: getBackgroundPredominanteColorEnergia(energias),
+      border: isSeleccionada && "primary",
+      "border-width": isSeleccionada && "medium",
+      "border-style": isSeleccionada && "solid"
       //TODO ORDENAR LAS ENERGIAS SEGUN CANTIDAD Y ARMAR ALGUN FONDO CON DEGRADÉ 
       // DE FORMA TAL DE VISUALIZAR CON MAYOR FRANJA EL QUE MAS ENERGIAS APORTA
     },
@@ -31,7 +31,7 @@ const CartaEnergia = (props) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} onClick={() => onClick(numero, indice)}>
       <CardContent>
           <Grid container spacing={1}>
             <Grid item xs={6} spacing={1}>
@@ -53,7 +53,7 @@ const CartaEnergia = (props) => {
           title="Contemplative Reptile"
           component="img"
           src={`../../images/energias/${energias[0].nombre}.png`}
-          classes={classes}
+          //classes={classes}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

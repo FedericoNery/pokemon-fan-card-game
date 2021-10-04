@@ -1,6 +1,8 @@
 const CODIGO_TIPO_CARTA = require('../utils/enums').CODIGO_TIPO_CARTA
 
 const obtenerEnergias = (mano) => {
+    console.log("-----MANO-------")
+    console.log(mano)
     return {
         incoloro: contarEnergias(mano, CODIGO_TIPO_CARTA.INCOLORO),
         fuego: contarEnergias(mano, CODIGO_TIPO_CARTA.FUEGO),
@@ -25,11 +27,11 @@ const contarEnergias = (mano, tipoCarta) => {
 }
 
 const filtroPorCartasPokemon = (mano, tipoCarta) => {
-    return mano.filter(carta => carta.tipo_energia != undefined && carta.tipo_energia === tipoCarta)
+    return mano.getCartas().filter(carta => carta.tipo_energia != undefined && carta.tipo_energia === tipoCarta)
 }
 
 const filtroPorCartasEnergia = (mano, tipoCarta) => {
-    return mano.filter(carta => carta.energias != undefined && carta.energias.filter(energia => energia.nombre === tipoCarta).length > 0)
+    return mano.getCartas().filter(carta => carta.energias != undefined && carta.energias.filter(energia => energia.nombre === tipoCarta).length > 0)
 }
 
 const esValidaLaInvocacion = (energias, cartasSeleccionadas) => {

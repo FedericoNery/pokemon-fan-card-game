@@ -1,5 +1,5 @@
 import React from 'react'
-import MenuAppBarVer from '../MenuAppBarVer'
+import MenuAppBarVer from '../menu-lateral/MenuAppBarVer'
 
 const MenuPrincipalJugador = (props) => {
     return <MenuAppBarVer>

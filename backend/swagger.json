@@ -68,6 +68,21 @@
         "responses": {}
       }
     },
+    "/juego/invocar": {
+      "post": {
+        "x-swagger-router-controller": "juego",
+        "operationId": "juego3",
+        "tags": ["Juego"],
+        "description": "",
+        "parameters": [{
+          "name": "invocarCartas",
+          "in": "body",
+          "schema": { "$ref": "#/definitions/InvocarCartas" },
+          "type": "string"
+        }],
+        "responses": {}
+      }
+    },
     "/mazos": {
       "get": {
         "x-swagger-router-controller": "mazos",
@@ -229,6 +244,13 @@
       "properties": {
         "idJugadorLogueado": { "type": "integer" },
         "idMazoSeleccionado": { "type": "integer" }
+      }
+    },
+    "InvocarCartas": {
+      "required": ["cartas", "idJugador"],
+      "properties": {
+        "cartas": { "type": "array" },
+        "idJugador": { "type": "integer" }
       }
     },
     "Mazo": {

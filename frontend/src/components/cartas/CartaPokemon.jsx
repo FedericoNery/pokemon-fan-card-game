@@ -1,22 +1,22 @@
-import { Grid } from '@material-ui/core';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import { makeStyles } from '@mui/styles';
+import { Box } from '@mui/system';
 import React from 'react';
-import { getBackgroundColorPokemon, getNumeroPokemon } from '../utils/functions';
-
-
+import { getBackgroundColorPokemon, getNumeroPokemon } from '../../utils/functions';
 
 const CartaPokemon = (props) => {
-  const { ataque, ataque_esp, cantidad_energia, defensa, defensa_esp, numero, pokemon, ps, suma, tipo_energia, velocidad } = props
+  const { ataque, ataque_esp, cantidad_energia, defensa, defensa_esp, numero, pokemon, ps, suma, tipo_energia, velocidad,
+    onClick, isSeleccionada, indice
+  } = props
 
   const useStyles = makeStyles({
     root: {
       maxWidth: 345,
-      backgroundColor: getBackgroundColorPokemon(tipo_energia)
+      backgroundColor: getBackgroundColorPokemon(tipo_energia),
+      border: isSeleccionada && "chocolate",
+      "border-width": isSeleccionada && "medium",
+      "border-style": isSeleccionada && "solid"
     },
     media: {
       objectFit: "contain"
@@ -29,41 +29,60 @@ const CartaPokemon = (props) => {
 
   const classes = useStyles();
 
+  const sxRoot = {
+    maxWidth: 380,
+    backgroundColor: getBackgroundColorPokemon(tipo_energia),
+    border: isSeleccionada && "chocolate",
+    "border-width": isSeleccionada && "medium",
+    "border-style": isSeleccionada && "solid"
+  }
+
+  const sxMedia = {
+    objectFit: "contain",
+    maxHeight: 180,
+    //maxHeight: 140
+  }
+
   return (
-    <Card className={classes.root}>
+    <Card sx={sxRoot} /* className={classes.root}  */ onClick={() => onClick(numero, indice)}>
       <CardActionArea>
         <CardContent>
           <Grid container spacing={1}>
-            <Grid item xs={6} spacing={1}>
+            <Grid item xs={6}>
               <Typography variant="body2" color="textSecondary" component="p" align="left">
                 Tipo: {tipo_energia}
               </Typography>
             </Grid>
-            <Grid item xs={6} spacing={1}>
+            <Grid item xs={6}>
               <Typography variant="body2" color="textSecondary" component="p" align="right">
                 Energía: {cantidad_energia}
               </Typography>
             </Grid>
           </Grid>
         </CardContent>
-        <CardMedia
-          className={classes.media}
-          title="Contemplative Reptile"
+        <Box
           component="img"
+          alt=""
+          sx={{
+            objectFit: "contain",
+            margin: "auto",
+            display: "block"
+            //maxHeight: 140
+          }}
+          title="Contemplative Reptile"
           src={`../images/pokemons/${getNumeroPokemon(numero)}.png`}
-          classes={classes}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2" align="center">
             {pokemon}
           </Typography>
-          <Grid container spacing={1}>
-            <Grid item xs={6} spacing={1}>
+          <Grid container >
+            <Grid item xs={6} >
               <Typography variant="body2" color="textSecondary" component="p" align="left">
                 Ataque: {ataque}
               </Typography>
             </Grid>
-            <Grid item xs={6} spacing={1}>
+            <Grid item xs={6} >
               <Typography variant="body2" color="textSecondary" component="p" align="right">
                 Defensa: {defensa}
               </Typography>

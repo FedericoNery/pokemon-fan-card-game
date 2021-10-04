@@ -1,9 +1,7 @@
-import { Grid } from '@material-ui/core'
-import React, { memo, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { getCartasDelMazoById } from '../core/services/mazos'
-import CartaPokemonDraggeable from './cartas/cartas-draggeables/CartaPokemonDraggeable'
-import CartaEnergiaDraggeable from './cartas/cartas-draggeables/CartaEnergiaDraggeable'
+import Grid from '@mui/material/Grid';
+import React from 'react'
+import CartaPokemonDraggeable from './cartas-draggeables/CartaPokemonDraggeable'
+import CartaEnergiaDraggeable from './cartas-draggeables/CartaEnergiaDraggeable'
 
 const CartasDelMazo = ({cartas}) => {
 /*     const { id } = useParams();

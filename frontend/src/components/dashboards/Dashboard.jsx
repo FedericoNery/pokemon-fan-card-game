@@ -1,6 +1,6 @@
 import React from 'react'
-import { useRolUsuario } from '../hooks/useRolUsuario'
-import { ROLES } from '../utils/enumRoles'
+import { useRolUsuario } from '../../hooks/useRolUsuario'
+import { ROLES } from '../../utils/enumRoles'
 import DashboardAdministrador from './DashboardAdministrador'
 import DashboardJugador from './DashboardJugador'
 

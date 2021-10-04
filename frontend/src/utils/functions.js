@@ -1,5 +1,3 @@
-import { rgbToHex } from "@material-ui/core"
-
 export const getNumeroPokemon = (codigoPokemon) => {
     const numeroSinCeros = codigoPokemon.replace("P", '')
     let numero = numeroSinCeros
@@ -9,7 +7,7 @@ export const getNumeroPokemon = (codigoPokemon) => {
     return numero
 }
 
-const CODIGO_TIPO_CARTA ={
+export const CODIGO_TIPO_CARTA ={
     INCOLORO: 'Incoloro',
     FUEGO: 'Fuego',
     TIERRA: 'Tierra',

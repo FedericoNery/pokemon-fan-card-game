@@ -1,4 +1,5 @@
-import { Badge, makeStyles, Tooltip } from '@material-ui/core';
+import { Badge, Tooltip } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import React from 'react'
 import { getColorEnergiaBadge } from '../utils/functions';
 

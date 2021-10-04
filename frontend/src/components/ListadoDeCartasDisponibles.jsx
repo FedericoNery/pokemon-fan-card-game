@@ -1,10 +1,7 @@
-import React, { useState } from "react";
-import Grid from "@material-ui/core/Grid";
-import { DragDropContext } from "react-beautiful-dnd";
-import Column from "./Column";
+import { List } from "@mui/material";
+import React from "react";
 import ItemCartaEnergiaDraggeable from './cartas/items-draggeables/ItemCartaEnergiaDraggeable'
 import ItemCartaPokemonDraggeable from './cartas/items-draggeables/ItemCartaPokemonDraggeable'
-import { List } from "@material-ui/core";
 
 const ListadoDeCartasDisponibles = ({ cartas }) => {
   return (

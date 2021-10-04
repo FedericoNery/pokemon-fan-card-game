@@ -1,5 +1,5 @@
-import { Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { Inbox, Mail } from '@material-ui/icons';
+import { Inbox, Mail } from '@mui/icons-material';
+import { Divider, Icon, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import React from 'react'
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
@@ -10,7 +10,7 @@ import { To } from '../../utils/routes';
 const ListJugador = (props) => {
     const { history } = props
     const listadoOpciones = [
-        { titulo: 'Jugador vs COM', onClick: () => {} },
+        { titulo: 'Jugador vs COM', onClick: () => history.push(To.seleccionarMazoDeJuego()) },
         { titulo: 'Jugador vs Jugador', onClick: () => {} },
         { titulo: 'Mazos', onClick: () => history.push(To.mazos()) },
         { titulo: 'Tienda', onClick: () => history.push(To.tienda()) }
@@ -39,7 +39,7 @@ const ListJugador = (props) => {
                 const { titulo, onClick } = x
 
                 return <ListItem button key={`${titulo}${index}`} onClick={onClick}>
-                    <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon>
+                    <ListItemIcon>{index % 2 === 0 ? <Icon /> : <Mail />}</ListItemIcon>
                     <ListItemText primary={titulo} />
                 </ListItem>
             }

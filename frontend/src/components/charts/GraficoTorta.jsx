@@ -1,9 +1,8 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
 import {
   Chart,
   PieSeries,
-  Title,AreaSeries, Legend
+  Title
 } from '@devexpress/dx-react-chart-material-ui';
 
 import { Animation } from '@devexpress/dx-react-chart';

@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators, compose } from 'redux'
-import { useListaMazosDelUsuario } from '../hooks/useListaMazosDelUsuario'
-import { cargarDatosGeneralesMazos } from '../redux/actionCreators/mazos'
-import VisualizarDatosGeneralesMazos from './VisualizarDatosGeneralesMazos'
+import { useListaMazosDelUsuario } from '../../hooks/useListaMazosDelUsuario'
+import { cargarDatosGeneralesMazos } from '../../redux/actionCreators/mazos'
+import MazosParaSeleccionar from './MazosParaSeleccionar'
 
-const ConfigurarMazos = (props) => {
+const SeleccionarMazo = (props) => {
     const { cargarDatosGeneralesMazos, mazosDatosGenerales } = props
     const [isLoading, setIsLoading] = useState(true)
     const idsDeLosMazos = useListaMazosDelUsuario()
@@ -17,7 +17,7 @@ const ConfigurarMazos = (props) => {
         setIsLoading(false)
     }, [])
 
-    return isLoading ? <></> : <VisualizarDatosGeneralesMazos mazos={mazosDatosGenerales}/>
+    return isLoading ? <></> : <MazosParaSeleccionar mazos={mazosDatosGenerales}/>
 }
 
 const mapStateToProps = state => {
@@ -34,4 +34,4 @@ const mapDispatchToProps = dispatch => {
 export default compose(
     withRouter,
     connect(mapStateToProps, mapDispatchToProps)
-)(ConfigurarMazos)
+)(SeleccionarMazo)

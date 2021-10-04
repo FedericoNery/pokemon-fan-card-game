@@ -9,6 +9,12 @@ export const MAZOS = {
     BY_ID : (id) => `/${id}`,
 }
 
+export const JUEGO = {
+    BASE : "juego",
+    INICIAR: "juego/iniciar",
+    INVOCAR_CARTAS: "juego/invocar",
+}
+
 export const CARTAS_POKEMON = {
     BASE : "cartaspokemon",
 }

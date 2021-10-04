@@ -1,10 +1,7 @@
-import { Container, Grid, Grow } from '@material-ui/core';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import { makeStyles } from '@mui/styles';
+import { Box } from '@mui/system';
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { getBackgroundColorPokemon, getNumeroPokemon } from '../../../utils/functions';
@@ -62,13 +59,25 @@ const CartaPokemonDraggeable = (props) => {
                             </Typography>
                         </Grid>
                     </Grid>
-                    <img
+                    <Box
+                        component="img"
+                        alt=""
+                        sx={{
+                            objectFit: "contain",
+                            margin: "auto",
+                            display: "block"
+                            //maxHeight: 140
+                        }}
+                        title="Contemplative Reptile"
+                        src={`../images/pokemons/${getNumeroPokemon(numero)}.png`}
+                    />
+                    {/* <img
                         alt=""
                         className={classes.media}
                         title="Contemplative Reptile"
                         src={`../images/pokemons/${getNumeroPokemon(numero)}.png`}
                         classes={classes}
-                    />
+                    /> */}
                     <Typography gutterBottom variant="h5" component="h2" align="center">
                         {pokemon}
                     </Typography>

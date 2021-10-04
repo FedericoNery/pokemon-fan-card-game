@@ -21,4 +21,5 @@ export const To = {
     mazos: () => ROUTES.MAZOS,
     tienda: () => ROUTES.TIENDA,
     mazoDetallado: (idMazo) => `${ROUTES.MAZO_DETALLADO}/${idMazo}`,
+    seleccionarMazoDeJuego: () => ROUTES.SELECCION_MAZO
 }

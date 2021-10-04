@@ -2,14 +2,44 @@ const router = require('express').Router();
 const FASES_JUEGO = require('../utils/enums').FASES_JUEGO;
 const juegoService = require('../services/juegoService')
 
-let estadoDelJuego = null
+let juego = null
 
 router.route('/iniciar').post(async (req, res) => {
   const { idJugadorLogueado, idMazoSeleccionado } = req.body
-  estadoDelJuego = await juegoService.iniciarJuego(idJugadorLogueado, idMazoSeleccionado).then(res => res)
+  await juegoService.iniciarJuego(idJugadorLogueado, idMazoSeleccionado).then(res => {
+    juego = res
+    return res
+  })
   console.log("ESTADO DEL JUEGO")
-  console.log(estadoDelJuego)
-  if(estadoDelJuego !== null){
+  console.log(juego)
+  if(juego !== null){
+    res.json(juego)
+    //res.sendStatus(200)
+  }
+  else{
+    res.sendStatus(500)
+  }
+});
+
+router.route('/invocar').post(async (req, res) => {
+  const { cartas: listaNumerosDeCartas, idJugador } = req.body
+  const campo = juego.getCampoByIdJugador(idJugador)
+  const cartasAInvocar = juegoService.getCartasInvocadas(campo.mano.getCartas(), listaNumerosDeCartas)
+  let esValidaLaInvocacion = juegoService.invocacionCartasPokemon(campo.getCantidadEnergias(), cartasAInvocar)
+  if(esValidaLaInvocacion){
+    juego.invocarCartasPokemon(cartasAInvocar, idJugador)
+    res.json(juego)
+    res.sendStatus(200)
+  }
+  else{
+    res.sendStatus(500)
+  }
+});
+
+router.route('/batallar').post(async (req, res) => {
+  juego.
+  if(esValidaLaInvocacion){
+    res.json(juego)
     res.sendStatus(200)
   }
   else{

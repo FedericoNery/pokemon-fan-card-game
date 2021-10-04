@@ -1,8 +1,8 @@
 import React from 'react'
-import { useRolUsuario } from '../hooks/useRolUsuario'
-import { ROLES } from '../utils/enumRoles'
-import MenuPrincipalAdministrador from './menus_principales/MenuPrincipalAdministrador'
-import MenuPrincipalJugador from './menus_principales/MenuPrincipalJugador'
+import { useRolUsuario } from '../../hooks/useRolUsuario'
+import { ROLES } from '../../utils/enumRoles'
+import MenuPrincipalAdministrador from './MenuPrincipalAdministrador'
+import MenuPrincipalJugador from './MenuPrincipalJugador'
 
 const MenuPrincipal = (props) => {
     const rol = useRolUsuario()

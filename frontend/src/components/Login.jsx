@@ -1,25 +1,15 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 
 import login_background from "../images/login_background.png";
 import { withRouter } from 'react-router';
 import { ROUTES, To } from '../utils/routes';
 import { bindActionCreators, compose } from 'redux'
-import {connect} from 'react-redux'
-import { iniciarSesion } from '../core/services/authentication';
+import { connect } from 'react-redux'
 import { loguearse } from '../redux/actionCreators/authenticate';
+import { Avatar, Button, Checkbox, CssBaseline, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import { LockOutlined } from '@mui/icons-material'
+import { makeStyles } from '@mui/styles';
 
 function Copyright() {
     return (
@@ -27,12 +17,13 @@ function Copyright() {
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
                 Your Website
-      </Link>{' '}
+            </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
         </Typography>
     );
 }
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundImage: `url(${login_background})`,
         backgroundRepeat: 'no-repeat',
         backgroundColor:
-            theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+            theme.palette.mode === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     },
@@ -72,11 +63,11 @@ const Login = (props) => {
     const onLogin = async (event) => {
         event.preventDefault();
         const payload = { email: event.target.email.value, password: event.target.password.value }
-        try{
+        try {
             await loguearse(payload)
             history.push(To.menuPrincipal())
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
     }
@@ -88,11 +79,11 @@ const Login = (props) => {
             <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
                 <div className={classes.paper}>
                     <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon />
+                        <LockOutlined />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign in
-          </Typography>
+                    </Typography>
                     <form className={classes.form} noValidate onSubmit={(values) => onLogin(values)}>
                         <TextField
                             variant="outlined"
@@ -126,15 +117,15 @@ const Login = (props) => {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            //onClick={() => history.push(To.menuPrincipal())}
+                        //onClick={() => history.push(To.menuPrincipal())}
                         >
                             Sign In
-            </Button>
+                        </Button>
                         <Grid container>
                             <Grid item xs>
                                 <Link href="#" variant="body2">
                                     Forgot password?
-                </Link>
+                                </Link>
                             </Grid>
                             <Grid item>
                                 <Link href="#" variant="body2">

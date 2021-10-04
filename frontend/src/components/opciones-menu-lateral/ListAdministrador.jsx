@@ -1,5 +1,5 @@
-import { Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { Inbox, Mail } from '@material-ui/icons';
+import { Inbox, Mail } from '@mui/icons-material';
+import { Divider, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import React from 'react'
 
 

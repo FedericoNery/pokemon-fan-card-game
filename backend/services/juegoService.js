@@ -3,7 +3,7 @@ const Juego = require('../domain/Juego')
 const mazoService = require('../services/mazoService')
 const iniciarJuegoService = require('../services/iniciarJuegoService')
 const usuariosService = require('../services/usuariosService')
-
+const manoService = require('../services/manoService')
 
 const iniciarJuego = async (idJugadorLogueado, idMazoSeleccionado) => {
     //Jugador logueado, selecciona mazo con el que desea jugar
@@ -69,7 +69,12 @@ const invocacionCartasProgramacion = () => {
     
 }
 
-const invocacionCartasPokemon = (turno) => {
+const getCartasInvocadas = (cartasAFiltrar, listaNumerosDeCartas) => {
+    return cartasAFiltrar.filter(x => listaNumerosDeCartas.includes(x.numero))
+}
+
+const invocacionCartasPokemon = (cantidadesEnergias, cartas) => {
+    return manoService.esValidaLaInvocacion(cantidadesEnergias, cartas)
     if(turno === 1){
         //enviar orden al jugador de seleccionar cartas a invocar
         //esperar en el otro endpoint de invocacion de que está todo ok
@@ -130,5 +135,6 @@ module.exports={
     invocacionCartasProgramacion2 : invocacionCartasProgramacion2,
     batalla : batalla,
     determinarGanadorRonda: determinarGanadorRonda,
-    determinarGanadorPartida: determinarGanadorPartida
+    determinarGanadorPartida: determinarGanadorPartida,
+    getCartasInvocadas: getCartasInvocadas
 }

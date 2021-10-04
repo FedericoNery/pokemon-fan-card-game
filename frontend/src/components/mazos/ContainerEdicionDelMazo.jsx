@@ -1,12 +1,12 @@
-import { Grid, RootRef } from '@material-ui/core';
 import React, { useEffect, useState } from 'react'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useParams } from 'react-router-dom';
-import { getAllCartasEnergia } from '../core/services/cartasEnergias';
-import { getAllCartasPokemon } from '../core/services/cartasPokemon';
-import { getCartasDelMazoById } from '../core/services/mazos';
-import CartasDelMazo from './CartasDelMazo';
-import ListadoDeCartasDisponibles from './ListadoDeCartasDisponibles';
+import { getAllCartasEnergia } from '../../core/services/cartasEnergias';
+import { getAllCartasPokemon } from '../../core/services/cartasPokemon';
+import { getCartasDelMazoById } from '../../core/services/mazos';
+import CartasDelMazo from '../cartas/CartasDelMazo';
+import ListadoDeCartasDisponibles from '../ListadoDeCartasDisponibles';
+import Grid from '@mui/material/Grid';
 
 const ContainerEdicionDelMazo = () => {
     const { id } = useParams();
@@ -126,28 +126,24 @@ const ContainerEdicionDelMazo = () => {
             <Grid item xs={10} sm={9} md={8}>
                 <Droppable droppableId={"cartas-mazo"}>
                     {(provided) => (
-                        <RootRef rootRef={provided.innerRef}>
                             <div
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}
                             >
                                 {!isLoading && <CartasDelMazo cartas={cartas["cartas-mazo"].list} />}
                             </div>
-                        </RootRef>
                     )}
                 </Droppable>
             </Grid>
             <Grid item xs={2} sm={3} md={4}>
                 <Droppable droppableId={"cartas-disponibles"}>
                     {(provided) => (
-                        <RootRef rootRef={provided.innerRef}>
                             <div
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}
                             >
                                 {!isLoading && <ListadoDeCartasDisponibles cartas={cartas["cartas-disponibles"].list} />}
                             </div>
-                        </RootRef>
                     )}
                 </Droppable>
             </Grid>

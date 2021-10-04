@@ -14,6 +14,13 @@ class CartaPokemon extends Carta {
       this.tipo_energia = tipo_energia;
       this.cantidad_energia = cantidad_energia;
     }
+
+    getTipoEnergia(){
+      return this.tipo_energia
+    }
+    getCantidadEnergia(){
+      return this.cantidad_energia
+    }
   }
 
   module.exports = CartaPokemon
