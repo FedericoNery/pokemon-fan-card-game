@@ -95,6 +95,13 @@ class Campo {
         throw "Error con el tipo de energía";
     }
   }
+
+  getAtaque(){
+    this.zonaJuego.getAtaque()
+  }
+  getDefensa(){
+    this.zonaJuego.getDefensa()
+  }
 }
 
 module.exports = Campo

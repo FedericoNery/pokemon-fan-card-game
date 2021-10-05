@@ -1,5 +1,5 @@
 const Campo = require("./Campo")
-const EstadosDeLaPartida  = require('./EstadosPartida')  
+const EstadosDeLaPartida = require('./EstadosPartida')
 class Juego {
     constructor(jugador1, jugador2, mazo1, mazo2) {
         this.esTurnoDeJugador1 = true
@@ -10,6 +10,8 @@ class Juego {
         this.campo2 = new Campo(mazo2)
         this.rondasGanadasJugador1 = 0
         this.rondasGanadasJugador2 = 0
+        this.numeroJugadorGanador = null
+        this.numeroJugadorPerdedor = null
         this.estadoDeLaRonda = EstadosDeLaPartida.JUEGO_INICIADO
         this.repartirCartas()
         this.contarEnergias()
@@ -49,34 +51,70 @@ class Juego {
     }
 
     getCampoByIdJugador(idJugador) {
-        if(idJugador == this.jugador1.numero){
+        if (idJugador == this.jugador1.numero) {
             return this.campo1
         }
-        else{
+        else {
             return this.campo2
         }
     }
 
-    invocarCartasPokemon(cartasAInvocar, idJugador){
-        if(idJugador == this.jugador1.numero){
+    invocarCartasPokemon(cartasAInvocar, idJugador) {
+        if (idJugador == this.jugador1.numero) {
             this.estadoDeLaRonda = EstadosDeLaPartida.INVOCACION_JUGADOR
             this.campo1.invocarCartas(cartasAInvocar)
             this.campo2.invocarCartasComputadora()
         }
     }
 
-    iniciarBatalla(){
-        const ataqueJugador = this.getAtaque(campo1)
-        const ataqueComputadora = this.getAtaque(campo2)
-        const defensaJugador = this.getDefensa(campo1)
-        const defensaComputadora = this.getDefensa(campo2)
+    iniciarBatalla() {
+        this.determinarGanadorDeLaRonda(campo1, campo2)
+        this.determinarGanadorPartida()
     }
 
-    getAtaque(campo){
+    determinarGanadorDeLaRonda(campo1, campo2) {
+        let ataqueJugador = campo1.getAtaque()
+        let ataqueComputadora = campo2.getAtaque()
+        let defensaJugador = campo1.getDefensa()
+        let defensaComputadora = campo2.getDefensa()
+
+        let deltaJugador = defensaJugador - ataqueComputadora
+        let deltaComputadora = defensaComputadora - ataqueJugador
+
+        const ambosJugadoresQuedaronSinDefensa = deltaJugador <= 0 && deltaComputadora <= 0
+        const computadoraPudoDefenderseYJugadorQuedoSinDefensa = deltaComputadora > 0 && deltaJugador <= 0
+        const jugadorPudoDefenderseYComputadoraQuedoSinDefensa = deltaJugador > 0 && deltaComputadora <= 0
+        const ventajaDeComputadora = deltaJugador > 0 && deltaComputadora > 0 && deltaComputadora > deltaJugador
+        const ventajaDeJugador = deltaJugador > 0 && deltaComputadora > 0 && deltaJugador > deltaComputadora
+
+        if (ambosJugadoresQuedaronSinDefensa || computadoraPudoDefenderseYJugadorQuedoSinDefensa || ventajaDeComputadora) {
+            this.rondasGanadasJugador2 += 1
+            return
+        }
+        else if (jugadorPudoDefenderseYComputadoraQuedoSinDefensa || ventajaDeJugador) {
+            this.rondasGanadasJugador1 += 1
+            return
+        }
+    }
+
+    determinarGanadorPartida() {
+        if (this.rondasGanadasJugador1 === 2) {
+            this.estadoDeLaRonda = EstadosDeLaPartida.JUEGO_TERMINADO
+            this.numeroJugadorGanador = this.jugador1.numero
+            this.numeroJugadorPerdedor = this.jugador2.numero
+        }
+        else if (this.rondasGanadasJugador2 === 2) {
+            this.estadoDeLaRonda = EstadosDeLaPartida.JUEGO_TERMINADO
+            this.numeroJugadorGanador = this.jugador2.numero
+            this.numeroJugadorPerdedor = this.jugador1.numero
+        }
+    }
+
+    getAtaque(campo) {
 
     }
-    
-    getDefensa(campo){
+
+    getDefensa(campo) {
 
     }
 
