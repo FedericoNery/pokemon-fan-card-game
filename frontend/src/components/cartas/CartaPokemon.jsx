@@ -1,6 +1,5 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/system';
 import React from 'react';
 import { getBackgroundColorPokemon, getNumeroPokemon } from '../../utils/functions';
@@ -9,25 +8,6 @@ const CartaPokemon = (props) => {
   const { ataque, ataque_esp, cantidad_energia, defensa, defensa_esp, numero, pokemon, ps, suma, tipo_energia, velocidad,
     onClick, isSeleccionada, indice
   } = props
-
-  const useStyles = makeStyles({
-    root: {
-      maxWidth: 345,
-      backgroundColor: getBackgroundColorPokemon(tipo_energia),
-      border: isSeleccionada && "chocolate",
-      "border-width": isSeleccionada && "medium",
-      "border-style": isSeleccionada && "solid"
-    },
-    media: {
-      objectFit: "contain"
-      //maxHeight: 140
-    },
-    img: {
-      maxHeight: 180
-    }
-  });
-
-  const classes = useStyles();
 
   const sxRoot = {
     maxWidth: 380,
@@ -44,7 +24,7 @@ const CartaPokemon = (props) => {
   }
 
   return (
-    <Card sx={sxRoot} /* className={classes.root}  */ onClick={() => onClick(numero, indice)}>
+    <Card sx={sxRoot} onClick={() => onClick(numero, indice)}>
       <CardActionArea>
         <CardContent>
           <Grid container spacing={1}>
@@ -90,14 +70,6 @@ const CartaPokemon = (props) => {
           </Grid>
         </CardContent>
       </CardActionArea>
-      {/* <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions> */}
     </Card>
   );
 }

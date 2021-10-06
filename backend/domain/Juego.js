@@ -61,6 +61,7 @@ class Juego {
 
     invocarCartasPokemon(cartasAInvocar, idJugador) {
         if (idJugador == this.jugador1.numero) {
+            console.log("Invoca las cartas")
             this.estadoDeLaRonda = EstadosDeLaPartida.INVOCACION_JUGADOR
             this.campo1.invocarCartas(cartasAInvocar)
             this.campo2.invocarCartasComputadora()

@@ -27,11 +27,13 @@ router.route('/invocar').post(async (req, res) => {
   const cartasAInvocar = juegoService.getCartasInvocadas(campo.mano.getCartas(), listaNumerosDeCartas)
   let esValidaLaInvocacion = juegoService.invocacionCartasPokemon(campo.getCantidadEnergias(), cartasAInvocar)
   if (esValidaLaInvocacion) {
-    juego.invocarCartasPokemon(cartasAInvocar, idJugador)
+    console.log("Es valida la invocacion")
+    juego.invocarCartasPokemon(listaNumerosDeCartas, idJugador)
     res.json(juego)
-    res.sendStatus(200)
+    //res.sendStatus(200)
   }
   else {
+    console.log("Pecheada")
     res.sendStatus(500)
   }
 });
@@ -39,7 +41,7 @@ router.route('/invocar').post(async (req, res) => {
 router.route('/batallar').post(async (req, res) => {
   try {
     juego.iniciarBatalla()
-    res.sendStatus(200)
+    res.json(juego)
   }
   catch (error) {
     res.sendStatus(500)

@@ -17,7 +17,7 @@ const juegoSlice = createSlice({
             state.juego = action.payload
         },
         invocarCartas(state, action){
-            //state.juego = action.payload
+            state.juego = action.payload
         },
         agregarCartaSeleccionada(state, action){
             debugger

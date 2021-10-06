@@ -12,3 +12,9 @@ export const invocarCartas = async (values) => {
     const res = await getAxiosInstance().post(url, values)
     return res
 }
+
+export const iniciarBatallaJuego = async (values) => {
+    const url = JUEGO.INICIAR_BATALLA
+    const res = await getAxiosInstance().post(url, values)
+    return res
+}

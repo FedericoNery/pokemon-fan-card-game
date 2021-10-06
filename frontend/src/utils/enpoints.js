@@ -13,6 +13,7 @@ export const JUEGO = {
     BASE : "juego",
     INICIAR: "juego/iniciar",
     INVOCAR_CARTAS: "juego/invocar",
+    INICIAR_BATALLA: "juego/batallar"
 }
 
 export const CARTAS_POKEMON = {
