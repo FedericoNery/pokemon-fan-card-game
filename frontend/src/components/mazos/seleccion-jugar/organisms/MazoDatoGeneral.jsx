@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import { To } from '../../utils/routes';
+import { To } from '../../../../utils/routes';
 
 const useStyles = makeStyles({
     root: {

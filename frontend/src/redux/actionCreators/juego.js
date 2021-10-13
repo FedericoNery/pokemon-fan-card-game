@@ -35,6 +35,7 @@ export const iniciarBatalla = (payload) => async dispatch => {
     try{
         const response = await iniciarBatallaJuego(payload)
         const juego = response.data
+        debugger
         dispatch(juegoActions.terminarRonda(juego))
     }
     catch (error) {

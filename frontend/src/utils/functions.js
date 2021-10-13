@@ -81,3 +81,7 @@ export const getColorEnergiaBadge = (nombre) => {
 
     return colors[nombre]
 }
+
+export const sleep = (milliseconds) => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+  }

@@ -1,6 +1,6 @@
 import Grid from '@mui/material/Grid';
 import React from 'react';
-import MazoDatoGeneral from './MazoDatoGeneral';
+import MazoDatoGeneral from '../organisms/MazoDatoGeneral';
 
 const VisualizarDatosGeneralesMazos = (props) => {
     const { mazos } = props

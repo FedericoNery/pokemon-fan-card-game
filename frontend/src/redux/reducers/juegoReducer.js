@@ -27,6 +27,10 @@ const juegoSlice = createSlice({
         quitarCartaSeleccionada(state, action){
             const cartasSeleccionadas = state.cartasSeleccionadas.filter(x => x !== action.payload)
             state.cartasSeleccionadas = cartasSeleccionadas
+        },
+        terminarRonda(state, action){
+            state.cartasSeleccionadas = []
+            state.juego = action.payload
         }
     }
 })

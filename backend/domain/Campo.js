@@ -3,15 +3,15 @@ const Mano = require('./Mano')
 const Descarte = require('./Descarte')
 const Mazo = require('./Mazo')
 const ZonaJuego = require('./ZonaJuego')
-const { obtenerEnergias } = require('../services/manoService')
+const { obtenerEnergias, obtenerEnergiasYSumarlas } = require('../services/manoService')
 const CODIGO_TIPO_CARTA = require('../utils/enums').CODIGO_TIPO_CARTA
 class Campo {
   constructor(mazo, mano = [], zonaJuego = [], descarte = []) {
     this.mano = new Mano(mano);
-    this.zonaJuego = new ZonaJuego();
+    this.zonaJuego = new ZonaJuego(zonaJuego);
     this.mazo = new Mazo(mazo);
     this.descarte = new Descarte(descarte);
-    this.cantidadesEnergias = {}
+    this.cantidadesEnergias = null
   }
 
   repartirCartas(cantidad) {
@@ -20,22 +20,25 @@ class Campo {
   }
 
   contarEnergias() {
-    this.cantidadesEnergias = obtenerEnergias(this.mano)
+    if(this.cantidadesEnergias !== null){
+      this.cantidadesEnergias = obtenerEnergiasYSumarlas(this.mano, this.cantidadesEnergias)
+    }
+    else{
+      this.cantidadesEnergias = obtenerEnergias(this.mano)
+    }
   }
   getCantidadEnergias() {
     return this.cantidadesEnergias
   }
 
   invocarCartas(listaIdsCartasAInvocar) {
-    const cartasAInvocar = this.mano.getCartas().filter(x => 'ataque' in x && listaIdsCartasAInvocar.includes(x.numero))
+    const cartasAInvocar = this.mano.getCartasAInvocarFrom(listaIdsCartasAInvocar)
     this.zonaJuego.setCartas(cartasAInvocar)
     this.mano.quitarCartas(listaIdsCartasAInvocar)
   }
 
   invocarCartasComputadora() {
-    const mejoresCartasOrdenadas = this.mano.getCartas().filter(x => 'ataque' in x).sort((a, b) => (a.ataque > b.ataque) ? 1 : -1)
-    console.log("Mejores cartas")
-    console.log(mejoresCartasOrdenadas)
+    const mejoresCartasOrdenadas = this.mano.getCartasOrdenadasPorAtaque()
     if (mejoresCartasOrdenadas.length > 0) {
       mejoresCartasOrdenadas.map(x => this.invocarCartaComputadora(x))
     }
@@ -43,27 +46,17 @@ class Campo {
   }
 
   esValidaLaInvocacionDeLaCarta(carta, cantidadesEnergias){
-    console.log(carta)
     const energias = cantidadesEnergias[carta.tipo_energia] //Si o si el tolowercase porque sino no puede acceder a la clave del objeto
-    console.log("cant energia -> " + energias)
-    console.log("Es valida la invocacion")
-    console.log(carta.cantidad_energia <= energias)
     return carta.cantidad_energia <= energias
   }
 
   esValidaLaInvocacionDeLaCartaEnComputadora(carta, cantidadesEnergias){
-    console.log(carta)
-    console.log(cantidadesEnergias)
     const energias = cantidadesEnergias[carta.tipo_energia.toLowerCase()] //Si o si el tolowercase porque sino no puede acceder a la clave del objeto
-    console.log("cant energia -> " + energias)
-    console.log("Es valida la invocacion")
-    console.log(carta.cantidad_energia <= energias)
     return carta.cantidad_energia <= energias
   }
 
   invocarCartaComputadora(carta) {
     if (this.esValidaLaInvocacionDeLaCartaEnComputadora(carta, this.cantidadesEnergias)) {
-      console.log("entro")
       this.zonaJuego.invocarCarta(carta)
       this.quitarEnergiasGastadasPor(carta)
     }
@@ -71,7 +64,6 @@ class Campo {
 
   invocarCarta(carta) {
     if (this.esValidaLaInvocacionDeLaCarta(carta, this.cantidadesEnergias)) {
-      console.log("entro")
       this.zonaJuego.invocarCarta(carta)
       this.quitarEnergiasGastadasPor(carta)
     }
@@ -122,11 +114,25 @@ class Campo {
     }
   }
 
+  descartarCartasMano(){
+    if(this.mano.getLength() > 0){
+      this.mano.getCartas().map((carta) => this.descarte.agregarCarta(carta))
+      this.mano.clear()
+    }
+  }
+
+  descartarCartasCampo(){
+    if(this.zonaJuego.getLength() > 0){
+      this.zonaJuego.getCartas().map((carta) => this.descarte.agregarCarta(carta))
+      this.zonaJuego.clear()
+    }
+  }
+
   getAtaque(){
-    this.zonaJuego.getAtaque()
+    return this.zonaJuego.getAtaque()
   }
   getDefensa(){
-    this.zonaJuego.getDefensa()
+    return this.zonaJuego.getDefensa()
   }
 }
 

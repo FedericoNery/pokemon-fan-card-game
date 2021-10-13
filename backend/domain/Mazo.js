@@ -14,9 +14,18 @@ class Mazo {
       for (let index = 0; index < cantidad; index++) {
         cartasExtraidas.push(this.extraerCarta())
       }
-      console.log("Extraidas " + cartasExtraidas)
       return cartasExtraidas
     }
+
+    mezclar = () => {
+      var j, x, i;
+      for (i = this.cartas.length - 1; i > 0; i--) {
+          j = Math.floor(Math.random() * (i + 1));
+          x = this.cartas[i];
+          this.cartas[i] = this.cartas[j];
+          this.cartas[j] = x;
+      }
+  }
 }
 
 

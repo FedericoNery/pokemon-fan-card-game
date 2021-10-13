@@ -44,6 +44,7 @@ router.route('/batallar').post(async (req, res) => {
     res.json(juego)
   }
   catch (error) {
+    console.log(error)
     res.sendStatus(500)
   }
 });

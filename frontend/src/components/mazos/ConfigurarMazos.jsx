@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { bindActionCreators, compose } from 'redux'
 import { useListaMazosDelUsuario } from '../../hooks/useListaMazosDelUsuario'
 import { cargarDatosGeneralesMazos } from '../../redux/actionCreators/mazos'
-import VisualizarDatosGeneralesMazos from './VisualizarDatosGeneralesMazos'
+import VisualizarDatosGeneralesMazos from './seleccion-jugar/templates/VisualizarDatosGeneralesMazos'
 
 const ConfigurarMazos = (props) => {
     const { cargarDatosGeneralesMazos, mazosDatosGenerales } = props

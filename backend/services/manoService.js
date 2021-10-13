@@ -1,14 +1,29 @@
 const CODIGO_TIPO_CARTA = require('../utils/enums').CODIGO_TIPO_CARTA
 
 const obtenerEnergias = (mano) => {
-    console.log("-----MANO-------")
-    console.log(mano)
     return {
         incoloro: contarEnergias(mano, CODIGO_TIPO_CARTA.INCOLORO),
         fuego: contarEnergias(mano, CODIGO_TIPO_CARTA.FUEGO),
         tierra: contarEnergias(mano, CODIGO_TIPO_CARTA.TIERRA),
         rayo: contarEnergias(mano, CODIGO_TIPO_CARTA.RAYO),
         dragon: contarEnergias(mano, CODIGO_TIPO_CARTA.DRAGON),
+        hierba: contarEnergias(mano, CODIGO_TIPO_CARTA.HIERBA),
+        agua: contarEnergias(mano, CODIGO_TIPO_CARTA.AGUA),
+        fairy: contarEnergias(mano, CODIGO_TIPO_CARTA.FAIRY),
+        oscuro: contarEnergias(mano, CODIGO_TIPO_CARTA.OSCURO),
+        lucha: contarEnergias(mano, CODIGO_TIPO_CARTA.LUCHA),
+        psiquico: contarEnergias(mano, CODIGO_TIPO_CARTA.PSIQUICO),
+        metal: contarEnergias(mano, CODIGO_TIPO_CARTA.METAL),
+    }
+}
+
+const obtenerEnergiasYSumarlas = (mano, energias) => {
+    return {
+        incoloro: contarEnergias(mano, CODIGO_TIPO_CARTA.INCOLORO) + energias.incoloro,
+        fuego: contarEnergias(mano, CODIGO_TIPO_CARTA.FUEGO) + energias.incoloro,
+        tierra: contarEnergias(mano, CODIGO_TIPO_CARTA.TIERRA) + energias.incoloro,
+        rayo: contarEnergias(mano, CODIGO_TIPO_CARTA.RAYO) + energias.incoloro,
+        dragon: contarEnergias(mano, CODIGO_TIPO_CARTA.DRAGON) + energias.incoloro,
         hierba: contarEnergias(mano, CODIGO_TIPO_CARTA.HIERBA),
         agua: contarEnergias(mano, CODIGO_TIPO_CARTA.AGUA),
         fairy: contarEnergias(mano, CODIGO_TIPO_CARTA.FAIRY),
@@ -43,42 +58,43 @@ const esValidaLaInvocacion = (energias, cartasSeleccionadas) => {
 const quitarEnergiasPorCarta = (energias, cartasSeleccionadas) => {
     var energiasResultantes = energias
     cartasSeleccionadas.forEach(cartaPokemon => {
+        const energiasAExtraer = cartaPokemon.cantidad_energia
         switch (cartaPokemon.tipo_energia) {
             case CODIGO_TIPO_CARTA.AGUA:
-                energiasResultantes.agua --
+                energiasResultantes.agua -= energiasAExtraer
                 break;
             case CODIGO_TIPO_CARTA.DRAGON:
-                energiasResultantes.dragon --
+                energiasResultantes.dragon -= energiasAExtraer
             break;
             case CODIGO_TIPO_CARTA.FAIRY:
-                energiasResultantes.fairy --
+                energiasResultantes.fairy -= energiasAExtraer
             break;
             case CODIGO_TIPO_CARTA.FUEGO:
-                energiasResultantes.fuego --
+                energiasResultantes.fuego -= energiasAExtraer
             break;
             case CODIGO_TIPO_CARTA.HIERBA:
-                energiasResultantes.hierba --
+                energiasResultantes.hierba -= energiasAExtraer
             break;
             case CODIGO_TIPO_CARTA.INCOLORO:
-                energiasResultantes.incoloro --
+                energiasResultantes.incoloro -= energiasAExtraer
             break;
             case CODIGO_TIPO_CARTA.LUCHA:
-                energiasResultantes.lucha --
+                energiasResultantes.lucha -= energiasAExtraer
             break;
             case CODIGO_TIPO_CARTA.METAL:
-                energiasResultantes.metal --
+                energiasResultantes.metal -= energiasAExtraer
             break;
             case CODIGO_TIPO_CARTA.OSCURO:
-                energiasResultantes.oscuro --
+                energiasResultantes.oscuro -= energiasAExtraer
             break;
             case CODIGO_TIPO_CARTA.PSIQUICO:
-                energiasResultantes.psiquico --
+                energiasResultantes.psiquico -= energiasAExtraer
             break;
             case CODIGO_TIPO_CARTA.RAYO:
-                energiasResultantes.rayo --
+                energiasResultantes.rayo -= energiasAExtraer
             break;
             case CODIGO_TIPO_CARTA.TIERRA:
-                energiasResultantes.tierra --
+                energiasResultantes.tierra -= energiasAExtraer
             break;
             default:
                 throw "Error con el tipo de energía";
@@ -92,4 +108,5 @@ module.exports = {
     obtenerEnergias: obtenerEnergias,
     contarEnergias: contarEnergias,
     esValidaLaInvocacion: esValidaLaInvocacion,
+    obtenerEnergiasYSumarlas: obtenerEnergiasYSumarlas
 }

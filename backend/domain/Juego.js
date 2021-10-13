@@ -13,34 +13,15 @@ class Juego {
         this.numeroJugadorGanador = null
         this.numeroJugadorPerdedor = null
         this.estadoDeLaRonda = EstadosDeLaPartida.JUEGO_INICIADO
+        this.campo1.mazo.mezclar()
+        this.campo2.mazo.mezclar()
         this.repartirCartas()
         this.contarEnergias()
         this.estadoDeLaRonda = EstadosDeLaPartida.INVOCACION_JUGADOR
     }
 
-    static iniciarJuego(turno) {
-        //recibe el turno elegido por el jugador
-        //Si recibió 1, arranca el jugador
-        //Si recibió 2, arranca la computadora
-        if (turno === 1) {
-            //repartoCartas
-            //enviar orden al jugador de invocar(ahora elegiría siempre no)
-            //pasar turno computadora
-        }
-        else {
-            //reparto cartas
-            //pasar turno computadora
-            //enviar orden al jugador de invocar(ahora elegiría siempre no)
-        }
-    }
-
-    static determinacionDeTurnos() {
-
-    }
-
     repartirCartas() {
         this.estadoDeLaRonda = EstadosDeLaPartida.REPARTIENDO_CARTAS
-        console.log("Llego a hasta repartir cartas")
         this.campo1.repartirCartas(6)
         this.campo2.repartirCartas(6)
     }
@@ -65,23 +46,29 @@ class Juego {
             this.estadoDeLaRonda = EstadosDeLaPartida.INVOCACION_JUGADOR
             this.campo1.invocarCartas(cartasAInvocar)
             this.campo2.invocarCartasComputadora()
+
+            console.log(this.campo1)
+            console.log(this.campo2)
         }
     }
 
     iniciarBatalla() {
-        this.determinarGanadorDeLaRonda(campo1, campo2)
+        this.determinarGanadorDeLaRonda()
         this.determinarGanadorPartida()
+        this.pasarASiguienteRonda()
     }
 
-    determinarGanadorDeLaRonda(campo1, campo2) {
-        let ataqueJugador = campo1.getAtaque()
-        let ataqueComputadora = campo2.getAtaque()
-        let defensaJugador = campo1.getDefensa()
-        let defensaComputadora = campo2.getDefensa()
-
+    determinarGanadorDeLaRonda() {
+        let ataqueJugador = this.campo1.getAtaque()
+        let ataqueComputadora = this.campo2.getAtaque()
+        let defensaJugador = this.campo1.getDefensa()
+        let defensaComputadora = this.campo2.getDefensa()
+        console.log(ataqueJugador)
         let deltaJugador = defensaJugador - ataqueComputadora
         let deltaComputadora = defensaComputadora - ataqueJugador
 
+        console.log(deltaJugador + " deltaJugador")
+        console.log(deltaComputadora + " deltaComputadora")
         const ambosJugadoresQuedaronSinDefensa = deltaJugador <= 0 && deltaComputadora <= 0
         const computadoraPudoDefenderseYJugadorQuedoSinDefensa = deltaComputadora > 0 && deltaJugador <= 0
         const jugadorPudoDefenderseYComputadoraQuedoSinDefensa = deltaJugador > 0 && deltaComputadora <= 0
@@ -90,11 +77,11 @@ class Juego {
 
         if (ambosJugadoresQuedaronSinDefensa || computadoraPudoDefenderseYJugadorQuedoSinDefensa || ventajaDeComputadora) {
             this.rondasGanadasJugador2 += 1
-            return
+            console.log("Suma ronda jugador 2")
         }
         else if (jugadorPudoDefenderseYComputadoraQuedoSinDefensa || ventajaDeJugador) {
             this.rondasGanadasJugador1 += 1
-            return
+            console.log("Suma ronda jugador 1")
         }
     }
 
@@ -111,53 +98,16 @@ class Juego {
         }
     }
 
-    getAtaque(campo) {
-
-    }
-
-    getDefensa(campo) {
-
-    }
-
-    static invocacionCartasProgramacion() {
-
-    }
-
-    static invocacionCartasPokemon(turno) {
-        if (turno === 1) {
-            //enviar orden al jugador de seleccionar cartas a invocar
-            //esperar en el otro endpoint de invocacion de que está todo ok
-            //si pasa el endpoint
-            //ejecutar invocación automática computadora
-            //devolverCampoActualizado
+    pasarASiguienteRonda(){
+        if(this.estadoDeLaRonda !== EstadosDeLaPartida.JUEGO_TERMINADO){
+            this.estadoDeLaRonda = EstadosDeLaPartida.RONDA_INICIADA
+            this.campo1.descartarCartasMano()
+            this.campo1.descartarCartasCampo()
+            this.campo2.descartarCartasMano()
+            this.campo2.descartarCartasCampo()
+            this.repartirCartas()
+            this.contarEnergias()
         }
-        else {
-            //ejecutar invocación automática computadora
-            //enviar orden al jugador de seleccionar cartas a invocar
-            //esperar en el otro endpoint de invocacion de que está todo ok
-            //si pasa el endpoint
-            //devolverCampoActualizado
-        }
-    }
-
-    static invocacionCartasProgramacion2(turno) {
-        if (turno === 1) {
-            //enviar orden al jugador de invocar(ahora elegiría siempre no)
-            //pasar turno computadora
-            //pasar a batalla
-        }
-        else {
-            //pasar turno computadora
-            //enviar orden al jugador de invocar(ahora elegiría siempre no)
-            //pasar a batalla
-        }
-    }
-
-    static batalla() {
-        //determinar ganador de ronda
-        //verificar si hay ganador de la partida,
-        //si hay finalizar juego
-        //si no hay ganador seguir la otra ronda
     }
 }
 

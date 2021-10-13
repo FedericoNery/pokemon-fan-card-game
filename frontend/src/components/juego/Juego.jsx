@@ -3,14 +3,20 @@ import { Box } from '@mui/system';
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
-import CartaOculta from '../cartas/CartaOculta';
 import CartaParaSeleccionar from '../cartas/CartaParaSeleccionar';
 import ContadoresDeEnergias from '../ContadoresDeEnergias';
-import { invocarCartasJugador } from '../../redux/actionCreators/juego'
+import { invocarCartasJugador, iniciarBatalla } from '../../redux/actionCreators/juego'
+import CartasOcultasRival from './CartasOcultasRival';
+import CartasSeleccionarJugador from './CartasSeleccionarJugador';
+import BoxCartas from './BoxCartas';
+import ContadorRondasGanadas from './ContadorRondasGanadas';
+import InformacionJugador from './InformacionJugador';
+import JuegoFinalizado from './JuegoFinalizado'
+import { sleep } from '../../utils/functions';
 
-const Juego = ({ juego, invocarCartasJugador, cartasSeleccionadas }) => {
+const Juego = ({ juego, invocarCartasJugador, cartasSeleccionadas, iniciarBatalla }) => {
 
-    const { campo1, campo2 } = juego
+    const { campo1, campo2, rondasGanadasJugador1, rondasGanadasJugador2, jugador1, jugador2, estadoDeLaRonda } = juego
     const { mano, cantidadesEnergias, zonaJuego } = campo1
     const { cantidadesEnergias: cantidadesEnergiasEnemigo, zonaJuego: zonaJuegoCampo2 } = campo2
     const [btnInvocacionFueClickeado, setBtnInvocacionFueClickeado] = useState(false)
@@ -22,72 +28,47 @@ const Juego = ({ juego, invocarCartasJugador, cartasSeleccionadas }) => {
         const payload = { cartas: cartasSeleccionadas, idJugador: juego.jugador1.numero }
         invocarCartasJugador(payload)
     }
-    const onIniciarBatalla = () => {
+    const onIniciarBatalla = async () => {
         setBtnBatallatFueClickeado(true)
         setBtnInvocacionFueClickeado(false)
+        iniciarBatalla()
+        await sleep(2000)
+        setBtnBatallatFueClickeado(false)
     }
 
     return <>
-        <ContadoresDeEnergias cantidadesEnergias={cantidadesEnergiasEnemigo} />
-        <Box display="flex" flexWrap="nowrap" p={1} m={1} justifyContent="center" alignItems="flex-start" css={{
-            maxWidth: "100%", height: "50%", margin: "0px",
-            padding: "0px",
-        }}>
-            {!btnInvocacionFueClickeado && <>
-                <Box p={1} m={1}>
-                    <CartaOculta />
-                </Box >
-                <Box p={1} m={1}>
-                    <CartaOculta />
-                </Box>
-                <Box p={1} m={1}>
-                    <CartaOculta />
-                </Box>
-                <Box p={1} m={1}>
-                    <CartaOculta />
-                </Box>
-                <Box p={1} m={1}>
-                    <CartaOculta />
-                </Box>
-                <Box p={1} m={1}>
-                    <CartaOculta />
-                </Box>
-            </>
-            }
-            {(btnInvocacionFueClickeado && !btnBatallarFueClickeado) && zonaJuegoCampo2.cartas.map((carta, index) =>
-                    <Box p={1} m={1}>
-                        <CartaParaSeleccionar carta={carta} /> {/* Debería ser no seleccionable */}
-                    </Box>
-                )
-            }
-        </Box>
-        {!btnInvocacionFueClickeado && <Button onClick={onInvocarCartasJugador}>Invocar</Button>}
-        {(btnInvocacionFueClickeado && !btnBatallarFueClickeado) && <Button onClick={onIniciarBatalla}>Batallar</Button>}
-        <Box display="flex" p={1} m={1} flexWrap="nowrap" justifyContent="center" alignItems="flex-end" sx={{
-            maxWidth: "100%", height: "50%", margin: "0px",
-            padding: "0px",
-        }}>
-            {!btnInvocacionFueClickeado && mano.cartas.map((carta, index) =>
-                <Box p={1} m={1}>
-                    <CartaParaSeleccionar carta={carta} />
-                </Box>
-            )}
-            {
-                (btnInvocacionFueClickeado && !btnBatallarFueClickeado) && zonaJuego.cartas.map((carta, index) =>
-                    <Box p={1} m={1}>
-                        <CartaParaSeleccionar carta={carta} />
-                    </Box>
-                )
-            }
-        </Box>
-        <ContadoresDeEnergias cantidadesEnergias={cantidadesEnergias} />
-
+        {
+            estadoDeLaRonda === 7 ? <JuegoFinalizado jugador1={jugador1} jugador2={jugador2} rondasGanadasJugador1={rondasGanadasJugador1} rondasGanadasJugador2={rondasGanadasJugador2} />
+                : <>
+                    <ContadoresDeEnergias cantidadesEnergias={cantidadesEnergiasEnemigo} />
+                    <ContadorRondasGanadas cantidad={rondasGanadasJugador2} />
+                    <InformacionJugador nombre={jugador2.nombre_usuario} />
+                    <BoxCartas>
+                        {!btnInvocacionFueClickeado && <CartasOcultasRival />}
+                        {(btnInvocacionFueClickeado && !btnBatallarFueClickeado) && zonaJuegoCampo2.cartas.map((carta, index) =>
+                            <Box p={1} m={1}>
+                                <CartaParaSeleccionar carta={carta} /> {/* Debería ser no seleccionable */}
+                            </Box>
+                        )
+                        }
+                    </BoxCartas>
+                    {!btnInvocacionFueClickeado && <Button onClick={onInvocarCartasJugador}>Invocar</Button>}
+                    {(btnInvocacionFueClickeado && !btnBatallarFueClickeado) && <Button onClick={onIniciarBatalla}>Batallar</Button>}
+                    <BoxCartas>
+                        {!btnInvocacionFueClickeado && <CartasSeleccionarJugador cartas={mano.cartas} />}
+                        {(btnInvocacionFueClickeado && !btnBatallarFueClickeado) && <CartasSeleccionarJugador cartas={zonaJuego.cartas} />}
+                    </BoxCartas>
+                    <InformacionJugador nombre={jugador1.nombre_usuario} />
+                    <ContadorRondasGanadas cantidad={rondasGanadasJugador1} />
+                    <ContadoresDeEnergias cantidadesEnergias={cantidadesEnergias} />
+                </>
+        }
     </>
 }
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators(
-        { invocarCartasJugador }, dispatch
+        { invocarCartasJugador, iniciarBatalla }, dispatch
     )
 }
 

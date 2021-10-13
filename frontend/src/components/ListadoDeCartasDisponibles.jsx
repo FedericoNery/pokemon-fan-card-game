@@ -23,30 +23,3 @@ const ListadoDeCartasDisponibles = ({ cartas }) => {
 }
 
 export default ListadoDeCartasDisponibles;
-/* <Grid container spacing={1}>
-  </Grid> */
-
-/* <DragDropContext onDragEnd={onDragEnd}>
-          <Grid container direction={"row"} justify={"center"}>
-            {Object.values(columns).map((column) => {
-              return (
-                <Grid item>
-                  <Column column={column} key={column.id} />
-                </Grid>
-              );
-            })}
-          </Grid>
-        </DragDropContext> */
-
-/*
-<Grid item xs={12}>
-<CartaPokemon {...x} />
-</Grid>
-*/
-
-/*
-                      <Grid item xs={12}>
-
-                       <CartaEnergia {...x} />
-                  </Grid>
-                  */
