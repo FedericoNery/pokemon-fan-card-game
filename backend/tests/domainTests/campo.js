@@ -1,20 +1,77 @@
-const CartaPokemon = require('../../domain/cartapokemon');
-const CODIGO_TIPO_CARTA_FUEGO = require('../../utils/enums').CODIGO_TIPO_CARTA.FUEGO
+const Campo = require('../../domain/Campo');
+const CartaPokemon = require('../../domain/CartaPokemon');
+const { generateCartasPokemonWithAtaqueYDefensa, generateCartasPokemonDeDistintosTipos } = require('../clases/CartaPokemon');
 
-test('Instanciar carta pokemon', () => {
-  const pokemonPrueba = new CartaPokemon("M0", "Mi pokemon",0,0,0,0,0,0,0,CODIGO_TIPO_CARTA_FUEGO)
+test('Repartir Cartas', () => {
+  const mazo = generateCartasPokemonWithAtaqueYDefensa(6)
+  const campo = new Campo(mazo)
+  campo.repartirCartas(6)
+  expect(campo.getMano().getLength()).toEqual(6);
+  expect(campo.getMazo().getLength()).toEqual(0);
+});
 
-  expect(pokemonPrueba).toEqual({
-      numero: "M0",
-      nombre: "Mi pokemon",
-      pokemon: "Mi pokemon",
-      ps: 0,
-      ataque: 0,
-      defensa: 0,
-      ataque_esp: 0,
-      defensa_esp: 0,
-      velocidad: 0,
-      suma: 0,
-      tipo_energia: CODIGO_TIPO_CARTA_FUEGO, 
+test('Contar energias', () => {
+  const mano = generateCartasPokemonDeDistintosTipos()
+  const campo = new Campo()
+  campo.mano.setCartas(mano)
+  expect(campo.contarEnergias()).toEqual({
+    incoloro: 0,
+    fuego: 2,
+    tierra: 0,
+    rayo: 0,
+    dragon: 2,
+    hierba: 2,
+    agua: 2,
+    fairy: 0,
+    oscuro: 2,
+    lucha: 0,
+    psiquico: 0,
+    metal: 0,
   });
+});
+
+test('invocarCartas by lista de ids cartas', () => {
+  const campo = new Campo()
+  expect(pokemonPrueba).toEqual({});
+});
+
+test('invocarCartasComputadora', () => {
+  const campo = new Campo()
+  expect(pokemonPrueba).toEqual({});
+});
+
+test('esValidaLaInvocacionDeLaCarta', () => {
+  const campo = new Campo()
+  expect(pokemonPrueba).toEqual({});
+});
+
+
+test('esValidaLaInvocacionDeLaCartaEnComputadora', () => {
+  const campo = new Campo()
+  expect(pokemonPrueba).toEqual({});
+});
+
+test('invocarCartaComputadora', () => {
+  const campo = new Campo()
+  expect(pokemonPrueba).toEqual({});
+});
+
+test('invocarCarta', () => {
+  const campo = new Campo()
+  expect(pokemonPrueba).toEqual({});
+});
+
+test('quitarEnergiasGastadasPor', () => {
+  const campo = new Campo()
+  expect(pokemonPrueba).toEqual({});
+});
+
+test('descartarCartasMano', () => {
+  const campo = new Campo()
+  expect(pokemonPrueba).toEqual({});
+});
+
+test('descartarCartasCampo', () => {
+  const campo = new Campo()
+  expect(pokemonPrueba).toEqual({});
 });

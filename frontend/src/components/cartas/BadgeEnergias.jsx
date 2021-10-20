@@ -1,7 +1,7 @@
 import { Badge, Tooltip } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react'
-import { getColorEnergiaBadge } from '../utils/functions';
+import { getColorEnergiaBadge } from '../../utils/functions';
 
 const BadgeEnergias = ({ nombre, numero }) => {
     const cantidadDeComponentes = [...Array(numero)]

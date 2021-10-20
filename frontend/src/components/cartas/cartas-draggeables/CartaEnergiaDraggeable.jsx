@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid';
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
-import BadgeEnergias from '../../BadgeEnergias';
+import BadgeEnergias from '../BadgeEnergias';
 import { getBackgroundPredominanteColorEnergia } from '../../../utils/functions';
 import { makeStyles } from '@mui/styles';
 import { Typography } from '@mui/material';

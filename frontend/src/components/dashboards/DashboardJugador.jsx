@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import React from 'react'
-import SimpleCard from '../SimpleCard';
+import SimpleCard from './SimpleCard';
 
 const DashboardJugador = (props) => {
 

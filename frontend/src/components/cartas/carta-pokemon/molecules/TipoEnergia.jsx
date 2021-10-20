@@ -1,0 +1,18 @@
+import React from 'react'
+import { Grid } from '@mui/material';
+import Tipo from '../atoms/Tipo';
+import Energias from '../atoms/Energias';
+
+const TipoEnergia = () => {
+    return <Grid container spacing={1}>
+      <Grid item xs={6}>
+        <Tipo />
+      </Grid>
+      <Grid item xs={6}>
+        <Energias />
+      </Grid>
+    </Grid>
+  
+}
+ 
+export default TipoEnergia;

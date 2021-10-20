@@ -26,6 +26,9 @@ class Mazo {
           this.cartas[j] = x;
       }
   }
+  getLength(){
+    return this.cartas.length
+  }
 }
 
 

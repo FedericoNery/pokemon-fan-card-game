@@ -1,17 +1,17 @@
 import React from 'react'
 import Stack from '@mui/material/Stack';
-import Incoloro from './contadores-energias/Incoloro';
-import Fuego from './contadores-energias/Fuego';
-import Rayo from './contadores-energias/Rayo';
-import Tierra from './contadores-energias/Tierra';
-import Dragon from './contadores-energias/Dragon';
-import Hierba from './contadores-energias/Hierba';
-import Agua from './contadores-energias/Agua';
-import Fairy from './contadores-energias/Fairy';
-import Oscuro from './contadores-energias/Oscuro';
-import Lucha from './contadores-energias/Lucha';
-import Psiquico from './contadores-energias/Psiquico';
-import Metal from './contadores-energias/Metal';
+import Incoloro from './Incoloro';
+import Fuego from './Fuego';
+import Rayo from './Rayo';
+import Tierra from './Tierra';
+import Dragon from './Dragon';
+import Hierba from './Hierba';
+import Agua from './Agua';
+import Fairy from './Fairy';
+import Oscuro from './Oscuro';
+import Lucha from './Lucha';
+import Psiquico from './Psiquico';
+import Metal from './Metal';
 import { Divider } from '@mui/material';
 
 const ContadoresDeEnergias = ({ cantidadesEnergias }) => {

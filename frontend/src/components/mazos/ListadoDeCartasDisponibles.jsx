@@ -1,7 +1,7 @@
 import { List } from "@mui/material";
 import React from "react";
-import ItemCartaEnergiaDraggeable from './cartas/items-draggeables/ItemCartaEnergiaDraggeable'
-import ItemCartaPokemonDraggeable from './cartas/items-draggeables/ItemCartaPokemonDraggeable'
+import ItemCartaEnergiaDraggeable from '../cartas/items-draggeables/ItemCartaEnergiaDraggeable'
+import ItemCartaPokemonDraggeable from '../cartas/items-draggeables/ItemCartaPokemonDraggeable'
 
 const ListadoDeCartasDisponibles = ({ cartas }) => {
   return (

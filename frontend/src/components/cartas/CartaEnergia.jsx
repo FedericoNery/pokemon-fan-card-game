@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { getBackgroundPredominanteColorEnergia } from '../../utils/functions';
-import BadgeEnergias from '../BadgeEnergias';
+import BadgeEnergias from './BadgeEnergias';
 import Grid from '@mui/material/Grid';
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 

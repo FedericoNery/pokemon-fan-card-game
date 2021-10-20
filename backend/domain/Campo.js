@@ -6,7 +6,7 @@ const ZonaJuego = require('./ZonaJuego')
 const { obtenerEnergias, obtenerEnergiasYSumarlas } = require('../services/manoService')
 const CODIGO_TIPO_CARTA = require('../utils/enums').CODIGO_TIPO_CARTA
 class Campo {
-  constructor(mazo, mano = [], zonaJuego = [], descarte = []) {
+  constructor(mazo = [], mano = [], zonaJuego = [], descarte = []) {
     this.mano = new Mano(mano);
     this.zonaJuego = new ZonaJuego(zonaJuego);
     this.mazo = new Mazo(mazo);
@@ -133,6 +133,16 @@ class Campo {
   }
   getDefensa(){
     return this.zonaJuego.getDefensa()
+  }
+
+  getMano(){
+    return this.mano
+  }
+  getMazo(){
+    return this.mazo
+  }
+  getZonaJuego(){
+    return this.zonaJuego
   }
 }
 

@@ -5,7 +5,7 @@ import { getAllCartasEnergia } from '../../core/services/cartasEnergias';
 import { getAllCartasPokemon } from '../../core/services/cartasPokemon';
 import { getCartasDelMazoById } from '../../core/services/mazos';
 import CartasDelMazo from '../cartas/CartasDelMazo';
-import ListadoDeCartasDisponibles from '../ListadoDeCartasDisponibles';
+import ListadoDeCartasDisponibles from './ListadoDeCartasDisponibles';
 import Grid from '@mui/material/Grid';
 
 const ContainerEdicionDelMazo = () => {

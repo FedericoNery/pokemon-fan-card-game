@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import CartaParaSeleccionar from '../cartas/CartaParaSeleccionar';
-import ContadoresDeEnergias from '../ContadoresDeEnergias';
 import { invocarCartasJugador, iniciarBatalla } from '../../redux/actionCreators/juego'
 import CartasOcultasRival from './CartasOcultasRival';
 import CartasSeleccionarJugador from './CartasSeleccionarJugador';
@@ -13,6 +12,7 @@ import ContadorRondasGanadas from './ContadorRondasGanadas';
 import InformacionJugador from './InformacionJugador';
 import JuegoFinalizado from './JuegoFinalizado'
 import { sleep } from '../../utils/functions';
+import ContadoresDeEnergias from '../contadores-energias/ContadoresDeEnergias'
 
 const Juego = ({ juego, invocarCartasJugador, cartasSeleccionadas, iniciarBatalla }) => {
 
