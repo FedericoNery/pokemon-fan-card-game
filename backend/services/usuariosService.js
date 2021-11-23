@@ -9,8 +9,18 @@ async function getUsuarioBy(id){
     return usuario
 }
 
+async function getUltimoNumeroUsuario(){//Buscar por el maximo numero
+    var usuario = await Usuario.findOne()
+    .sort({ 'numero': -1 }) // give me the max
+    .then((res) => { return res })
+    .catch((err) => err)
+    console.log(usuario)
+    return usuario.numero
+}
+
 module.exports = {
-    getUsuarioBy: getUsuarioBy
+    getUsuarioBy: getUsuarioBy,
+    getUltimoNumeroUsuario: getUltimoNumeroUsuario
 }
 
 

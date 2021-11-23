@@ -264,7 +264,7 @@ const cartasPokemon = [
     },
     {
         numero: "P20",   
-        pokemon: "Rattata",
+        pokemon: "Raticate",
         ps: "10",
         ataque: "10",
         defensa: "10",
@@ -278,34 +278,6 @@ const cartasPokemon = [
     },
     {
         numero: "P21",   
-        pokemon: "Raticate",
-        ps: "10",
-        ataque: "10",
-        defensa: "10",
-        ataque_esp: "10",
-        defensa_esp: "10",
-        velocidad: "10",
-        suma: "60",
-        tipo_energia: CODIGO_TIPO_CARTA.INCOLORO,
-        cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
-
-    },
-    {
-        numero: "P22",   
-        pokemon: "Raticate",
-        ps: "10",
-        ataque: "10",
-        defensa: "10",
-        ataque_esp: "10",
-        defensa_esp: "10",
-        velocidad: "10",
-        suma: "60",
-        tipo_energia: CODIGO_TIPO_CARTA.INCOLORO,
-        cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
-
-    },
-    {
-        numero: "P23",   
         pokemon: "Spearow",
         ps: "10",
         ataque: "10",
@@ -319,7 +291,7 @@ const cartasPokemon = [
 
     },
     {
-        numero: "P24",   
+        numero: "P22",   
         pokemon: "Fearow",
         ps: "10",
         ataque: "10",
@@ -333,7 +305,7 @@ const cartasPokemon = [
 
     },
     {
-        numero: "P25",   
+        numero: "P23",   
         pokemon: "Ekans",
         ps: "10",
         ataque: "10",
@@ -346,7 +318,7 @@ const cartasPokemon = [
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
     },
     {
-        numero: "P26",   
+        numero: "P24",   
         pokemon: "Arbok",
         ps: "10",
         ataque: "10",
@@ -360,7 +332,7 @@ const cartasPokemon = [
 
     },
     {
-        numero: "P27",   
+        numero: "P25",   
         pokemon: "Pikachu",
         ps: "10",
         ataque: "10",
@@ -373,7 +345,7 @@ const cartasPokemon = [
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
     },
     {
-        numero: "P28",   
+        numero: "P26",   
         pokemon: "Raichu",
         ps: "10",
         ataque: "10",
@@ -387,7 +359,7 @@ const cartasPokemon = [
 
     },
     {
-        numero: "P29",   
+        numero: "P27",   
         pokemon: "Sandshrew",
         ps: "10",
         ataque: "10",
@@ -401,7 +373,7 @@ const cartasPokemon = [
 
     },
     {
-        numero: "P30",   
+        numero: "P28",   
         pokemon: "Sandslash",
         ps: "10",
         ataque: "10",
@@ -415,7 +387,7 @@ const cartasPokemon = [
 
     },
     {
-        numero: "P31",   
+        numero: "P29",   
         pokemon: "Nidoran",
         ps: "10",
         ataque: "10",
@@ -429,7 +401,7 @@ const cartasPokemon = [
 
     },
     {
-        numero: "P32",   
+        numero: "P30",   
         pokemon: "Nidorina",
         ps: "10",
         ataque: "10",
@@ -443,7 +415,7 @@ const cartasPokemon = [
 
     },
     {
-        numero: "P33",   
+        numero: "P31",   
         pokemon: "Nidoqueen",
         ps: "10",
         ataque: "10",
@@ -456,7 +428,7 @@ const cartasPokemon = [
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
     },
     {
-        numero: "P34",   
+        numero: "P32",   
         pokemon: "Nidoran",
         ps: "10",
         ataque: "10",
@@ -469,7 +441,7 @@ const cartasPokemon = [
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
     },
     {
-        numero: "P35",   
+        numero: "P33",   
         pokemon: "Nidorino",
         ps: "10",
         ataque: "10",
@@ -482,7 +454,7 @@ const cartasPokemon = [
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
     },
     {
-        numero: "P36",   
+        numero: "P34",   
         pokemon: "Nidoking",
         ps: "10",
         ataque: "10",

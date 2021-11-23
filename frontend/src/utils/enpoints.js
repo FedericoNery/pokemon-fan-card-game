@@ -1,5 +1,6 @@
 export const USUARIOS = {
     BASE : "usuarios",
+    BY_ID: (id) => `usuarios/${id}`,
     AUTHENTICATE : "/authenticate",
 }
 

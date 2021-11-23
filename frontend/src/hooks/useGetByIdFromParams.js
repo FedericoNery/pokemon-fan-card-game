@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-export const useGetById = (id, method) => {
-    const [values, setValues] = useState(null)
+export const useGetByIdFromParams = (initialValues, method) => {
+    const { id } = useParams();
+    const [values, setValues] = useState(initialValues)
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(async () => {
@@ -12,5 +14,6 @@ export const useGetById = (id, method) => {
     }, [])
 
     return { isLoading, values }
+
 }
 

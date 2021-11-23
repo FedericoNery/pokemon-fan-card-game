@@ -1,8 +1,8 @@
 import React from 'react'
-import MenuAppBar from './MenuAppBar';
+import MenuAppBar from '../menu-lateral/MenuAppBar';
 
 const MenuPrincipalAdministrador = (props) => {
-    return <MenuAppBar />
+    return <MenuAppBar>{props.children}</MenuAppBar>
 }
  
 export default MenuPrincipalAdministrador;

@@ -1,5 +1,8 @@
 const router = require('express').Router();
 let Usuario = require('../models/usuario.model');
+const mazoService = require('../services/mazoService');
+
+let usuarioService = require('../services/usuariosService');
 
 /*OBTENER TODOS LOS USUARIOS*/
 router.route('/').get((req, res) => {
@@ -8,38 +11,30 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/authenticate').post((req, res) => {
-  const { email } = req.body
-  Usuario.findOne({ email: email })
-    .then(usuario => 
-      res.json(usuario)
-    )
-    .catch(err => res.status(400).json('Error: ' + err));
-});
-
-router.route('/getUltimoNumeroUsuario').get((req, res) => {
-  const usuario = Usuario.findOne({}, {}, { sort: { 'createdAt' : -1 } }, function(err, doc) {
-    if (err) 
-      return handleError(err);
-    if (doc) {
-      return res.json(doc.numero);
-    }
-  });
-});
-
-/*ALTA USUARIO*/
-router.route('/add').post((req, res) => {
-  const numero = req.body.numero;
-  const nombre_usuario = req.body.nombre_usuario;
-  const nombre = req.body.nombre;
-  const apellido = req.body.apellido;
-  const monedas = req.body.monedas;
-  const rol_usuario = req.body.rol_usuario;
+router.route('/').post(async (req, res) => {
+  const nombre_usuario = req.body.username;
+  const nombre = req.body.firstName;
+  const apellido = req.body.lastName;
   const email = req.body.email;
-  const mazos = req.body.mazos;
-
-
-  const nuevoUsuario = new Usuario({
+  const password = req.body.password;
+  const monedas = 10
+  //OBTENER ULTIMO NUMERO
+  var numero = await usuarioService.getUltimoNumeroUsuario()
+  numero = numero + 1
+  //CREAR MAZOS
+  console.log(numero + "- del usuario num usuario -")
+  const mazos = await mazoService.crearMazosParaElUsuario(numero)
+  //ASIGNAR ROL
+  console.log(mazos + " del usuario ")
+  var rol_usuario = ""
+  if(password === "asdfghjklñ123456789"){
+    rol_usuario = "admin"
+  }
+  else{
+    rol_usuario = "jugador"
+  }
+  
+  const usuario = new Usuario({
     numero,
     nombre_usuario,
     nombre,
@@ -48,26 +43,39 @@ router.route('/add').post((req, res) => {
     rol_usuario,
     email,
     mazos,
-  });
+  })
 
-  nuevoUsuario.save()
-    .then(() => res.json('Usuario nuevo!'))
+  usuario.save()
+  .then(() => res.json('Usuario nuevo!'))
+  .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/authenticate').post((req, res) => {
+  const { email } = req.body
+  Usuario.findOne({ email: email })
+    .then(usuario =>
+      res.json(usuario)
+    )
     .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/getUltimoNumeroUsuario').get((req, res) => {
+  const usuario = Usuario.findOne()
+  .sort({ 'numero': -1 })
+  .exec(function (err, doc) {
+    if (err)
+      return handleError(err);
+    if (doc) {
+      return res.json(doc.numero);
+    }
+  })
 });
 
 /*GET BY ID USUARIO*/
 router.route('/:id').get((req, res) => {
-  const id = req.body.id;
-  Usuario.findById(id)
-    .then(() => res.json('Usuario obtenido!'))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
-
-/*GET BY ID USUARIO*/
-router.route('/nombre/:nombre').get((req, res) => {
-  const nombre = req.params.nombre;
-  Usuario.find({nombre_usuario: nombre}).limit(1)
-    .then(usuario => res.json(usuario))
+  const id = req.params.id;
+  Usuario.findOne({numero: id})
+    .then((usuario) => res.json(usuario))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -77,6 +85,27 @@ router.route('/remove').delete((req, res) => {
   const id = req.body.id;
   Usuario.findByIdAndDelete(id)
     .then(() => res.json('User eliminado!'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+/*DELETE BY ID USUARIO*/
+router.route('/:id').put((req, res) => {
+  const id = req.params.id;
+  const nombre_usuario = req.body.username;
+  const nombre = req.body.firstName;
+  const apellido = req.body.lastName;
+  const email = req.body.email;
+  const password = req.body.password;
+  const confirmPassword = req.body.confirmPassword;
+  const monedas = req.body.monedas
+
+  Usuario.findOneAndUpdate({numero: id}, 
+    {
+      nombre,
+      apellido,
+      email
+    })
+    .then(() => res.json('User actualizado!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

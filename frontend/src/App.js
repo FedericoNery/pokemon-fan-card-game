@@ -20,6 +20,8 @@ import ContainerApp from './components/ContainerApp';
 import { useState } from 'react';
 import { useMemo } from 'react';
 import { createContext } from 'react';
+import Signup from './components/sign-up/SignUp';
+import EditarUsuario from './components/usuario/EditarUsuario';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -53,6 +55,7 @@ const App = (props) => {
             <BrowserRouter>
               <Switch>
                 <Route exact path="/" render={() => <Login />} />
+                <Route exact path={ROUTES.SIGNUP} component={Signup} />
                 <Route exact path={ROUTES.LOGIN} component={Login} />
                 <AuthRoute>
                   <MenuPrincipal>
@@ -62,6 +65,7 @@ const App = (props) => {
                     <Route exact path={ROUTES.JUEGO} component={ContainerJuego} />
                     <Route exact path={ROUTES.JUEGO_FINALIZADO} component={JuegoFinalizado} />
                     <Route exact path={ROUTES.DATOS_USUARIO} component={DatosUsuario} />
+                    <Route exact path={ROUTES.PERFIL_USUARIO} component={EditarUsuario} />
                     <Route exact path={ROUTES.TIENDA} component={Tienda} />
                     <Route exact path={ROUTES.MAZO_DETALLADO_WITH_ID} component={ContainerEdicionDelMazo} />
                   </MenuPrincipal>

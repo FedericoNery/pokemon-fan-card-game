@@ -10,6 +10,8 @@ export const ROUTES = {
     JUEGO_FINALIZADO: `/juego-finalizado`,
     DATOS_USUARIO: `/datos-usuario`,
     TIENDA: `/tienda`,
+    SIGNUP: `/signup`,
+    PERFIL_USUARIO: '/perfil'
 }
 
 export const To = {
@@ -21,5 +23,7 @@ export const To = {
     mazos: () => ROUTES.MAZOS,
     tienda: () => ROUTES.TIENDA,
     mazoDetallado: (idMazo) => `${ROUTES.MAZO_DETALLADO}/${idMazo}`,
-    seleccionarMazoDeJuego: () => ROUTES.SELECCION_MAZO
+    seleccionarMazoDeJuego: () => ROUTES.SELECCION_MAZO,
+    signup: () => ROUTES.SIGNUP,
+    perfilUsuario: () => ROUTES.PERFIL_USUARIO
 }
