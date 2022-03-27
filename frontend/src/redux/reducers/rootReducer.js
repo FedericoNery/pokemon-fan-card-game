@@ -2,11 +2,13 @@ import { combineReducers } from 'redux';
 import { authenticateReducer } from './authenticateReducer'
 import { mazosReducer } from './mazosReducer'
 import { juegoReducer } from './juegoReducer'
+import { tiendaReducer } from './tiendaReducer'
 
 const combinedReducers = combineReducers({
     authenticateReducer,
     mazosReducer,
-    juegoReducer
+    juegoReducer,
+    tiendaReducer
 });
 
 const rootReducer = (state, action) => {

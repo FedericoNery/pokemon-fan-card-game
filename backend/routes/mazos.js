@@ -1,8 +1,7 @@
-const router = require('express').Router();
 let Mazo = require('../models/mazo.model');
 let CartaPokemon = require('../models/cartapokemon.model');
 let CartaEnergia = require('../models/cartaenergia.model');
-
+const router = require('express').Router();
 
 router.route('/:id/cartas').get(async (req, res) => {
   const id = req.params.id;
@@ -50,6 +49,5 @@ router.route('/').get((req, res) => {
     .then(mazos => res.json(mazos))
     .catch(err => res.status(400).json('Error: ' + err));
 });
-
 
 module.exports = router

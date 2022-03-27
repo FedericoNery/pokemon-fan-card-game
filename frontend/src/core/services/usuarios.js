@@ -24,3 +24,8 @@ export const getAllUsuarios = async (params) => {
     const res = await getAxiosInstance().get(BASE, params)
     return res
 }
+
+export const borrarUsuarios = async (params) => {
+    const res = await getAxiosInstance().delete(BASE, {data: params})
+    return res
+}

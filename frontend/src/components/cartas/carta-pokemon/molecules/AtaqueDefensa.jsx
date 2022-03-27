@@ -3,13 +3,13 @@ import React from 'react'
 import Ataque from '../atoms/Ataque';
 import Defensa from '../atoms/Defensa';
 
-const AtaqueDefensa = () => {
+const AtaqueDefensa = ({ataque, defensa}) => {
     return <Grid container >
     <Grid item xs={6} >
-        <Ataque />
+        <Ataque ataque={ataque}/>
     </Grid>
     <Grid item xs={6} >
-        <Defensa />
+        <Defensa defensa={defensa}/>
     </Grid>
   </Grid>
 }

@@ -11,7 +11,8 @@ export const ROUTES = {
     DATOS_USUARIO: `/datos-usuario`,
     TIENDA: `/tienda`,
     SIGNUP: `/signup`,
-    PERFIL_USUARIO: '/perfil'
+    PERFIL_USUARIO: '/perfil',
+    LISTADO_USUARIOS: '/listado-usuarios'
 }
 
 export const To = {
@@ -25,5 +26,6 @@ export const To = {
     mazoDetallado: (idMazo) => `${ROUTES.MAZO_DETALLADO}/${idMazo}`,
     seleccionarMazoDeJuego: () => ROUTES.SELECCION_MAZO,
     signup: () => ROUTES.SIGNUP,
-    perfilUsuario: () => ROUTES.PERFIL_USUARIO
+    perfilUsuario: () => ROUTES.PERFIL_USUARIO,
+    listadoUsuarios: () => ROUTES.LISTADO_USUARIOS
 }

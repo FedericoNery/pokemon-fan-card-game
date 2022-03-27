@@ -13,7 +13,10 @@ const cartaPokemonSchema = new Schema({
   velocidad: {type: String},
   suma: {type: String},
   tipo_energia: {type: String},
-  cantidad_energia: {type: Number}
+  cantidad_energia: {type: Number},
+  disponible_en_tienda: {type: Boolean},
+  oferta_en_tienda: {type: Boolean},
+  precio: {type: Number}
 });
 
 const CartaPokemon = mongoose.model('cartapokemon', cartaPokemonSchema, 'cartas_pokemon');

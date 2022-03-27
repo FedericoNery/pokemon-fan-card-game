@@ -3,13 +3,13 @@ import { Grid } from '@mui/material';
 import Tipo from '../atoms/Tipo';
 import Energias from '../atoms/Energias';
 
-const TipoEnergia = () => {
+const TipoEnergia = ({tipo, energia}) => {
     return <Grid container spacing={1}>
       <Grid item xs={6}>
-        <Tipo />
+        <Tipo tipo_energia={tipo} />
       </Grid>
       <Grid item xs={6}>
-        <Energias />
+        <Energias cantidad_energia={energia}/>
       </Grid>
     </Grid>
   

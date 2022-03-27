@@ -1,8 +1,8 @@
-const router = require('express').Router();
 const FASES_JUEGO = require('../utils/enums').FASES_JUEGO;
 const juegoService = require('../services/juegoService')
 
 let juego = null
+const router = require('express').Router();
 
 router.route('/iniciar').post(async (req, res) => {
   const { idJugadorLogueado, idMazoSeleccionado } = req.body
@@ -41,6 +41,16 @@ router.route('/invocar').post(async (req, res) => {
 router.route('/batallar').post(async (req, res) => {
   try {
     juego.iniciarBatalla()
+    if (juego.estaFinalizado()) {
+      if (juego.ganoJugador1()) {
+        await aumentarPartidasGanadasYMonedas(juego.jugador1)
+        await aumentarPartidasPerdidas(juego.jugador2)
+      }
+      if (juego.ganoJugador2()) {
+        await aumentarPartidasGanadasYMonedas(juego.jugador2)
+        await aumentarPartidasPerdidas(juego.jugador1)
+      }
+    }
     res.json(juego)
   }
   catch (error) {

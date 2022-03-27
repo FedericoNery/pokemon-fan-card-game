@@ -1,12 +1,8 @@
+const getAllCartasPokemon = require('../services/cartasPokemonService')
 const router = require('express').Router();
-let CartaPokemon = require('../models/cartapokemon.model');
 
 /*OBTENER TODOS LOS POKEMON*/
-router.route('/').get((req, res) => {
-  CartaPokemon.find()
-    .then(cartas_pokemon => res.json(cartas_pokemon))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
+router.route('/').get(getAllCartasPokemon);
 
 /*GET BY PARAMS POKEMON*/
 /* router.route('/').get((req, res) => {
@@ -19,7 +15,7 @@ router.route('/').get((req, res) => {
   const defensa_esp = req.params.defensa_esp.toString();
   const velocidad = req.params.velocidad.toString();
   const suma = req.params.suma.toString();
-
+ 
     CartaPokemon.findOne( { 
       numero: numero,
       nombre: nombre,
@@ -35,7 +31,7 @@ router.route('/').get((req, res) => {
       if (err) {
         res.json(err)
       }
-
+ 
       if (card) {
         console.log(card);
         return res.json(card);

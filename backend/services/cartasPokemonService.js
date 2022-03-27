@@ -1,15 +1,9 @@
-export function obtenerCartaPokemon(id){
+let CartaPokemon = require('../models/cartapokemon.model');
 
+function getAllCartasPokemon(req, res){
+    CartaPokemon.find()
+    .then(cartas_pokemon => res.json(cartas_pokemon))
+    .catch(err => res.status(400).json('Error: ' + err));
 }
 
-export function mezclar(mazo){
-
-}
-
-export function repartir(mazo){
-
-}
-
-export function agarrarCarta(mazo, idCarta, cantidadCartas){
-
-}
+module.exports = getAllCartasPokemon

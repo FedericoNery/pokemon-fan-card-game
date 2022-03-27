@@ -1,15 +1,11 @@
-const router = require('express').Router();
 let Usuario = require('../models/usuario.model');
+const { getAllUsuarios, autenticar } = require('../repositories/usuariosRepository');
 const mazoService = require('../services/mazoService');
-
 let usuarioService = require('../services/usuariosService');
+const router = require('express').Router();
 
 /*OBTENER TODOS LOS USUARIOS*/
-router.route('/').get((req, res) => {
-  Usuario.find()
-    .then(usuarios => res.json(usuarios))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
+router.route('/').get(getAllUsuarios);
 
 router.route('/').post(async (req, res) => {
   const nombre_usuario = req.body.username;
@@ -27,13 +23,13 @@ router.route('/').post(async (req, res) => {
   //ASIGNAR ROL
   console.log(mazos + " del usuario ")
   var rol_usuario = ""
-  if(password === "asdfghjklñ123456789"){
+  if (password === "asdfghjklñ123456789") {
     rol_usuario = "admin"
   }
-  else{
+  else {
     rol_usuario = "jugador"
   }
-  
+
   const usuario = new Usuario({
     numero,
     nombre_usuario,
@@ -46,35 +42,28 @@ router.route('/').post(async (req, res) => {
   })
 
   usuario.save()
-  .then(() => res.json('Usuario nuevo!'))
-  .catch(err => res.status(400).json('Error: ' + err));
-});
-
-router.route('/authenticate').post((req, res) => {
-  const { email } = req.body
-  Usuario.findOne({ email: email })
-    .then(usuario =>
-      res.json(usuario)
-    )
+    .then(() => res.json('Usuario nuevo!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/authenticate').post(autenticar);
+
 router.route('/getUltimoNumeroUsuario').get((req, res) => {
   const usuario = Usuario.findOne()
-  .sort({ 'numero': -1 })
-  .exec(function (err, doc) {
-    if (err)
-      return handleError(err);
-    if (doc) {
-      return res.json(doc.numero);
-    }
-  })
+    .sort({ 'numero': -1 })
+    .exec(function (err, doc) {
+      if (err)
+        return handleError(err);
+      if (doc) {
+        return res.json(doc.numero);
+      }
+    })
 });
 
 /*GET BY ID USUARIO*/
 router.route('/:id').get((req, res) => {
   const id = req.params.id;
-  Usuario.findOne({numero: id})
+  Usuario.findOne({ numero: id })
     .then((usuario) => res.json(usuario))
     .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -99,7 +88,7 @@ router.route('/:id').put((req, res) => {
   const confirmPassword = req.body.confirmPassword;
   const monedas = req.body.monedas
 
-  Usuario.findOneAndUpdate({numero: id}, 
+  Usuario.findOneAndUpdate({ numero: id },
     {
       nombre,
       apellido,
@@ -108,6 +97,17 @@ router.route('/:id').put((req, res) => {
     .then(() => res.json('User actualizado!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
+
+router.route('/').delete(async (req, res) => {
+  const ids = req.body.ids;
+  console.log(ids)
+  await usuarioService.eliminarMultiplesUsuarios(ids)
+    .then(() => res.json('Users eliminados'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/:id/partidas').get(usuarioService.cantidadPartidas)
 
 
 module.exports = router;

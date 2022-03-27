@@ -109,6 +109,18 @@ class Juego {
             this.contarEnergias()
         }
     }
+
+    estaFinalizado(){
+        return this.estadoDeLaRonda == EstadosDeLaPartida.JUEGO_TERMINADO
+    }
+
+    ganoJugador1(){
+        return this.rondasGanadasJugador1 == 2
+    }
+
+    ganoJugador2(){
+        return this.rondasGanadasJugador2 == 2
+    }
 }
 
 module.exports = Juego

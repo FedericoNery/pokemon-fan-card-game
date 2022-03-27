@@ -15,6 +15,7 @@ import ContainerJuego from './components/juego/ContainerJuego'
 import JuegoFinalizado from './components/juego/JuegoFinalizado'
 import Tienda from './components/tienda/Tienda'
 import DatosUsuario from './components/usuario/DatosUsuario'
+import ListadoUsuarios from './components/administrador/ListadoUsuarios'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ContainerApp from './components/ContainerApp';
 import { useState } from 'react';
@@ -22,6 +23,8 @@ import { useMemo } from 'react';
 import { createContext } from 'react';
 import Signup from './components/sign-up/SignUp';
 import EditarUsuario from './components/usuario/EditarUsuario';
+import ContainerTiendaStrategy from './components/tienda/ContainerTiendaStrategy';
+import ContainerLoaderTienda from './components/tienda/ContainerLoaderTienda';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -66,8 +69,9 @@ const App = (props) => {
                     <Route exact path={ROUTES.JUEGO_FINALIZADO} component={JuegoFinalizado} />
                     <Route exact path={ROUTES.DATOS_USUARIO} component={DatosUsuario} />
                     <Route exact path={ROUTES.PERFIL_USUARIO} component={EditarUsuario} />
-                    <Route exact path={ROUTES.TIENDA} component={Tienda} />
+                    <Route exact path={ROUTES.TIENDA} component={ContainerTiendaStrategy} />
                     <Route exact path={ROUTES.MAZO_DETALLADO_WITH_ID} component={ContainerEdicionDelMazo} />
+                    <Route exact path={ROUTES.LISTADO_USUARIOS} component={ListadoUsuarios} />
                   </MenuPrincipal>
                 </AuthRoute>
                 <Route path="/" render={() => <Login />} />

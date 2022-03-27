@@ -14,6 +14,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P2",   
@@ -27,6 +30,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P3",   
@@ -40,6 +46,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
 
     },
     {
@@ -54,6 +63,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.FUEGO,
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P5",   
@@ -67,6 +79,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.FUEGO,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P6",   
@@ -80,7 +95,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.FUEGO,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P7",   
@@ -94,7 +111,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.AGUA,
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P8",   
@@ -108,6 +127,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.AGUA,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P9",   
@@ -121,6 +143,9 @@ const cartasPokemon = [
         suma: "60",        
         tipo_energia: CODIGO_TIPO_CARTA.AGUA,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P10",   
@@ -134,7 +159,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P11",   
@@ -148,7 +175,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P12",   
@@ -162,7 +191,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P13",   
@@ -176,7 +207,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P14",   
@@ -190,7 +223,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P15",   
@@ -204,7 +239,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P16",   
@@ -218,7 +255,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.INCOLORO,
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P17",   
@@ -232,7 +271,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.INCOLORO,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P18",   
@@ -246,7 +287,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.INCOLORO,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P19",   
@@ -260,7 +303,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.INCOLORO,
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P20",   
@@ -274,7 +319,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.INCOLORO,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P21",   
@@ -288,7 +335,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.INCOLORO,
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P22",   
@@ -302,7 +351,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.INCOLORO,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P23",   
@@ -316,6 +367,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P24",   
@@ -329,7 +383,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P25",   
@@ -343,6 +399,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.RAYO,
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P26",   
@@ -356,7 +415,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.RAYO,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P27",   
@@ -370,7 +431,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.TIERRA,
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P28",   
@@ -384,7 +447,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.TIERRA,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P29",   
@@ -398,7 +463,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P30",   
@@ -412,7 +479,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
-
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P31",   
@@ -426,6 +495,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P32",   
@@ -439,6 +511,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.BASICO,
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P33",   
@@ -452,6 +527,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
     {
         numero: "P34",   
@@ -465,6 +543,9 @@ const cartasPokemon = [
         suma: "60",
         tipo_energia: CODIGO_TIPO_CARTA.HIERBA,
         cantidad_energia: NIVEL_EVOLUCION.ETAPA_1,
+        disponible_en_tienda: false,
+        oferta_en_tienda: false,
+        precio: 100
     },
 ]
 

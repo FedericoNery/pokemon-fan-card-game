@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import { Card, CardActionArea, CardContent, CardMedia, Typography, useTheme } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { Box } from '@mui/system';
 import React from 'react';
@@ -23,18 +23,21 @@ const CartaPokemon = (props) => {
     //maxHeight: 140
   }
 
+  const theme = useTheme()
+  const isDark = theme.palette.mode === 'dark'
+  
   return (
     <Card sx={sxRoot} onClick={() => onClick(numero, indice)}>
       <CardActionArea>
         <CardContent>
           <Grid container spacing={1}>
             <Grid item xs={6}>
-              <Typography variant="body2" color="textSecondary" component="p" align="left">
+              <Typography variant="body2" color={isDark ? "black" : "textSecondary"} component="p" align="left">
                 Tipo: {tipo_energia}
               </Typography>
             </Grid>
             <Grid item xs={6}>
-              <Typography variant="body2" color="textSecondary" component="p" align="right">
+              <Typography variant="body2" color={isDark ? "black" : "textSecondary"} component="p" align="right">
                 Energía: {cantidad_energia}
               </Typography>
             </Grid>
@@ -53,17 +56,17 @@ const CartaPokemon = (props) => {
           src={`../images/pokemons/${getNumeroPokemon(numero)}.png`}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2" align="center">
+          <Typography gutterBottom variant="h5" component="h2" align="center" color={isDark ? "black" : "textSecondary"}>
             {pokemon}
           </Typography>
           <Grid container >
             <Grid item xs={6} >
-              <Typography variant="body2" color="textSecondary" component="p" align="left">
+              <Typography variant="body2" color={isDark ? "black" : "textSecondary"} component="p" align="left">
                 Ataque: {ataque}
               </Typography>
             </Grid>
             <Grid item xs={6} >
-              <Typography variant="body2" color="textSecondary" component="p" align="right">
+              <Typography variant="body2" color={isDark ? "black" : "textSecondary"} component="p" align="right">
                 Defensa: {defensa}
               </Typography>
             </Grid>
