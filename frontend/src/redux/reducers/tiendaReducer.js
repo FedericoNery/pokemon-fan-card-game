@@ -71,7 +71,33 @@ const tiendaSlice = createSlice({
         seleccionarCartaTienda(state, action){
             const id = action.payload
             //Buscar carta segun id, y cambiar estado de seleccionada
+        },
+        setNombreFiltro(state, action){
+
+        },
+        setOfertasFiltro(state, action){
+
+        },
+        setDisponiblesFiltro(state, action){
+
+        },
+        setTiposEnergias(state, action){
+
+        },
+        setCantidadEnergias(state, action){
+
+        },
+        resetFiltro(state, action){
+            state.filtro = {
+                ofertas: false,
+                disponibles: false,
+                precioMinimo: null,
+                precioMaximo: null,
+                nombrePokemon: ""
+            }
         }
+
+
     }
 })
 

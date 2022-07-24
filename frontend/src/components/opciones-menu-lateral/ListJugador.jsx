@@ -11,7 +11,7 @@ const ListJugador = (props) => {
     const { history } = props
     const listadoOpciones = [
         { titulo: 'Jugador vs COM', onClick: () => history.push(To.seleccionarMazoDeJuego()) },
-        { titulo: 'Jugador vs Jugador', onClick: () => {} },
+        { titulo: 'Jugador vs Jugador', onClick: () => history.push(To.seleccionarMazoDeJuegoMultiplayer()) },
         { titulo: 'Mazos', onClick: () => history.push(To.mazos()) },
         { titulo: 'Tienda', onClick: () => history.push(To.tienda()) }
     ]

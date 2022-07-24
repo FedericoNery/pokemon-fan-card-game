@@ -2,6 +2,8 @@ import React from 'react'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Autocomplete, Box, FormControl, FormLabel, Grid, Radio, RadioGroup, TextField } from '@mui/material';
 import { CODIGO_TIPO_CARTA } from '../../../utils/functions';
+import { bindActionCreators, compose } from 'redux';
+import { connect } from 'react-redux';
 
 const FiltroDeBusqueda = () => {
     const [value, setValue] = React.useState('Disponibles');
@@ -9,6 +11,16 @@ const FiltroDeBusqueda = () => {
     const handleChange = (event) => {
         setValue(event.target.value);
     };
+
+    /* const eventHandler = () => {
+        // handle the event...
+      };
+      const debouncedEventHandler = useMemo(
+        () => debounce(eventHandler, 300)
+      , []);
+      const throttledEventHandler = useMemo(
+        () => throttle(eventHandler, 300)
+      , []); */
 
     const listaTipos = [
         { label: CODIGO_TIPO_CARTA.AGUA },
@@ -81,4 +93,12 @@ const FiltroDeBusqueda = () => {
     );
 }
 
-export default FiltroDeBusqueda;
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators(
+        { }, dispatch
+    )
+}
+
+export default compose(
+    connect(null, mapDispatchToProps)
+)(FiltroDeBusqueda)

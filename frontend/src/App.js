@@ -10,6 +10,7 @@ import AuthRoute from './components/routes/AuthRoute'
 import ConfigurarMazos from './components/mazos/ConfigurarMazos';
 import Dashboard from './components/dashboards/Dashboard';
 import SeleccionarMazo from './components/mazos/SeleccionarMazo'
+import SeleccionarMazoMultiplayer from './components/multiplayer/SeleccionarMazoMultiplayer'
 import ContainerEdicionDelMazo from './components/mazos/ContainerEdicionDelMazo'
 import ContainerJuego from './components/juego/ContainerJuego'
 import JuegoFinalizado from './components/juego/JuegoFinalizado'
@@ -25,8 +26,36 @@ import Signup from './components/sign-up/SignUp';
 import EditarUsuario from './components/usuario/EditarUsuario';
 import ContainerTiendaStrategy from './components/tienda/ContainerTiendaStrategy';
 import ContainerLoaderTienda from './components/tienda/ContainerLoaderTienda';
+import WaitingRoom from './components/multiplayer/WaitingRoom';
 
-export const ColorModeContext = createContext({ toggleColorMode: () => {} });
+export const ColorModeContext = createContext({ toggleColorMode: () => { } });
+
+/*
+ *  Frontend flow: 
+ * 
+ * 1. user first opens this app in the browser. 
+ * 2. a screen appears asking the user to send their friend their game URL to start the game.
+ * 3. the user sends their friend their game URL
+ * 4. the user clicks the 'start' button and waits for the other player to join. 
+ * 5. As soon as the other player joins, the game starts. 
+ * 
+ * 
+ * Other player flow:
+ * 1. user gets the link sent by their friend
+ * 2. user clicks on the link and it redirects to their game. If the 'host' has not yet 
+ *    clicked the 'start' button yet, the user will wait for when the host clicks the start button.  
+ *    If the host decides to leave before they click on the "start" button, the user will be notified
+ *    that the host has ended the session. 
+ * 3. Once the host clicks the start button or the start button was already clicked on
+ *    before, that's when the game starts. 
+ * Onboarding screen =====> Game start. 
+ * 
+ * Every time a user opens our site from the '/' path, a new game instance is automatically created
+ * on the back-end. We should generate the uuid on the frontend, send the request with the uuid
+ * as a part of the body of the request. If any player leaves, then the other player wins automatically.  
+ * 
+ */
+
 
 const App = (props) => {
 
@@ -57,14 +86,18 @@ const App = (props) => {
           <ErrorBoundary>
             <BrowserRouter>
               <Switch>
-                <Route exact path="/" render={() => <Login />} />
-                <Route exact path={ROUTES.SIGNUP} component={Signup} />
                 <Route exact path={ROUTES.LOGIN} component={Login} />
+                <Route exact path={ROUTES.SIGNUP} component={Signup} />
+                <Route path="/">
+                  <Login />
+                </Route> 
                 <AuthRoute>
                   <MenuPrincipal>
                     <Route exact path={ROUTES.MENU_PRINCIPAL} component={Dashboard} />
                     <Route exact path={ROUTES.MAZOS} component={ConfigurarMazos} />
                     <Route exact path={ROUTES.SELECCION_MAZO} component={SeleccionarMazo} />
+                    <Route exact path={ROUTES.SELECCION_MAZO_MULTIPLAYER} component={SeleccionarMazoMultiplayer} />
+                    <Route exact path={ROUTES.CREATE_OR_JOIN_ROOM} component={WaitingRoom} />
                     <Route exact path={ROUTES.JUEGO} component={ContainerJuego} />
                     <Route exact path={ROUTES.JUEGO_FINALIZADO} component={JuegoFinalizado} />
                     <Route exact path={ROUTES.DATOS_USUARIO} component={DatosUsuario} />
@@ -74,7 +107,6 @@ const App = (props) => {
                     <Route exact path={ROUTES.LISTADO_USUARIOS} component={ListadoUsuarios} />
                   </MenuPrincipal>
                 </AuthRoute>
-                <Route path="/" render={() => <Login />} />
               </Switch>
             </BrowserRouter>
           </ErrorBoundary>

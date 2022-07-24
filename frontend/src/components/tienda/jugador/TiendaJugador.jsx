@@ -11,7 +11,7 @@ const TiendaJugador = ({ cartas }) => {
   return <Box sx={{ margin: 5 }}>
     <>
       <FiltroDeBusqueda />
-      <TablaCartas />
+      <TablaCartas cartas={cartas}/>
     </>
   </Box>
 }

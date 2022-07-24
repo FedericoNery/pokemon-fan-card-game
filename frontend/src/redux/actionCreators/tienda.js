@@ -13,10 +13,10 @@ export const fetchCartasEdicionTienda = () => async dispatch => {
     }
 }
 
-export const fetchCartasFiltradasTienda = () => async dispatch => {
+export const fetchCartasFiltradasTienda = (filtro) => async dispatch => {
     try {
         dispatch(tiendaActions.fetchCartasFiltradasStart())
-        const res = await getCartasEnTienda()
+        const res = await getCartasEnTienda(filtro)
         dispatch(tiendaActions.guardarCartasFiltradas(res.data))
         dispatch(tiendaActions.fetchCartasFiltradasFinish())
     }
