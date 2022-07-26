@@ -13,7 +13,7 @@ export const loguearse = (payload) => async dispatch => {
         }    
     }
     catch(error){
-        console.log(error)
+        throw Error(error)
     }
 }
 
@@ -24,6 +24,6 @@ export const desloguearse = (payload) => async dispatch => {
         dispatch(authenticateActions.desloguearse())
     }
     catch(error){
-        console.log(error)
+        throw Error(error)
     }
 }

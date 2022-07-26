@@ -1,5 +1,6 @@
 import { makeStyles } from "@mui/styles";
 import React from "react";
+import ToastContainer from "./ui/toasts/ToastContainer";
 
 const ContainerApp = (props) => {
     const useStyles = makeStyles((theme) => ({
@@ -11,7 +12,9 @@ const ContainerApp = (props) => {
     const classes = useStyles();
 
     return <div className={classes.root}>
-        {props.children}
+        <ToastContainer>
+            {props.children}
+        </ToastContainer>
     </div>
 }
 

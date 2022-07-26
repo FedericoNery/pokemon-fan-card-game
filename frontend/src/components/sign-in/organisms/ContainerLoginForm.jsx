@@ -6,7 +6,6 @@ import { withRouter } from 'react-router';
 import { loguearse } from '../../../redux/actionCreators/authenticate';
 
 const ContainerLoginForm = (props) => {
-    const { history, loguearse } = props
     return <LoginForm {...props} />
 }
  

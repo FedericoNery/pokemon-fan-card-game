@@ -5,7 +5,7 @@ import { useIsLogged } from '../../hooks/useIsLogged'
 
 const AuthRoute = (props) => {
   const isLogged = useIsLogged()
-  return isLogged ? props.children : <Redirect to="/"/>
+  return isLogged ? props.children : <Redirect to="/login"/>
 }   
 
 AuthRoute.propTypes = {

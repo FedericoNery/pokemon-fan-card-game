@@ -88,9 +88,6 @@ const App = (props) => {
               <Switch>
                 <Route exact path={ROUTES.LOGIN} component={Login} />
                 <Route exact path={ROUTES.SIGNUP} component={Signup} />
-                <Route path="/">
-                  <Login />
-                </Route> 
                 <AuthRoute>
                   <MenuPrincipal>
                     <Route exact path={ROUTES.MENU_PRINCIPAL} component={Dashboard} />
@@ -107,6 +104,9 @@ const App = (props) => {
                     <Route exact path={ROUTES.LISTADO_USUARIOS} component={ListadoUsuarios} />
                   </MenuPrincipal>
                 </AuthRoute>
+                <Route path="/">
+                  <Login />
+                </Route> 
               </Switch>
             </BrowserRouter>
           </ErrorBoundary>
