@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux"
 
-export const useIsLogged = () => {
+export const useUsuario = () => {
     const authenticateReducer = useSelector(state => state.authenticateReducer)
-    debugger
-    return authenticateReducer?.estaLogueado
+    return authenticateReducer?.usuario
 }

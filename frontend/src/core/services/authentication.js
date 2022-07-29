@@ -1,9 +1,7 @@
 import getAxiosInstance from "../../config/httpClient"
-import { USUARIOS } from "../../utils/enpoints"
-
-const BASE = USUARIOS.BASE
+import { AUTHENTICATION } from "../../utils/enpoints"
 
 export const iniciarSesion = async (values) => {
-    const res = await getAxiosInstance().post(BASE + USUARIOS.AUTHENTICATE, values)
+    const res = await getAxiosInstance().post("/authentication", values)
     return res
 }

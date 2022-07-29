@@ -6,7 +6,7 @@ import DashboardJugador from './DashboardJugador'
 
 const Dashboard = () => {
     const rol = useRolUsuario()
-
+    console.log(rol)
     const menus = {
         [ROLES.JUGADOR] : <DashboardJugador />,
         [ROLES.ADMINISTRADOR] : <DashboardAdministrador />,

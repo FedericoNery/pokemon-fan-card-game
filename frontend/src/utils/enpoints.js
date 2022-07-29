@@ -1,3 +1,7 @@
+export const AUTHENTICATION = {
+    BASE: "/authentication"
+}
+
 export const USUARIOS = {
     BASE : "usuarios",
     BY_ID: (id) => `usuarios/${id}`,

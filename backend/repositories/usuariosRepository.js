@@ -1,4 +1,5 @@
 let Usuario = require('../models/usuario.model');
+const bcrypt = require('bcryptjs')
 
 function getAllUsuarios(req, res) {
   Usuario.find()
@@ -27,7 +28,7 @@ function getUsuarioByEmail(email) {
 function esValidaLaContrasenia(usuario, contraseniaIngresada){
   const esValida = bcrypt.compareSync(contraseniaIngresada, usuario.password);
   if (!esValida)
-    throw "Credenciales inválidas"
+    throw Error("Credenciales inválidas")
 }
 
 module.exports = {

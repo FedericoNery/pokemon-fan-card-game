@@ -10,7 +10,7 @@ const MenuPrincipal = (props) => {
     const menus = {
         [ROLES.JUGADOR] : <MenuPrincipalJugador>{props.children}</MenuPrincipalJugador>,
         [ROLES.ADMINISTRADOR] : <MenuPrincipalAdministrador>{props.children}</MenuPrincipalAdministrador>,
-        "" : <></>
+        "" : <>No posee perfil el jugador</>
     }
     
     return menus[rol]

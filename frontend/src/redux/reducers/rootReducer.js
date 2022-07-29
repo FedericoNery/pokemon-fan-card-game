@@ -2,6 +2,7 @@ import { authenticateReducer } from './authenticateReducer'
 import { mazosReducer } from './mazosReducer'
 import { juegoReducer } from './juegoReducer'
 import { tiendaReducer } from './tiendaReducer'
+import { roomReducer } from './roomReducer'
 import storage from "redux-persist/lib/storage"
 import { configureStore, combineReducers } from "@reduxjs/toolkit"
 import { persistStore, persistReducer } from "redux-persist"
@@ -11,7 +12,8 @@ const reducers = combineReducers({
     authenticateReducer,
     mazosReducer,
     juegoReducer,
-    tiendaReducer
+    tiendaReducer,
+    roomReducer
 });
 
 const persistConfig = {
@@ -37,11 +39,10 @@ export const store = configureStore({
 
 export const persistor = persistStore(store)
 
-/* 
-TODO ::: obtener jwt del store
+
 export const getJwtFromStore = () => {
-    const jwt = store.getState().authReducer?.jwt
+    const jwt = store.getState().authenticateReducer?.jwt
     return jwt
-} */
+} 
 
 export default rootReducer;

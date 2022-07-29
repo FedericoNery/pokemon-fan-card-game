@@ -24,7 +24,8 @@ const MazoParaSeleccionar = ({mazo, history, guardarMazoSeleccionado}) => {
 
     const onClick = () => {
         guardarMazoSeleccionado(numero)
-        history.push(ROUTES.JUEGO)
+        debugger
+        history.push(ROUTES.CREATE_OR_JOIN_ROOM)
     }
 
     return (
