@@ -12,9 +12,9 @@ export function SocketInit(username, roomId, password, action, options) {
       username,
       roomId,
       password,
-      action,
-      token,
-      options: options && JSON.stringify(options)
+/*       action,
+ */      /* token, */
+/*       options: options && JSON.stringify(options) */
     }
   });
   return socket;

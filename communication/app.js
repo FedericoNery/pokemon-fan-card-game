@@ -31,14 +31,14 @@ const io = socketio(server,
 // TODO ::: No funciona el emit? o hoppscotch no está capturando la respuesta al no estar suscripto
 io.on('connection', client => {
     console.log("Conectando...")
-    //setInterval(() => client.emit("msg", { data: [123] }), 5000)
-    client.emit("hello", "world");
-    //gameLogic.initializeGame(io, client)
-    io.on("disconnect", (reason) => {
-        console.log(`disconnect ${socket.id} due to ${reason}`);
-      });
+    gameLogic.initializeGame(io, client)
     console.log("Termino...")
 })
+
+//No funciona la línea de abajo, porque lo captura game-logic en onDisconnect
+io.on("disconnect", (reason) => {
+  console.log(`disconnect ${client.id} due to ${reason}`);
+});
 
 server.listen(process.env.PORT || 8000, () => {
     console.log(`Socket.IO server running at http://localhost:${process.env.PORT || 8000}/`);

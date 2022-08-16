@@ -8,5 +8,8 @@
   },
   "scripts": {
     "start": "nodemon app.js"
+  },
+  "devDependencies": {
+    "jest": "^28.1.3"
   }
 }

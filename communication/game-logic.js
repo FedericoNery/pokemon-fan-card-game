@@ -38,9 +38,32 @@
      gameSocket.on('recieved userName', recievedUserName)
 
      gameSocket.on('obtener-rooms', obtenerRooms)
- 
+
+
+     gameSocket.on('start-phase', startPhase) 
+     gameSocket.on('draw-phase', drawPhase) 
+     gameSocket.on('load-phase', loadPhase) 
+     gameSocket.on('summon-phase', summonPhase) 
+     gameSocket.on('compile-phase', compilePhase) 
+     gameSocket.on('battle-phase', battlePhase) 
  }
  
+ function startPhase(){
+    //enviar mensaje a ambos clientes, uno espera y el otro selecciona a Calumon
+
+
+ }
+
+ function drawPhase(data){
+    const gameId = data.gameId 
+    const client = data.client 
+     
+    //Buscar juego en array de juegos
+    //Buscar por el clientId al jugador o por otra cosa
+    //Repartir cartas
+    io.to(data.id).emit('', move);
+}
+
  
  function playerJoinsGame(idData) {
      /**
@@ -68,7 +91,13 @@
  
          console.log(room.length)
  
+         // Guardar información del usuario y el mazo a utilizar que hizo join de la sesión
+
          if (room.length === 2) {
+            //Emitir al cliente para que seleccione a Calumon o al otro Digimon
+
+            //Crear Juego y guardarlo en el array de juegos
+            //Que Juego se encargue de mezclar el mazo
              io.sockets.in(idData.gameId).emit('start game', idData.userName)
          }
  
@@ -88,6 +117,8 @@
  
      // Join the Room and wait for the other player
      this.join(gameId)
+
+      // Guardar información del usuario y el mazo a utilizar que hizo join de la sesión
  }
  
  
@@ -104,6 +135,7 @@
  }
  
  function onDisconnect() {
+    console.log("llego a la funcion disconnect")
      var i = gamesInSession.indexOf(gameSocket);
      gamesInSession.splice(i, 1);
  }

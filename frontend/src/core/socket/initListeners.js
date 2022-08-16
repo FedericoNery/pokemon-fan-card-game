@@ -1,13 +1,21 @@
 import { roomActions } from "../../redux/reducers/roomReducer"
+import { subscribeTo } from "./suscriptions"
 
 const {setRoomId, setPassword, setOptions, setError} = roomActions
 
 export const initListeners = (socket) => dispatch => {
-    socket.on('[SUCCESS] Successfully initialised', ({ roomId, password, options }) => {
+  subscribeTo.drawPhaseEnd()
+  subscribeTo.drawPhaseStart()
+  subscribeTo.compilePhaseStart()
+  subscribeTo.compilePhaseEnd()
+  subscribeTo.loadPhaseStart()
+  subscribeTo.loadPhaseEnd()
+  
+    /* socket.on('[SUCCESS] Successfully initialised', ({ roomId, password, options }) => {
       console.log('[SUCCESS] Successfully initialised');
       dispatch(setRoomId(roomId))
       dispatch(setPassword(password))
-      dispatch(setOptions(options))
+      dispatch(setOptions(options)) 
     });
   
     socket.on('Error: Incorrect password!', () => dispatch => {
@@ -37,5 +45,5 @@ export const initListeners = (socket) => dispatch => {
           title: 'ROOM ALREADY PRESENT',
           content: 'Sorry, requested Room already present, Join the existing room or Create a new room again'
         }));
-    });
+    }); */
   }

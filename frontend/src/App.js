@@ -29,6 +29,7 @@ import ContainerLoaderTienda from './components/tienda/ContainerLoaderTienda';
 import WaitingRoom from './components/multiplayer/WaitingRoom';
 import PublicRoute from './components/routes/PublicRoute';
 import ListadoRooms from './components/multiplayer/ListadoRooms';
+import CreateRoom from './components/multiplayer/CreateRoom';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
@@ -97,6 +98,7 @@ const App = (props) => {
                     <Route exact path={ROUTES.SELECCION_MAZO} component={SeleccionarMazo} />
                     <Route exact path={ROUTES.SELECCION_MAZO_MULTIPLAYER} component={SeleccionarMazoMultiplayer} />
                     <Route exact path={ROUTES.CREATE_OR_JOIN_ROOM} component={WaitingRoom} />
+                    <Route exact path={ROUTES.CREATE_ROOM} component={CreateRoom} />
                     <Route exact path={ROUTES.LISTADO_DE_ROOMS} component={ListadoRooms} />
                     <Route exact path={ROUTES.JUEGO} component={ContainerJuego} />
                     <Route exact path={ROUTES.JUEGO_FINALIZADO} component={JuegoFinalizado} />
@@ -105,7 +107,7 @@ const App = (props) => {
                     <Route exact path={ROUTES.TIENDA} component={ContainerTiendaStrategy} />
                     <Route exact path={ROUTES.MAZO_DETALLADO_WITH_ID} component={ContainerEdicionDelMazo} />
                     <Route exact path={ROUTES.LISTADO_USUARIOS} component={ListadoUsuarios} />
-                    <Route path="/" component={Dashboard}></Route>
+                   {/*  <Route path="/" component={Dashboard}></Route> */}
                   </MenuPrincipal>
                 </AuthRoute>
                 <Route path="/">

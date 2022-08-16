@@ -23,11 +23,11 @@ const WaitingRoom = () => {
   const usuario = useUsuario()
 
   const handleCreateRoom = data => {
-    const { username } = this.props;
-    const { action } = this.state;
+    const { username } = usuario.nombre_usuario;
+    //const { action } = this.state;
     const { roomId, password, options } = data;
 
-    socket = SocketInit(username, roomId, password, action, options);
+    socket = SocketInit(username, roomId, password, options);
     initListeners(socket);
     //pasarle a initlisteners o guardar estados en redux 
     history.push(To.esperandoQueSeConecteOtroJugador())
