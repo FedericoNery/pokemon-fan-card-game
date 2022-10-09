@@ -13,7 +13,6 @@ const ContainerJuego = ({ iniciarJuego, invocarCartasJugador }) => {
     const payload = useIniciarJuegoPayload()
 
     useEffect(async () => {
-        debugger
         setIsLoading(true)
         await iniciarJuego(payload)
         setIsLoading(false)

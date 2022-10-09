@@ -35,5 +35,6 @@ export const To = {
     perfilUsuario: () => ROUTES.PERFIL_USUARIO,
     listadoUsuarios: () => ROUTES.LISTADO_USUARIOS,
     esperandoQueSeConecteOtroJugador: () => ROUTES.ESPERANDO_OTRO_JUGADOR,
-    listadoDeRooms: () => ROUTES.LISTADO_DE_ROOMS
+    listadoDeRooms: () => ROUTES.LISTADO_DE_ROOMS,
+    juego_multiplayer: () => ROUTES.JUEGO
 }

@@ -29,6 +29,14 @@ class Mazo {
   getLength(){
     return this.cartas.length
   }
+
+  static get_mazo_prueba_1() {
+    return new Mazo()
+  }
+
+  static get_mazo_prueba_1() {
+    return new Mazo()
+  }
 }
 
 

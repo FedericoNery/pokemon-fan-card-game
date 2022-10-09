@@ -3,22 +3,43 @@ const EstadosDeLaPartida = require('./EstadosPartida')
 
 //gameId sería el identificador de la sesión
 class Juego {
-    constructor(jugador1, jugador2, mazo1, mazo2, gameId) {
+    constructor() {
         this.esTurnoDeJugador1 = true
         this.esTurnoDeJugador2 = false
-        this.jugador1 = jugador1;
-        this.jugador2 = jugador2;
-        this.campo1 = new Campo(mazo1)
-        this.campo2 = new Campo(mazo2)
+        this.jugador1 = null;
+        this.jugador2 = null;
+        this.campo1 = null //new Campo(mazo1)
+        this.campo2 = null //new Campo(mazo2)
         this.rondasGanadasJugador1 = 0
         this.rondasGanadasJugador2 = 0
         this.numeroJugadorGanador = null
         this.numeroJugadorPerdedor = null
+    }
+
+    iniciarJuego(){
         this.estadoDeLaRonda = EstadosDeLaPartida.JUEGO_INICIADO
         this.campo1.mazo.mezclar()
         this.campo2.mazo.mezclar()
-        this.gameId = gameId
+    }
+
+    iniciarRonda(){
         this.estadoDeLaRonda = EstadosDeLaPartida.RONDA_INICIADA
+    }
+
+    setJugador1(jugador1){
+        this.jugador1 = jugador1
+    }
+
+    setJugador2(jugador2){
+        this.jugador2 = jugador2
+    }
+
+    setMazo1(mazo1){
+        this.campo1.setMazo(mazo1)
+    }
+
+    setMazo2(mazo2){
+        this.campo2.setMazo(mazo2)
     }
 
     repartirCartas() {

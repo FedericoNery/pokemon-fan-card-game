@@ -1,7 +1,7 @@
 const express = require('express')
 const http = require('http')
 const socketio = require('socket.io')
-const gameLogic = require('./game-logic')
+const { initializeGame } = require('./game-logic')
 const app = express()
 
 /**
@@ -16,11 +16,11 @@ const app = express()
 
 const server = http.createServer(app)
 const io = socketio(server,
-    {
-        cors: {
-            "origin": "*",
-        }
-    })
+  {
+    cors: {
+      "origin": "*",
+    }
+  })
 
 // get the gameID encoded in the URL. 
 // check to see if that gameID matches with all the games currently in session. 
@@ -30,18 +30,20 @@ const io = socketio(server,
 
 // TODO ::: No funciona el emit? o hoppscotch no está capturando la respuesta al no estar suscripto
 io.on('connection', client => {
-    console.log("Conectando...")
-    gameLogic.initializeGame(io, client)
-    console.log("Termino...")
+  console.log("Conectando...")
+  initializeGame(io, client)
+  console.log("Termino...")
 })
 
+
+
 //No funciona la línea de abajo, porque lo captura game-logic en onDisconnect
-io.on("disconnect", (reason) => {
+/* io.on("disconnect", (reason) => {
   console.log(`disconnect ${client.id} due to ${reason}`);
-});
+}); */
 
 server.listen(process.env.PORT || 8000, () => {
-    console.log(`Socket.IO server running at http://localhost:${process.env.PORT || 8000}/`);
+  console.log(`Socket.IO server running at http://localhost:${process.env.PORT || 8000}/`);
 })
 
 //Versión más prolija con los import
@@ -69,3 +71,5 @@ io.on('connection', (socket) => {
 http.listen(process.env.PORT || 8000, () =>{
     console.log(`Socket.IO server running at http://localhost:${process.env.PORT || 8000}/`);
 }) */
+
+module.exports = { io_from_app: io, server_from_app: server }

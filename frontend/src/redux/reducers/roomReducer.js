@@ -2,6 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     roomId: null,
+    socketId: null,
+    gameId: null,
+    roomsDisponibles: [],
     password: null,
     username: null,
     action: null,
@@ -16,6 +19,15 @@ const roomSlice = createSlice({
     reducers: {
         setRoomId(state, action){
             state.roomId = action.payload
+        },
+        setSocketId(state, action){
+            state.socketId = action.payload
+        },
+        setGameId(state, action){
+            state.gameId = action.payload
+        },
+        setRoomsDisponibles(state, action){
+            state.roomsDisponibles = action.payload
         },
         setPassword(state, action){
             state.password = action.payload

@@ -14,6 +14,10 @@ class Campo {
     this.cantidadesEnergias = null
   }
 
+  setMazo(mazo){
+    this.mazo = mazo
+  }
+
   repartirCartas(cantidad) {
     const cartasExtraidas = this.mazo.extraerCartas(cantidad)
     this.mano.setCartas(cartasExtraidas)

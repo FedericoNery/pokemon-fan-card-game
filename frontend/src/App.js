@@ -30,6 +30,8 @@ import WaitingRoom from './components/multiplayer/WaitingRoom';
 import PublicRoute from './components/routes/PublicRoute';
 import ListadoRooms from './components/multiplayer/ListadoRooms';
 import CreateRoom from './components/multiplayer/CreateRoom';
+import EsperandoJugadorRival from './components/multiplayer/EsperandoJugadorRival';
+import { Redirect } from 'react-router-dom'
 
 export const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
@@ -100,6 +102,7 @@ const App = (props) => {
                     <Route exact path={ROUTES.CREATE_OR_JOIN_ROOM} component={WaitingRoom} />
                     <Route exact path={ROUTES.CREATE_ROOM} component={CreateRoom} />
                     <Route exact path={ROUTES.LISTADO_DE_ROOMS} component={ListadoRooms} />
+                    <Route exact path={ROUTES.ESPERANDO_OTRO_JUGADOR} component={EsperandoJugadorRival} />
                     <Route exact path={ROUTES.JUEGO} component={ContainerJuego} />
                     <Route exact path={ROUTES.JUEGO_FINALIZADO} component={JuegoFinalizado} />
                     <Route exact path={ROUTES.DATOS_USUARIO} component={DatosUsuario} />
@@ -108,6 +111,7 @@ const App = (props) => {
                     <Route exact path={ROUTES.MAZO_DETALLADO_WITH_ID} component={ContainerEdicionDelMazo} />
                     <Route exact path={ROUTES.LISTADO_USUARIOS} component={ListadoUsuarios} />
                    {/*  <Route path="/" component={Dashboard}></Route> */}
+                    <Redirect to="/menu-principal"/>
                   </MenuPrincipal>
                 </AuthRoute>
                 <Route path="/">

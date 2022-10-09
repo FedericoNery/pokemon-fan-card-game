@@ -8,7 +8,6 @@ export const guardarMazoSeleccionado = (payload) => async dispatch => {
 
 export const iniciarJuego = (payload) => async dispatch => {
     try {
-        debugger
         const response = await empezarJuego(payload)
         const juego = response.data
         dispatch(juegoActions.iniciarJuego(juego))
@@ -20,9 +19,7 @@ export const iniciarJuego = (payload) => async dispatch => {
 
 export const invocarCartasJugador = (payload) => async dispatch => {
     try {
-        debugger
         const response = await invocarCartas(payload)
-        debugger
         const juego = response.data
         dispatch(juegoActions.invocarCartas(juego))
     }
@@ -35,7 +32,6 @@ export const iniciarBatalla = (payload) => async dispatch => {
     try{
         const response = await iniciarBatallaJuego(payload)
         const juego = response.data
-        debugger
         dispatch(juegoActions.terminarRonda(juego))
     }
     catch (error) {
