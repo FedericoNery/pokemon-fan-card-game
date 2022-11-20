@@ -13,7 +13,7 @@ const CreateRoom = () => {
     const [roomIdValue, setRoomId] = useState(null)
     const [passwordValue, setPassword] = useState(null)
     const usuario = useUsuario()
-  const history = useHistory()
+    const history = useHistory()
 
     const handleCreateRoom = data => {
       const { username } = usuario.nombre_usuario;

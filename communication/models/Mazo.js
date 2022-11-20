@@ -1,6 +1,9 @@
+const CartaPokemon = require("./CartaPokemon");
+
 class Mazo {
-    constructor(mazo) {
-      this.cartas = mazo;
+    constructor(cartas) {
+      console.log("IS ARRAY", Array.isArray(cartas))
+      this.cartas = cartas;
     }
 
     extraerCarta() {
@@ -18,6 +21,7 @@ class Mazo {
     }
 
     mezclar = () => {
+      console.log(this.cartas)
       var j, x, i;
       for (i = this.cartas.length - 1; i > 0; i--) {
           j = Math.floor(Math.random() * (i + 1));
@@ -31,11 +35,11 @@ class Mazo {
   }
 
   static get_mazo_prueba_1() {
-    return new Mazo()
+    return CartaPokemon.getCartas()
   }
 
-  static get_mazo_prueba_1() {
-    return new Mazo()
+  static get_mazo_prueba_2() {
+    return CartaPokemon.getCartas()
   }
 }
 

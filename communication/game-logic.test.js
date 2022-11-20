@@ -80,7 +80,7 @@ describe("my awesome project", () => {
     clientSocket.emit("obtener rooms");
   });
 
-  test("start game", (done) => {
+  test.skip("start game", (done) => {
     
   });
 });

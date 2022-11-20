@@ -8,12 +8,14 @@ class Juego {
         this.esTurnoDeJugador2 = false
         this.jugador1 = null;
         this.jugador2 = null;
-        this.campo1 = null //new Campo(mazo1)
-        this.campo2 = null //new Campo(mazo2)
+        this.campo1 = new Campo()
+        this.campo2 = new Campo()
         this.rondasGanadasJugador1 = 0
         this.rondasGanadasJugador2 = 0
         this.numeroJugadorGanador = null
         this.numeroJugadorPerdedor = null
+        this.jugador1InvocoCartas = false
+        this.jugador2InvocoCartas = false
     }
 
     iniciarJuego(){
@@ -47,6 +49,9 @@ class Juego {
         this.campo1.repartirCartas(6)
         this.campo2.repartirCartas(6)
         this.contarEnergias()
+        this.estadoDeLaRonda = EstadosDeLaPartida.LOAD_PHASE
+        this.estadoDeLaRonda = EstadosDeLaPartida.SUMMON_PHASE
+
     }
 
     contarEnergias() {
@@ -143,6 +148,36 @@ class Juego {
 
     ganoJugador2(){
         return this.rondasGanadasJugador2 == 2
+    }
+
+    startPhase(){
+        this.iniciarJuego()
+        this.iniciarRonda()
+    }
+
+    drawPhase(){
+        this.repartirCartas()
+    }
+
+    finishSummonPhase(usuario, cartasId){
+        const { email, nombre_usuario } = usuario
+        const { email: emailJugador1, nombre_usuario: nombreUsuarioJugador1 } = this.jugador1
+        if (email === emailJugador1 && nombre_usuario === nombreUsuarioJugador1){
+            this.campo1.invocarCartas(cartasId)
+            this.jugador1InvocoCartas = true
+        } 
+        else{
+            this.campo2.invocarCartas(cartasId)
+            this.jugador2InvocoCartas = true
+        }
+    }
+
+    finishedSummonPhase(){
+        return this.jugador1InvocoCartas && this.jugador2InvocoCartas
+    }
+
+    finishCompilePhase(){
+        this.estadoDeLaRonda = EstadosDeLaPartida.BATTLE_PHASE
     }
 }
 

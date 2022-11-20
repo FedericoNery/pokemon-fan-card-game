@@ -7,8 +7,10 @@ export const EMIT_EVENTS = {
 export const SUBSCRIPTIONS_EVENTS = {
     CONNECT: 'connect',
     DISCONNECT: 'disconnect',
-    CREATE_NEW_GAME: 'createNewGame',
+    NEW_GAME_CREATED: 'new game created',
     GET_ROOMS: "obtener rooms",
-    PLAYER_JOINED_ROOM: "playerJoinedRoom"
+    RECEIVED_ROOMS: "send rooms",
+    PLAYER_JOINED_ROOM: "playerJoinedRoom",
+    START_GAME: 'start game'
 
 }

@@ -30,6 +30,9 @@ const juegoSlice = createSlice({
         terminarRonda(state, action){
             state.cartasSeleccionadas = []
             state.juego = action.payload
+        },
+        setJuego(state, action){
+          state.juego = action.payload
         }
     }
 })

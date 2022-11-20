@@ -17,7 +17,8 @@ export const ROUTES = {
     ESPERANDO_OTRO_JUGADOR: '/esperando-otro-jugador',
     LISTADO_DE_ROOMS: '/rooms-disponibles',
     CREATE_OR_JOIN_ROOM: '/creando-juego',
-    CREATE_ROOM: "/create-room"
+    CREATE_ROOM: "/create-room",
+    TEST_SOCKET_IO: "/test-socket"
 }
 
 export const To = {

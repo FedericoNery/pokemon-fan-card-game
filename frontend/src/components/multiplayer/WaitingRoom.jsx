@@ -11,6 +11,11 @@ import { io } from 'socket.io-client';
 import { useEffect } from 'react';
 import { useRoomData } from '../../hooks/multiplayer/useRoomData';
 import { EMIT_EVENTS, SUBSCRIPTIONS_EVENTS } from '../../core/socket/events_consts';
+import { useMazoSeleccionado } from '../../hooks/useMazoSeleccionado';
+import { getCartasDelMazoById, getMazoById } from '../../core/services/mazos';
+import { useJuego } from '../../hooks/useJuego';
+import { mapJuegoToFront } from './mapJuegoToFront';
+import { isJugadorUno } from './isJugadorUno';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -68,7 +73,11 @@ function SocketIOApp() {
 const WaitingRoom = () => {
   const history = useHistory()
   const usuario = useUsuario()
+  const numeroMazoSeleccionado = useMazoSeleccionado()
+
   const { setGameId, setSocketId, setRoomsDisponibles } = useRoomData()
+  const { setJuego } = useJuego()
+
   useEffect(() => {
     const username = usuario.nombre_usuario;
     const roomId = "roomId"
@@ -85,7 +94,7 @@ const WaitingRoom = () => {
       console.log("Desconectaod")
     });
 
-    socket.on(SUBSCRIPTIONS_EVENTS.CREATE_NEW_GAME, (data) => {
+    socket.on(SUBSCRIPTIONS_EVENTS.NEW_GAME_CREATED, (data) => {
       debugger
       console.log(data)
       const { gameId, mySocketId } = data
@@ -94,14 +103,28 @@ const WaitingRoom = () => {
       history.push(To.esperandoQueSeConecteOtroJugador())
     });
 
-    socket.on(SUBSCRIPTIONS_EVENTS.GET_ROOMS, ({ roomsConUnSoloJugador }) => {
+    socket.on(SUBSCRIPTIONS_EVENTS.RECEIVED_ROOMS, ({ roomsConUnSoloJugador }) => {
       debugger
       setRoomsDisponibles(roomsConUnSoloJugador)
     });
-    socket.on(SUBSCRIPTIONS_EVENTS.PLAYER_JOINED_ROOM, () => {
+    socket.on(SUBSCRIPTIONS_EVENTS.PLAYER_JOINED_ROOM, ({ gameId, socketId }) => {
+      debugger
+      console.log()
+      history.push(To.juego_multiplayer())
+    })
+    socket.on(SUBSCRIPTIONS_EVENTS.START_GAME, ({ gameId, socketId, gameData }) => {
+      const esJugadorUno = isJugadorUno(usuario, gameData.juego.jugador1)
+      const juegoMapeado = mapJuegoToFront(gameData.juego, esJugadorUno)
+      setJuego(juegoMapeado)
+
       history.push(To.juego_multiplayer())
     })
 
+   /*  socket.on(SUBSCRIPTIONS_EVENTS.NEXT_ROUND, ({ gameData }) => {
+      const esJugadorUno = isJugadorUno(usuario, gameData.juego.jugador1)
+      const juegoMapeado = mapJuegoToFront(gameData.juego, esJugadorUno)
+      setJuego(juegoMapeado)
+    }) */
     /* return () => {
       debugger
       socket.off('connect');
@@ -113,10 +136,12 @@ const WaitingRoom = () => {
 
 
 
-  const handleCreateRoom = data => {
+  const handleCreateRoom = async () => {
+    const res = await getCartasDelMazoById(numeroMazoSeleccionado)
     debugger
-    socket.emit(EMIT_EVENTS.CREATE_NEW_GAME)
-    //pasarle a initlisteners o guardar estados en redux 
+    console.log(res.data)
+    socket.emit(EMIT_EVENTS.CREATE_NEW_GAME, { usuario, mazo: res.data })
+    //pasarle a initlisteners o guardar estados en redux
   };
 
   return <Stack spacing={2}>

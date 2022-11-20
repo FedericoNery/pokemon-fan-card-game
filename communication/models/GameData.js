@@ -1,4 +1,5 @@
 const Juego = require("./Juego")
+const Mazo = require("./Mazo")
 
 class GameData{
     constructor(){
@@ -15,11 +16,15 @@ class GameData{
     set_usuario_b(usuario){
         this.juego.setJugador2(usuario)
     }
-    set_mazo_a(mazo){
-        this.juego.setMazo1(mazo)
+    set_mazo_a(cartas){
+        console.log("SET MAZO A:", cartas)
+        const nuevoMazo = new Mazo(cartas)
+        this.juego.setMazo1(nuevoMazo)
     }
-    set_mazo_b(mazo){
-        this.juego.setMazo2(mazo)
+    set_mazo_b(cartas){
+        const nuevoMazo = new Mazo(cartas)
+        console.log("SET MAZO B:", cartas)
+        this.juego.setMazo2(nuevoMazo)
     }
     set_game_id(gameId){
         this.game_id = gameId

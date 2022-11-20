@@ -7,6 +7,7 @@ export function SocketInit(username, roomId, password, action, options) {
   const token = Cookies.get('pokemon-card-game-profile');
   const socket = io(`${sockerUrl}`, {
     reconnectionDelayMax: 10000,
+    reconnectionAttempts: 3,
     path: '/',
     transports: ['websocket'],
     query: {

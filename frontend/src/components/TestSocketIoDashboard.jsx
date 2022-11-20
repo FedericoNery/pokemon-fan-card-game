@@ -28,7 +28,29 @@ const SUBSCRIPTIONS_EVENTS = {
     FINISH_COMPILE_PHASE: 'finish compile phase',
 }
 
-module.exports = {
-    EMIT_EVENTS,
-    SUBSCRIPTIONS_EVENTS
+const TestSocketIoDashboard = () => {
+ /*    const handleCreateRoom = data => {
+        socket = SocketInit("Usuario de prueba", roomIdValue, passwordValue);
+        initListeners(socket);
+        //pasarle a initlisteners o guardar estados en redux 
+        history.push(To.esperandoQueSeConecteOtroJugador())
+      }; */
+
+    return <>
+    {/* <React.Fragment>
+        <Input placeholder="Room Id" onChange={(e) => setRoomId(e.target.value)} value={roomIdValue} />
+        <Input placeholder="Password Room" onChange={(e) => setPassword(e.target.value)} value={passwordValue} />
+        <Button onClick={handleCreateRoom} />
+    </React.Fragment>
+
+    <button onClick={() => {}}>Conectar</button>
+
+    <button>Seleccionar Calumon</button>
+    <button>Finish Draw Phase</button>
+    <button>Finish Load Phase</button>
+    <button>Finish Summon Phase</button>
+    <button>Finish Compile Phase</button> */}
+    </>
 }
+ 
+export default TestSocketIoDashboard;
