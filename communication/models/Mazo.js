@@ -2,7 +2,6 @@ const CartaPokemon = require("./CartaPokemon");
 
 class Mazo {
     constructor(cartas) {
-      console.log("IS ARRAY", Array.isArray(cartas))
       this.cartas = cartas;
     }
 
@@ -21,7 +20,6 @@ class Mazo {
     }
 
     mezclar = () => {
-      console.log(this.cartas)
       var j, x, i;
       for (i = this.cartas.length - 1; i > 0; i--) {
           j = Math.floor(Math.random() * (i + 1));

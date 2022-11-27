@@ -18,10 +18,8 @@ router.route('/').post(async (req, res) => {
   var numero = await usuarioService.getUltimoNumeroUsuario()
   numero = numero + 1
   //CREAR MAZOS
-  console.log(numero + "- del usuario num usuario -")
   const mazos = await mazoService.crearMazosParaElUsuario(numero)
   //ASIGNAR ROL
-  console.log(mazos + " del usuario ")
   var rol_usuario = ""
   if (password === "asdfghjklñ123456789") {
     rol_usuario = "admin"
@@ -101,7 +99,6 @@ router.route('/:id').put((req, res) => {
 
 router.route('/').delete(async (req, res) => {
   const ids = req.body.ids;
-  console.log(ids)
   await usuarioService.eliminarMultiplesUsuarios(ids)
     .then(() => res.json('Users eliminados'))
     .catch(err => res.status(400).json('Error: ' + err));

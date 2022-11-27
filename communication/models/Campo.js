@@ -7,6 +7,8 @@ const { obtenerEnergias, obtenerEnergiasYSumarlas } = require('../services/manoS
 const CODIGO_TIPO_CARTA = require('../utils/enums').CODIGO_TIPO_CARTA
 class Campo {
   constructor(mazo = [], mano = [], zonaJuego = [], descarte = []) {
+    this.atk = 0;
+    this.def = 0;
     this.mano = new Mano(mano);
     this.zonaJuego = new ZonaJuego(zonaJuego);
     this.mazo = new Mazo(mazo);
@@ -39,6 +41,8 @@ class Campo {
     const cartasAInvocar = this.mano.getCartasAInvocarFrom(listaIdsCartasAInvocar)
     this.zonaJuego.setCartas(cartasAInvocar)
     this.mano.quitarCartas(listaIdsCartasAInvocar)
+    this.atk = this.getAtaque()
+    this.def = this.getDefensa()
   }
 
   invocarCartasComputadora() {
@@ -147,6 +151,15 @@ class Campo {
   }
   getZonaJuego(){
     return this.zonaJuego
+  }
+
+  atacar(campoRival){
+    const ataque = this.getAtaque()
+    campoRival.defender(ataque)
+  }
+
+  defender(dañoRecibido){
+    this.def -= dañoRecibido
   }
 }
 

@@ -95,7 +95,6 @@ async function crearMazosParaElUsuario(numeroUsuario) {
         throw "Error"
     }
     
-    console.log(idsDeMazos + " - MAZOS -")
     return idsDeMazos
 }
 

@@ -82,21 +82,17 @@ const WaitingRoom = () => {
     const username = usuario.nombre_usuario;
     const roomId = "roomId"
     const password = "1234"
-    debugger
+
     //socket = SocketInit(username, roomId, password);
     //initListeners(socket);
 
     socket.on(SUBSCRIPTIONS_EVENTS.CONNECT, () => {
-      console.log("Conectado")
     });
 
     socket.on(SUBSCRIPTIONS_EVENTS.DISCONNECT, () => {
-      console.log("Desconectaod")
     });
 
     socket.on(SUBSCRIPTIONS_EVENTS.NEW_GAME_CREATED, (data) => {
-      debugger
-      console.log(data)
       const { gameId, mySocketId } = data
       setGameId(gameId)
       setSocketId(mySocketId)
@@ -104,15 +100,14 @@ const WaitingRoom = () => {
     });
 
     socket.on(SUBSCRIPTIONS_EVENTS.RECEIVED_ROOMS, ({ roomsConUnSoloJugador }) => {
-      debugger
       setRoomsDisponibles(roomsConUnSoloJugador)
     });
     socket.on(SUBSCRIPTIONS_EVENTS.PLAYER_JOINED_ROOM, ({ gameId, socketId }) => {
       debugger
-      console.log()
       history.push(To.juego_multiplayer())
     })
     socket.on(SUBSCRIPTIONS_EVENTS.START_GAME, ({ gameId, socketId, gameData }) => {
+      setGameId(gameData.game_id)
       const esJugadorUno = isJugadorUno(usuario, gameData.juego.jugador1)
       const juegoMapeado = mapJuegoToFront(gameData.juego, esJugadorUno)
       setJuego(juegoMapeado)
@@ -138,8 +133,6 @@ const WaitingRoom = () => {
 
   const handleCreateRoom = async () => {
     const res = await getCartasDelMazoById(numeroMazoSeleccionado)
-    debugger
-    console.log(res.data)
     socket.emit(EMIT_EVENTS.CREATE_NEW_GAME, { usuario, mazo: res.data })
     //pasarle a initlisteners o guardar estados en redux
   };
@@ -147,7 +140,6 @@ const WaitingRoom = () => {
   return <Stack spacing={2}>
     <Item key="keyCreateRoom" onClick={handleCreateRoom}>Create Room</Item>
     <Item key="joinRoom" onClick={() => {
-      debugger
       socket.emit(EMIT_EVENTS.GET_ROOMS)
       history.push(To.listadoDeRooms())
     }}>Join Room</Item>

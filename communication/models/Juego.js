@@ -70,13 +70,9 @@ class Juego {
 
     invocarCartasPokemon(cartasAInvocar, idJugador) {
         if (idJugador == this.jugador1.numero) {
-            console.log("Invoca las cartas")
             this.estadoDeLaRonda = EstadosDeLaPartida.SUMMON_PHASE
             this.campo1.invocarCartas(cartasAInvocar)
             this.campo2.invocarCartasComputadora()
-
-            console.log(this.campo1)
-            console.log(this.campo2)
         }
     }
 
@@ -87,16 +83,13 @@ class Juego {
     }
 
     determinarGanadorDeLaRonda() {
-        let ataqueJugador = this.campo1.getAtaque()
-        let ataqueComputadora = this.campo2.getAtaque()
-        let defensaJugador = this.campo1.getDefensa()
-        let defensaComputadora = this.campo2.getDefensa()
-        console.log(ataqueJugador)
-        let deltaJugador = defensaJugador - ataqueComputadora
-        let deltaComputadora = defensaComputadora - ataqueJugador
+        const ataqueJugador = this.campo1.getAtaque()
+        const ataqueComputadora = this.campo2.getAtaque()
+        const defensaJugador = this.campo1.getDefensa()
+        const defensaComputadora = this.campo2.getDefensa()
+        const deltaJugador = defensaJugador - ataqueComputadora
+        const deltaComputadora = defensaComputadora - ataqueJugador
 
-        console.log(deltaJugador + " deltaJugador")
-        console.log(deltaComputadora + " deltaComputadora")
         const ambosJugadoresQuedaronSinDefensa = deltaJugador <= 0 && deltaComputadora <= 0
         const computadoraPudoDefenderseYJugadorQuedoSinDefensa = deltaComputadora > 0 && deltaJugador <= 0
         const jugadorPudoDefenderseYComputadoraQuedoSinDefensa = deltaJugador > 0 && deltaComputadora <= 0
@@ -105,11 +98,9 @@ class Juego {
 
         if (ambosJugadoresQuedaronSinDefensa || computadoraPudoDefenderseYJugadorQuedoSinDefensa || ventajaDeComputadora) {
             this.rondasGanadasJugador2 += 1
-            console.log("Suma ronda jugador 2")
         }
         else if (jugadorPudoDefenderseYComputadoraQuedoSinDefensa || ventajaDeJugador) {
             this.rondasGanadasJugador1 += 1
-            console.log("Suma ronda jugador 1")
         }
     }
 
@@ -162,11 +153,12 @@ class Juego {
     finishSummonPhase(usuario, cartasId){
         const { email, nombre_usuario } = usuario
         const { email: emailJugador1, nombre_usuario: nombreUsuarioJugador1 } = this.jugador1
+        const { email: emailJugador2, nombre_usuario: nombreUsuarioJugador2 } = this.jugador2
         if (email === emailJugador1 && nombre_usuario === nombreUsuarioJugador1){
             this.campo1.invocarCartas(cartasId)
             this.jugador1InvocoCartas = true
         } 
-        else{
+        if (email === emailJugador2 && nombre_usuario === nombreUsuarioJugador2) {
             this.campo2.invocarCartas(cartasId)
             this.jugador2InvocoCartas = true
         }
@@ -178,6 +170,22 @@ class Juego {
 
     finishCompilePhase(){
         this.estadoDeLaRonda = EstadosDeLaPartida.BATTLE_PHASE
+    }
+
+    startBattlePhaseJugador1(){
+        this.campo1.atacar(this.campo2)
+    }
+
+    startBattlePhaseJugador2(){
+        this.campo2.atacar(this.campo1)
+    }
+
+    finishBattlePhaseJugador1(){
+
+    }
+
+    finishBattlePhaseJugador2(){
+        
     }
 }
 

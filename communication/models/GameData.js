@@ -17,13 +17,11 @@ class GameData{
         this.juego.setJugador2(usuario)
     }
     set_mazo_a(cartas){
-        console.log("SET MAZO A:", cartas)
         const nuevoMazo = new Mazo(cartas)
         this.juego.setMazo1(nuevoMazo)
     }
     set_mazo_b(cartas){
         const nuevoMazo = new Mazo(cartas)
-        console.log("SET MAZO B:", cartas)
         this.juego.setMazo2(nuevoMazo)
     }
     set_game_id(gameId){

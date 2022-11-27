@@ -62,10 +62,8 @@ router.route('/disponibles').get((req, res) => {
 
 router.route('/').put(async (req, res) => {
     //Este endpoint serviría para 
-    console.log("llego tienda put")
     const cartas = req.body.cartas
     await Promise.all(cartas.map(async (element, index) => {
-        console.log(index)
         await CartaPokemon.updateOne({ _id: element.id },
             {
                 disponible_en_tienda: element.disponible_en_tienda,

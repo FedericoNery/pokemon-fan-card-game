@@ -118,8 +118,6 @@ const ContainerEdicionDelMazo = () => {
         }
     };
 
-    console.log(cartas["cartas-mazo"]?.list)
-
     return <DragDropContext onDragEnd={onDragEnd}>
         <Grid container spacing={2}>
             <Grid item xs={10} sm={9} md={8}>

@@ -20,7 +20,6 @@ const ContainerLoaderTiendaJugador = ({ fetchCartasEdicionTienda, fetchCartasFil
 
   //const cartas = useCartasEnTienda()
   //const cartasFiltradasEnTienda = useCartasEnTiendaFiltradas()
-  console.log(value)
   //const isLoading = !isLoadingCartas && !loading
   return !loading && <TiendaJugador cartas={value.data} />
 }

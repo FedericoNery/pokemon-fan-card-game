@@ -22,7 +22,8 @@ export function mapJuegoToFront(juego, esUno) {
       "campo2.zonaJuego.cartas": "zonaJuegoEnemigo",
       "campo2.mazo.cartas": "mazoEnemigo",
       "campo2.descarte.cartas": "descarteEnemigo",
-
+      "jugador1InvocoCartas": "jugador1InvocoCartas",
+      "jugador2InvocoCartas": "jugador2InvocoCartas",
     } :
     {
       "jugador1": "jugadorEnemigo",
@@ -44,7 +45,8 @@ export function mapJuegoToFront(juego, esUno) {
       "campo1.zonaJuego.cartas": "zonaJuegoEnemigo",
       "campo1.mazo.cartas": "mazoEnemigo",
       "campo1.descarte.cartas": "descarteEnemigo",
-
+      "jugador1InvocoCartas": "jugador1InvocoCartas",
+      "jugador2InvocoCartas": "jugador2InvocoCartas",
     }
   return objectMapper(juego, map)
 }

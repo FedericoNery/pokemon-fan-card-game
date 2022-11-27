@@ -27,9 +27,13 @@ const MultiplayerGame = ({ juego }) => {
   const { setGameId, setSocketId, setRoomsDisponibles, gameId } = useRoomData()
   const { setJuego } = useJuego()
   const esJugadorUno = isJugadorUno(usuario, juego.miJugador)
-  const invocoCartas = esJugadorUno ? juego.jugador1InvocoCartas : juego.jugador2InvocoCartas
-
+  //const invocoCartas = esJugadorUno ? juego.jugador1InvocoCartas : juego.jugador2InvocoCartas
+  console.log("jugador1InvocoCartas", juego.jugador1InvocoCartas)
+  console.log("jugador2InvocoCartas", juego.jugador2InvocoCartas)
+  console.log("esJugadorUno", esJugadorUno)
   const [watchRivalsZone, setWatchRivalsZone] = useState(false)
+  const [invocoCartas, setInvocoCartas] = useState(false)
+
   useEffect(() => {
     socket.on("On_Error_InvocarCartas", ({ mensajeError }) => {
       //TOAST CON ERROR
@@ -65,7 +69,9 @@ const MultiplayerGame = ({ juego }) => {
   }, [])
 
   function invocarCartas(numerosDeCartas) {
+    debugger
     socket.emit("finish summon phase", { gameId: gameId, usuarioId: usuario, cartasId: numerosDeCartas })
+    setInvocoCartas(true)
   }
 
   //FALTAN STATS DEL JUGADOR RIVAL
