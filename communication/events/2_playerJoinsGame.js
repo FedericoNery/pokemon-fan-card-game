@@ -46,9 +46,6 @@ function playerJoinsGame({gameIdToJoin, usuario, mazo}, io, gamesData, gameSocke
         console.log("ENTRO A JOINS GAME")
         var gameDataArray = gamesData.filter(x => x.getGameId() === gameIdToJoin)
         
-        console.log(gameDataArray[0].socketIdUsuarioA)
-        console.log(gameDataArray[0].socketIdUsuarioB)
-
         io.sockets.in(gameDataArray[0].socketIdUsuarioA).emit(EMIT_EVENTS.START_GAME, {gameData: gameDataArray[0]})
         io.sockets.in(gameDataArray[0].socketIdUsuarioB).emit(EMIT_EVENTS.START_GAME, {gameData: gameDataArray[0]}) // Ver que pasarle al evento
         startPhase(gameIdToJoin, gamesData, io)

@@ -16,10 +16,15 @@ class Juego {
         this.numeroJugadorPerdedor = null
         this.jugador1InvocoCartas = false
         this.jugador2InvocoCartas = false
+        this.estadoDeLaRonda = EstadosDeLaPartida.JUEGO_CREADO
     }
 
     iniciarJuego(){
         this.estadoDeLaRonda = EstadosDeLaPartida.JUEGO_INICIADO
+        this.mezclarMazos()
+    }
+
+    mezclarMazos(){
         this.campo1.mazo.mezclar()
         this.campo2.mazo.mezclar()
     }
@@ -51,7 +56,6 @@ class Juego {
         this.contarEnergias()
         this.estadoDeLaRonda = EstadosDeLaPartida.LOAD_PHASE
         this.estadoDeLaRonda = EstadosDeLaPartida.SUMMON_PHASE
-
     }
 
     contarEnergias() {
@@ -70,7 +74,7 @@ class Juego {
 
     invocarCartasPokemon(cartasAInvocar, idJugador) {
         if (idJugador == this.jugador1.numero) {
-            this.estadoDeLaRonda = EstadosDeLaPartida.SUMMON_PHASE
+            //this.estadoDeLaRonda = EstadosDeLaPartida.SUMMON_PHASE
             this.campo1.invocarCartas(cartasAInvocar)
             this.campo2.invocarCartasComputadora()
         }
@@ -79,7 +83,10 @@ class Juego {
     iniciarBatalla() {
         this.determinarGanadorDeLaRonda()
         this.determinarGanadorPartida()
-        this.pasarASiguienteRonda()
+        if(!this.estaFinalizado()){
+            this.estadoDeLaRonda = EstadosDeLaPartida.RONDA_TERMINADA
+            this.pasarASiguienteRonda()    
+        }
     }
 
     determinarGanadorDeLaRonda() {
@@ -119,18 +126,25 @@ class Juego {
 
     pasarASiguienteRonda(){
         if(this.estadoDeLaRonda !== EstadosDeLaPartida.JUEGO_TERMINADO){
-            this.estadoDeLaRonda = EstadosDeLaPartida.RONDA_INICIADA
+            console.log("PASÓ A SIGUIENTE RONDA")
             this.campo1.descartarCartasMano()
             this.campo1.descartarCartasCampo()
             this.campo2.descartarCartasMano()
             this.campo2.descartarCartasCampo()
-            this.repartirCartas()
-            this.contarEnergias()
+            this.jugador1InvocoCartas = false
+            this.jugador2InvocoCartas = false
         }
     }
 
+    finalizarRonda(){
+        this.estadoDeLaRonda = EstadosDeLaPartida.RONDA_TERMINADA
+    }
+    iniciarRonda(){
+        this.estadoDeLaRonda = EstadosDeLaPartida.RONDA_INICIADA
+    }
+
     estaFinalizado(){
-        return this.estadoDeLaRonda == EstadosDeLaPartida.JUEGO_TERMINADO
+        return this.estadoDeLaRonda === EstadosDeLaPartida.JUEGO_TERMINADO
     }
 
     ganoJugador1(){
@@ -162,6 +176,8 @@ class Juego {
             this.campo2.invocarCartas(cartasId)
             this.jugador2InvocoCartas = true
         }
+        console.log(this.jugador1InvocoCartas)
+        console.log(this.jugador2InvocoCartas)
     }
 
     finishedSummonPhase(){
@@ -169,6 +185,7 @@ class Juego {
     }
 
     finishCompilePhase(){
+        console.log(this.estadoDeLaRonda)
         this.estadoDeLaRonda = EstadosDeLaPartida.BATTLE_PHASE
     }
 
@@ -186,6 +203,11 @@ class Juego {
 
     finishBattlePhaseJugador2(){
         
+    }
+
+    finishedRonda(){
+        console.log(this.estadoDeLaRonda)
+        return this.estadoDeLaRonda === EstadosDeLaPartida.RONDA_TERMINADA
     }
 }
 

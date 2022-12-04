@@ -33,6 +33,9 @@ const juegoSlice = createSlice({
         },
         setJuego(state, action){
           state.juego = action.payload
+        },
+        clearCartasSeleccionadas(state, action){
+          state.cartasSeleccionadas = []
         }
     }
 })

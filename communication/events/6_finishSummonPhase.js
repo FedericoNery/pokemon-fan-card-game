@@ -16,12 +16,14 @@ async function finishSummonPhase({gameId, usuarioId, cartasId}, gamesData, io){
     io.to(socketIdUsuarioB).emit("UPDATE GAME DATA", {gameData: gamesData[indexGame]});
 
     if(gamesData[indexGame].juego.finishedSummonPhase()){
+        console.log("INVOCARON LAS CARTAS")
         gamesData[indexGame].juego.finishCompilePhase()
         //io.sockets.in(gameId).emit(EMIT_EVENTS.START_COMPILE_PHASE)
 
         //io.to(socketIdUsuarioA).emit(EMIT_EVENTS.START_BATTLE_PHASE)
         //io.to(socketIdUsuarioB).emit(EMIT_EVENTS.START_BATTLE_PHASE)
 
+        gamesData[indexGame].juego.finalizarRonda()
         gamesData[indexGame].juego.iniciarBatalla()
         io.to(socketIdUsuarioA).emit("UPDATE GAME DATA", {gameData: gamesData[indexGame]});
         io.to(socketIdUsuarioB).emit("UPDATE GAME DATA", {gameData: gamesData[indexGame]});
@@ -29,13 +31,17 @@ async function finishSummonPhase({gameId, usuarioId, cartasId}, gamesData, io){
         io.to(socketIdUsuarioA).emit(EMIT_EVENTS.FINISH_BATTLE_PHASE, {gameData: gamesData[indexGame]})
         io.to(socketIdUsuarioB).emit(EMIT_EVENTS.FINISH_BATTLE_PHASE, {gameData: gamesData[indexGame]})
 
-        finishRound(indexGame)
+        if(gamesData[indexGame].juego.estaFinalizado()){
+            console.log("ENTRO A FINISHED GAME")
+            io.to(socketIdUsuarioA).emit(EMIT_EVENTS.FINISHED_GAME, {gameData: gamesData[indexGame]})
+            io.to(socketIdUsuarioB).emit(EMIT_EVENTS.FINISHED_GAME, {gameData: gamesData[indexGame]})
+        }
+        else{
+            finishRound(indexGame, gamesData, io)
+        }
     }
 
-    if(gamesData[indexGame].juego.estaFinalizado()){
-        io.to(socketIdUsuarioA).emit(EMIT_EVENTS.FINISHED_GAME, {gameData: gamesData[indexGame]})
-        io.to(socketIdUsuarioB).emit(EMIT_EVENTS.FINISHED_GAME, {gameData: gamesData[indexGame]})
-    }
+    
 }
 
 module.exports = { finishSummonPhase }

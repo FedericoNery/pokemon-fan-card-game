@@ -51,6 +51,7 @@ class Juego {
     iniciarBatalla() {
         this.determinarGanadorDeLaRonda()
         this.determinarGanadorPartida()
+        this.estadoDeLaRonda = EstadosDeLaPartida
         this.pasarASiguienteRonda()
     }
 

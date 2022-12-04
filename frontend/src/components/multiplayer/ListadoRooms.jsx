@@ -22,7 +22,6 @@ const ListadoRooms = () => {
 
   useEffect(() => {
     socket.on(SUBSCRIPTIONS_EVENTS.START_GAME, ({ gameId, socketId, gameData }) => {
-      debugger
       const esJugadorUno = isJugadorUno(usuario, gameData.juego.jugador1)
       const juegoMapeado = mapJuegoToFront(gameData.juego, esJugadorUno)
       setJuego(juegoMapeado)
@@ -38,7 +37,6 @@ const ListadoRooms = () => {
         <p>Game Id:{value}</p>
         <button onClick={async () => {
           //setear el gameId acá
-          debugger
           const res = await getCartasDelMazoById(numeroMazoSeleccionado)
           const mazo = res.data
           socket.emit(EMIT_EVENTS.PLAYER_JOIN_GAME, { gameIdToJoin: value, usuario, mazo })

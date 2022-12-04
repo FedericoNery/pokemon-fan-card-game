@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useRoomData } from "../../hooks/multiplayer/useRoomData";
 import { useCartasSeleccionadas } from "../../hooks/useCartasSeleccionadas";
+import { useClearCartasSeleccionadas } from "../../hooks/useClearCartasSeleccionadas";
 import { useJuego } from "../../hooks/useJuego";
 import { useUsuario } from "../../hooks/useUsuario";
 import { ROUTES, To } from "../../utils/routes";
@@ -26,6 +27,7 @@ const MultiplayerGame = ({ juego }) => {
   const usuario = useUsuario()
   const { setGameId, setSocketId, setRoomsDisponibles, gameId } = useRoomData()
   const { setJuego } = useJuego()
+  const { clearCartasSeleccionadas } = useClearCartasSeleccionadas()
   const esJugadorUno = isJugadorUno(usuario, juego.miJugador)
   //const invocoCartas = esJugadorUno ? juego.jugador1InvocoCartas : juego.jugador2InvocoCartas
   console.log("jugador1InvocoCartas", juego.jugador1InvocoCartas)
@@ -42,6 +44,7 @@ const MultiplayerGame = ({ juego }) => {
 
     });
     socket.on("START NEXT ROUND", ({ gameData }) => {
+      setInvocoCartas(false)
       const esJugadorUno = isJugadorUno(usuario, gameData.juego.jugador1)
       const juegoMapeado = mapJuegoToFront(gameData.juego, esJugadorUno)
       setJuego(juegoMapeado)
@@ -53,8 +56,7 @@ const MultiplayerGame = ({ juego }) => {
     });
     socket.on("finished game", ({ juego }) => {
       //RESET todos los datos
-
-      history.push(To.home())
+      history.push(To.menuPrincipal())
     });
     socket.on("start battle phase", async ({ gameData }) => {
       setWatchRivalsZone(true)
@@ -69,9 +71,9 @@ const MultiplayerGame = ({ juego }) => {
   }, [])
 
   function invocarCartas(numerosDeCartas) {
-    debugger
     socket.emit("finish summon phase", { gameId: gameId, usuarioId: usuario, cartasId: numerosDeCartas })
     setInvocoCartas(true)
+    clearCartasSeleccionadas()
   }
 
   //FALTAN STATS DEL JUGADOR RIVAL
