@@ -11,7 +11,6 @@ const authenticateSlice = createSlice({
     initialState: initialState,
     reducers: {
         loguearse(state, action){
-            debugger
             state.usuario = action.payload.usuario
             state.estaLogueado = true
             state.jwt = action.payload.token

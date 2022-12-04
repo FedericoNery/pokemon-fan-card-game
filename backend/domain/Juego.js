@@ -42,19 +42,16 @@ class Juego {
 
     invocarCartasPokemon(cartasAInvocar, idJugador) {
         if (idJugador == this.jugador1.numero) {
-            console.log("Invoca las cartas")
             this.estadoDeLaRonda = EstadosDeLaPartida.INVOCACION_JUGADOR
             this.campo1.invocarCartas(cartasAInvocar)
             this.campo2.invocarCartasComputadora()
-
-            console.log(this.campo1)
-            console.log(this.campo2)
         }
     }
 
     iniciarBatalla() {
         this.determinarGanadorDeLaRonda()
         this.determinarGanadorPartida()
+        this.estadoDeLaRonda = EstadosDeLaPartida
         this.pasarASiguienteRonda()
     }
 
@@ -63,12 +60,9 @@ class Juego {
         let ataqueComputadora = this.campo2.getAtaque()
         let defensaJugador = this.campo1.getDefensa()
         let defensaComputadora = this.campo2.getDefensa()
-        console.log(ataqueJugador)
         let deltaJugador = defensaJugador - ataqueComputadora
         let deltaComputadora = defensaComputadora - ataqueJugador
 
-        console.log(deltaJugador + " deltaJugador")
-        console.log(deltaComputadora + " deltaComputadora")
         const ambosJugadoresQuedaronSinDefensa = deltaJugador <= 0 && deltaComputadora <= 0
         const computadoraPudoDefenderseYJugadorQuedoSinDefensa = deltaComputadora > 0 && deltaJugador <= 0
         const jugadorPudoDefenderseYComputadoraQuedoSinDefensa = deltaJugador > 0 && deltaComputadora <= 0
@@ -77,11 +71,9 @@ class Juego {
 
         if (ambosJugadoresQuedaronSinDefensa || computadoraPudoDefenderseYJugadorQuedoSinDefensa || ventajaDeComputadora) {
             this.rondasGanadasJugador2 += 1
-            console.log("Suma ronda jugador 2")
         }
         else if (jugadorPudoDefenderseYComputadoraQuedoSinDefensa || ventajaDeJugador) {
             this.rondasGanadasJugador1 += 1
-            console.log("Suma ronda jugador 1")
         }
     }
 

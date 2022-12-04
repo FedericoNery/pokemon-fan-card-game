@@ -10,8 +10,6 @@ router.route('/iniciar').post(async (req, res) => {
     juego = res
     return res
   })
-  console.log("ESTADO DEL JUEGO")
-  console.log(juego)
   if (juego !== null) {
     res.json(juego)
     //res.sendStatus(200)
@@ -27,7 +25,6 @@ router.route('/invocar').post(async (req, res) => {
   const cartasAInvocar = juegoService.getCartasInvocadas(campo.mano.getCartas(), listaNumerosDeCartas)
   let esValidaLaInvocacion = juegoService.invocacionCartasPokemon(campo.getCantidadEnergias(), cartasAInvocar)
   if (esValidaLaInvocacion) {
-    console.log("Es valida la invocacion")
     juego.invocarCartasPokemon(listaNumerosDeCartas, idJugador)
     res.json(juego)
     //res.sendStatus(200)

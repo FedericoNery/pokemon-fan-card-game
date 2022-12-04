@@ -6,7 +6,6 @@ export const useCartaParaSeleccionar = (quitarCartaSeleccionada, agregarCartaSel
     const onSeleccionarCarta = (numeroCarta) => {
         if(isSeleccionada){
             setIsSeleccionada(false)
-            console.log(numeroCarta)
             quitarCartaSeleccionada(numeroCarta)
         }
         else{

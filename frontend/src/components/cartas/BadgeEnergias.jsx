@@ -8,14 +8,14 @@ const BadgeEnergias = ({ nombre, numero }) => {
     const useStyles = makeStyles({
         badge: {
             backgroundColor: getColorEnergiaBadge(nombre),
-            //TODO ORDENAR LAS ENERGIAS SEGUN CANTIDAD Y ARMAR ALGUN FONDO CON DEGRADÉ 
+            //TODO ORDENAR LAS ENERGIAS SEGUN CANTIDAD Y ARMAR ALGUN FONDO CON DEGRADÉ
             // DE FORMA TAL DE VISUALIZAR CON MAYOR FRANJA EL QUE MAS ENERGIAS APORTA
         },
     });
 
     const classes = useStyles();
-    return cantidadDeComponentes.map(x =>
-        <Tooltip title={nombre}>
+    return cantidadDeComponentes.map((x, index) =>
+        <Tooltip title={nombre} key={`keyBadge${index}`}>
             <Badge classes={classes} overlap="circular" badgeContent={nombre[0]} />
         </Tooltip>)
 }

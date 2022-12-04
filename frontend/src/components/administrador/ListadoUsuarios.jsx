@@ -1,18 +1,13 @@
 import React from "react";
 import { getAllUsuarios } from "../../core/services/usuarios";
 import TablaUsuarios from "./TablaUsuarios";
-import {useAsyncRetry} from 'react-use';
+import { useAsyncRetry } from 'react-use';
+import { mapDataToTablaUsuarios } from "./mapDataToTablaUsuarios";
 
 const ListadoUsuarios = () => {
-    const { loading, error, value, retry } = useAsyncRetry(getAllUsuarios, []);
-    const rows = value?.data?.map(x => ({
-        id: x.numero,
-        username: x.nombre_usuario,
-        firstName: x.nombre,
-        lastName: x.apellido
-      })) ?? []
+  const { loading, error, value, retry } = useAsyncRetry(getAllUsuarios, []);
 
-    return <TablaUsuarios loading={loading} values={loading ? [] : rows} retry={retry}/>
+  return !loading && !error && <TablaUsuarios values={mapDataToTablaUsuarios(value)} retry={retry} />
 }
 
 export default ListadoUsuarios;

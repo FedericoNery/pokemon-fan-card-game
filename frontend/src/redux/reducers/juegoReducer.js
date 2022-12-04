@@ -20,7 +20,6 @@ const juegoSlice = createSlice({
             state.juego = action.payload
         },
         agregarCartaSeleccionada(state, action){
-            debugger
             const cartasSeleccionadas = [...state.cartasSeleccionadas, action.payload]
             state.cartasSeleccionadas = cartasSeleccionadas
         },
@@ -31,6 +30,12 @@ const juegoSlice = createSlice({
         terminarRonda(state, action){
             state.cartasSeleccionadas = []
             state.juego = action.payload
+        },
+        setJuego(state, action){
+          state.juego = action.payload
+        },
+        clearCartasSeleccionadas(state, action){
+          state.cartasSeleccionadas = []
         }
     }
 })

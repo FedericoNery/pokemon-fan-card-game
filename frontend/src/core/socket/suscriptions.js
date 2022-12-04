@@ -1,51 +1,41 @@
-import { socker } from '../Room/Room';
+import { socket } from "../../components/multiplayer/WaitingRoom";
 
 export const subscribeTo = {
-  showPlayers: cb => {
-    socker.on('show-players-joined', data => cb(null, data.playersJoined));
-  },
-
-  playerCollections: cb => {
-    socker.on('show-players-teams', data => cb(null, data.teams));
-  },
-
-  myTurnStart: cb => {
-    socker.on('personal-turn-start', message => {
+  drawPhaseStart: cb => {
+    socket.on('draw-phase-start', message => {
       console.log(message);
       cb(null, message);
     });
   },
 
-  playerTurnStart: cb => {
-    socker.on('player-turn-start', message => {
+  drawPhaseEnd: cb => {
+    socket.on('draw-phase-end', message => {
+      console.log(message);
+      cb(null, message);
+    });
+  },
+  loadPhaseStart: cb => {
+    socket.on('load-phase-start', message => {
       console.log(message);
       cb(null, message);
     });
   },
 
-  personalTurnEnd: cb => {
-    socker.on('personal-turn-end', message => {
+  loadPhaseEnd: cb => {
+    socket.on('load-phase-end', message => {
+      console.log(message);
+      cb(null, message);
+    });
+  },
+  compilePhaseStart: cb => {
+    socket.on('compile-phase-start', message => {
       console.log(message);
       cb(null, message);
     });
   },
 
-  playerTurnEnd: cb => {
-    socker.on('player-turn-end', message => {
-      console.log(message);
-      cb(null, message);
-    });
-  },
-
-  draftStart: cb => {
-    socker.on('draft-start', message => {
-      console.log(message);
-      cb(null, message);
-    });
-  },
-
-  draftEnd: cb => {
-    socker.on('draft-end', message => {
+  compilePhaseEnd: cb => {
+    socket.on('compile-phase-end', message => {
       console.log(message);
       cb(null, message);
     });

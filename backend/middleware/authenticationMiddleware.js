@@ -4,7 +4,6 @@ module.exports = function (app, router) {
 
   router.use((req, res, next) => {
     const token = req.headers['access-token'];
-    console.log("Middleware de auth")
     if (token) {
       jwt.verify(token, app.get('llave'), (err, decoded) => {
         if (err) {

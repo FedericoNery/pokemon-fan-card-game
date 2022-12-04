@@ -3,33 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useState } from "react";
 import ButtonBorrarSeleccionados from "./atoms/ButtonBorrarSeleccionados";
 import { borrarUsuarios } from "../../core/services/usuarios";
-
-const columns = [
-  {
-    field: 'id',
-    headerName: 'ID',
-    width: 90
-  },
-  {
-    field: 'username',
-    headerName: 'Username',
-    type: 'number',
-    width: 110,
-    editable: true,
-  },
-  {
-    field: 'firstName',
-    headerName: 'First name',
-    width: 150,
-    editable: true,
-  },
-  {
-    field: 'lastName',
-    headerName: 'Last name',
-    width: 150,
-    editable: true,
-  },
-]
+import { columns } from "./columns";
 
 const TablaUsuarios = ({ values, retry }) => {
   const [selectedRows, setSelectedRows] = useState([]);
@@ -48,7 +22,7 @@ const TablaUsuarios = ({ values, retry }) => {
     setRows(selectedRows); */
     try{
       await borrarUsuarios({ ids : selectedRows});
-      retry()  
+      retry()
     }
     catch(error){
       console.log(error)

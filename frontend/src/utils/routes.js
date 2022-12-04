@@ -16,7 +16,9 @@ export const ROUTES = {
     LISTADO_USUARIOS: '/listado-usuarios',
     ESPERANDO_OTRO_JUGADOR: '/esperando-otro-jugador',
     LISTADO_DE_ROOMS: '/rooms-disponibles',
-    CREATE_OR_JOIN_ROOM: '/creando-juego'
+    CREATE_OR_JOIN_ROOM: '/creando-juego',
+    CREATE_ROOM: "/create-room",
+    TEST_SOCKET_IO: "/test-socket"
 }
 
 export const To = {
@@ -34,5 +36,6 @@ export const To = {
     perfilUsuario: () => ROUTES.PERFIL_USUARIO,
     listadoUsuarios: () => ROUTES.LISTADO_USUARIOS,
     esperandoQueSeConecteOtroJugador: () => ROUTES.ESPERANDO_OTRO_JUGADOR,
-    listadoDeRooms: () => ROUTES.LISTADO_DE_ROOMS
+    listadoDeRooms: () => ROUTES.LISTADO_DE_ROOMS,
+    juego_multiplayer: () => ROUTES.JUEGO
 }

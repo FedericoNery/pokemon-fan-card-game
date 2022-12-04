@@ -22,7 +22,6 @@ const tiendaSlice = createSlice({
     initialState: initialState,
     reducers: {
         agregarCartaAlCarro(state, action){
-            debugger
             state.carroDeCartas.push(action.payload)
         },
         quitarCartaAlCarro(state, action){

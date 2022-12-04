@@ -51,7 +51,6 @@ const ContainerEdicionDelMazo = () => {
     const [columns, setColumns] = useState(initialColumns);
 
     const onDragEnd = ({ source, destination }) => {
-        debugger
         // Make sure we have a valid destination
         if (destination === undefined || destination === null) return null;
 
@@ -118,8 +117,6 @@ const ContainerEdicionDelMazo = () => {
             //return
         }
     };
-
-    console.log(cartas["cartas-mazo"]?.list)
 
     return <DragDropContext onDragEnd={onDragEnd}>
         <Grid container spacing={2}>
