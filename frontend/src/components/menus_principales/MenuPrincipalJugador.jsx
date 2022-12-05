@@ -1,10 +1,10 @@
 import React from 'react'
-import MenuAppBarVer from '../menu-lateral/MenuAppBarVer'
+import MenuAppBarJugador from '../menu-lateral/MenuAppBarJugador'
 
 const MenuPrincipalJugador = (props) => {
-    return <MenuAppBarVer>
+    return <MenuAppBarJugador>
         {props.children}
-    </MenuAppBarVer>
+    </MenuAppBarJugador>
 }
- 
+
 export default MenuPrincipalJugador;

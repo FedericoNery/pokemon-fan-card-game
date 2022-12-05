@@ -1,6 +1,6 @@
 import { useTheme } from '@emotion/react';
-import { ChevronLeft, ChevronRight, MenuOutlined } from '@mui/icons-material';
-import { AppBar as MuiAppBar, CssBaseline, Divider, Drawer as MuiDrawer, IconButton, MenuItem, Toolbar, Typography } from '@mui/material';
+import { ChevronLeft, MenuOutlined } from '@mui/icons-material';
+import { AppBar as MuiAppBar, CssBaseline, Divider, Drawer as MuiDrawer, IconButton, Toolbar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box, ThemeProvider } from '@mui/system';
 import React from 'react';
@@ -11,11 +11,11 @@ import { desloguearse } from '../../redux/actionCreators/authenticate';
 import { To } from '../../utils/routes';
 import ListJugador from '../opciones-menu-lateral/ListJugador';
 import ButtonToggleMode from './atoms/ButtonToggleMode';
-import IconButtonUsuarioAutenticado from './IconButtonUsuarioAutenticado';
-import MenuUsuarioAutenticado from './MenuUsuarioAutenticado';
+import MenuDesplegableUsuario from './atoms/MenuDesplegableUsuario';
+import PokemonCardGameTypography from './atoms/PokemonCardGameTypography';
 
 
-const drawerWidth = 240;
+const drawerWidth = 250;
 
 const AppBarCustom = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -52,29 +52,19 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.leavingScreen,
         }),
-        width: theme.spacing(7),
+        width: 90,//TODO: Si estoy en mobile hacerlo más chico
         [theme.breakpoints.up('sm')]: {
-          width: theme.spacing(9),
+          width: 90,
         },
       }),
     },
   }),
 );
 
-
-const data = [
-  { country: 'Ganadas sin perder rondas', area: 50 },
-  { country: 'Ganadas perdiendo una ronda', area: 25 },
-  { country: 'Ganadas perdiendo dos rondas', area: 25 },
-]
-
-
-
-const MenuAppBarVer = (props) => {
+const MenuAppBarJugador = (props) => {
   const { history, desloguearse } = props
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [auth, setAuth] = React.useState(true);
   const theme = useTheme();
 
   const openMenuAppBar = Boolean(anchorEl);
@@ -102,10 +92,10 @@ const MenuAppBarVer = (props) => {
         <CssBaseline />
         <AppBarCustom
           position="absolute" open={open}
-          >
+        >
           <Toolbar
             sx={{
-              pr: '24px', // keep right padding when drawer closed
+              pr: '20px', // keep right padding when drawer closed
             }}>
             <IconButton
               color="inherit"
@@ -113,28 +103,21 @@ const MenuAppBarVer = (props) => {
               onClick={toggleDrawer}
               edge="start"
               sx={{
-                marginRight: '36px',
+                marginRight: '40px',
                 ...(open && { display: 'none' }),
               }}
             >
               <MenuOutlined />
             </IconButton>
-            <Typography component="h1" variant="h6" noWrap sx={{ flexGrow: 1}}>
-              Mini variant drawer
-            </Typography>
-            {auth && (
-              <div>
-                <IconButtonUsuarioAutenticado onClick={handleMenu} />
-                <MenuUsuarioAutenticado
-                  isOpen={openMenuAppBar}
-                  onClose={handleClose}
-                  anchorEl={anchorEl}>
-                  <MenuItem onClick={() => history.push(To.perfilUsuario())}>Profile</MenuItem>
-                  <MenuItem onClick={handleClose}>My account</MenuItem>
-                  <MenuItem onClick={onLogout}>Logout</MenuItem>
-                </MenuUsuarioAutenticado>
-              </div>
-            )}
+            <PokemonCardGameTypography />
+            <MenuDesplegableUsuario
+              handleMenu={handleMenu}
+              handleClose={handleClose}
+              openMenuAppBar={openMenuAppBar}
+              anchorEl={anchorEl}
+              onLogout={onLogout}
+              history={history}
+            />
             <ButtonToggleMode />
           </Toolbar>
         </AppBarCustom>
@@ -186,4 +169,4 @@ const mapDispatchToProps = dispatch => {
 export default compose(
   withRouter,
   connect(null, mapDispatchToProps)
-)(MenuAppBarVer)
+)(MenuAppBarJugador)

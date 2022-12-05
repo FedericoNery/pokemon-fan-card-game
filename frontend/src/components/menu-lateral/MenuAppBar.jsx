@@ -11,6 +11,7 @@ import { desloguearse } from '../../redux/actionCreators/authenticate';
 import { To } from '../../utils/routes';
 import ListAdministrador from '../opciones-menu-lateral/ListAdministrador';
 import ButtonToggleMode from './atoms/ButtonToggleMode';
+import PokemonCardGameTypography from './atoms/PokemonCardGameTypography';
 import IconButtonUsuarioAutenticado from './IconButtonUsuarioAutenticado';
 import MenuUsuarioAutenticado from './MenuUsuarioAutenticado';
 
@@ -119,9 +120,7 @@ const MenuAppBarVer = (props) => {
             >
               <MenuOutlined />
             </IconButton>
-            <Typography component="h1" variant="h6" noWrap sx={{ flexGrow: 1}}>
-              Mini variant drawer
-            </Typography>
+            <PokemonCardGameTypography />
             {auth && (
               <div>
                 <IconButtonUsuarioAutenticado onClick={handleMenu} />
