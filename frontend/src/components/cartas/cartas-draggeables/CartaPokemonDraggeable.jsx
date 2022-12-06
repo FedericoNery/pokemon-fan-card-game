@@ -5,6 +5,8 @@ import { Box } from '@mui/system';
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { getBackgroundColorPokemon, getNumeroPokemon } from '../../../utils/functions';
+import Ataque from '../carta-pokemon/atoms/Ataque';
+import Defensa from '../carta-pokemon/atoms/Defensa';
 
 
 const CartaPokemonDraggeable = (props) => {
@@ -61,36 +63,25 @@ const CartaPokemonDraggeable = (props) => {
                     </Grid>
                     <Box
                         component="img"
-                        alt=""
+                        alt={`Pokemon Image of ${pokemon}`}
                         sx={{
                             objectFit: "contain",
                             margin: "auto",
                             display: "block"
                             //maxHeight: 140
                         }}
-                        title="Contemplative Reptile"
+                        title={`Pokemon Image of ${pokemon}`}
                         src={`../images/pokemons/${getNumeroPokemon(numero)}.png`}
                     />
-                    {/* <img
-                        alt=""
-                        className={classes.media}
-                        title="Contemplative Reptile"
-                        src={`../images/pokemons/${getNumeroPokemon(numero)}.png`}
-                        classes={classes}
-                    /> */}
                     <Typography gutterBottom variant="h5" component="h2" align="center">
                         {pokemon}
                     </Typography>
                     <Grid container spacing={1}>
                         <Grid item xs={6} spacing={1}>
-                            <Typography variant="body2" color="textSecondary" component="p" align="left">
-                                Ataque: {ataque}
-                            </Typography>
+                            <Ataque ataque={ataque}/>
                         </Grid>
                         <Grid item xs={6} spacing={1}>
-                            <Typography variant="body2" color="textSecondary" component="p" align="right">
-                                Defensa: {defensa}
-                            </Typography>
+                          <Defensa defensa={defensa}/>
                         </Grid>
                     </Grid>
                 </div>

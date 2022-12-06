@@ -16,7 +16,7 @@ const CartaEnergia = (props) => {
       border: isSeleccionada && "primary",
       "border-width": isSeleccionada && "medium",
       "border-style": isSeleccionada && "solid"
-      //TODO ORDENAR LAS ENERGIAS SEGUN CANTIDAD Y ARMAR ALGUN FONDO CON DEGRADÉ 
+      //TODO ORDENAR LAS ENERGIAS SEGUN CANTIDAD Y ARMAR ALGUN FONDO CON DEGRADÉ
       // DE FORMA TAL DE VISUALIZAR CON MAYOR FRANJA EL QUE MAS ENERGIAS APORTA
     },
     media: {
@@ -35,8 +35,8 @@ const CartaEnergia = (props) => {
       <CardContent>
           <Grid container spacing={1}>
             <Grid item xs={6} spacing={1}>
-              {energias.map(x => 
-                <BadgeEnergias {...x}/>)
+              {energias.map((x, index) =>
+                <BadgeEnergias {...x} key={`kbadgeenergias${index}`}/>)
               }
             </Grid>
             <Grid item xs={6} spacing={1}>
@@ -53,26 +53,13 @@ const CartaEnergia = (props) => {
           title="Contemplative Reptile"
           component="img"
           src={`../../images/energias/${energias[0].nombre}.png`}
-          //classes={classes}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {nombre}
           </Typography>
-         {/*  <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography> */}
         </CardContent>
       </CardActionArea>
-      {/* <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions> */}
     </Card>
   );
 }

@@ -12,3 +12,9 @@ export const getCartasDelMazoById = async (id) => {
     const res = await getAxiosInstance().get(url)
     return res
 }
+
+export const putCartasDelMazoById = async (idMazo, idsCartas) => {
+  const url = MAZOS.BY_ID(idMazo)
+  const res = await getAxiosInstance().put(url, { idsCartas })
+  return res
+}

@@ -1,6 +1,7 @@
 let Mazo = require('../models/mazo.model');
 let CartaPokemon = require('../models/cartapokemon.model');
 let CartaEnergia = require('../models/cartaenergia.model');
+const { isValidActualizacionDelMazo, getCardIdOfError } = require('../validations/isValidActualizaciónDelMazo');
 const router = require('express').Router();
 
 router.route('/:id/cartas').get(async (req, res) => {
@@ -48,6 +49,25 @@ router.route('/').get((req, res) => {
   Mazo.find()
     .then(mazos => res.json(mazos))
     .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
+router.route('/:id').put((req, res) => {
+  const num = req.params.id;
+  const idsCartas = req.body.idsCartas
+
+  if(!isValidActualizacionDelMazo(idsCartas)){
+    const idCartaError = getCardIdOfError(idsCartas)
+    res.status(400).json(`La carta con id ${idCartaError}`)
+  }
+  else{
+    Mazo.findOneAndUpdate({ numero: num },
+      {
+        cartas: idsCartas
+      })
+      .then(() => res.status(200).json("Se actualizó el mazo correctamente"))
+      .catch(err => res.status(400).json('Error: ' + err));
+  }
 });
 
 module.exports = router

@@ -32,8 +32,8 @@ const MazoParaSeleccionar = ({ mazo, history, guardarMazoSeleccionado }) => {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
+          image="/pokemon_card_back.jpg"
+          title="Pokemon card back"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

@@ -18,7 +18,7 @@ const ListaCartasTienda = ({ cartas }) => {
         spacing={2}
         alignItems="center">
         {cartas.map((x, index) =>
-            <Grid item xs={4} md={3} xl={2}>
+            <Grid item xs={4} md={3} xl={2} key={`keycartatiendaparaseleccionar${index}`}>
                 <CartaTiendaParaSeleccionar carta={x} indice={index} />
             </Grid>
         )}

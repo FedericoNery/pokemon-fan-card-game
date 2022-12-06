@@ -1,21 +1,16 @@
-import React from 'react'
-import { useTheme } from '@emotion/react';
-import { Box } from '@mui/system';
 import { Grid } from '@mui/material';
-import { useHistory } from 'react-router';
-import { actualizarUsuario, getUsuarioById } from '../../core/services/usuarios';
-import { bindActionCreators, compose } from 'redux';
+import { Box } from '@mui/system';
+import React from 'react';
 import { connect } from 'react-redux';
-import { desloguearse } from '../../redux/actionCreators/authenticate';
-import { To } from '../../utils/routes';
+import { bindActionCreators, compose } from 'redux';
+import { actualizarUsuario, getUsuarioById } from '../../core/services/usuarios';
 import { useGetById } from '../../hooks/useGetById';
-import SkeletonEditarUsuario from './SkeletonEditarUsuario';
+import { useNumeroUsuario } from '../../hooks/useNumeroUsuario';
+import { desloguearse } from '../../redux/actionCreators/authenticate';
 import CamposEditarUsuario from './CamposEditarUsuario';
-import {useNumeroUsuario} from '../../hooks/useNumeroUsuario'
+import SkeletonEditarUsuario from './SkeletonEditarUsuario';
 
 const EditarUsuario = ({ desloguearse }) => {
-    const theme = useTheme();
-    const history = useHistory()
     const numeroUsuario = useNumeroUsuario()
     const { isLoading, values } = useGetById(numeroUsuario, getUsuarioById)
 
@@ -31,27 +26,27 @@ const EditarUsuario = ({ desloguearse }) => {
         }
         try {
             await actualizarUsuario(numeroUsuario, payload)
-            desloguearse()
-            history.push(To.login())
+
         }
         catch (error) {
             console.log(error)
         }
     }
 
-    return <Box component="form" noValidate onSubmit={onActualizarUsuario} 
-    sx={{ mt: 3, "margin-left": "200px", "margin-right": "200px", width: "60%" }}>
-        <Grid container spacing={2} 
+    return <Box component="form" noValidate onSubmit={onActualizarUsuario}
+    sx={{ mt: 3, width: "60%", marginLeft: "calc(60% - 40%)", marginTop: "120px",justifyContent: "center", display: "flex" }}>
+        <Grid container spacing={2}
         direction="row"
         justifyContent="center"
         alignItems="center"
+        display="flex"
         >
             {
-                isLoading ? 
+                isLoading ?
                 <SkeletonEditarUsuario /> :
                 <CamposEditarUsuario values={values}/>
             }
-            
+
         </Grid>
     </Box>
 }
@@ -61,7 +56,7 @@ const mapDispatchToProps = dispatch => {
       { desloguearse }, dispatch
     )
   }
-  
+
   export default compose(
     connect(null, mapDispatchToProps)
   )(EditarUsuario)
