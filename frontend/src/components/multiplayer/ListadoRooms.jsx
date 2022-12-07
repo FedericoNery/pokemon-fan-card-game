@@ -1,3 +1,4 @@
+import { Button, Container, Paper, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { getCartasDelMazoById } from "../../core/services/mazos";
@@ -31,19 +32,25 @@ const ListadoRooms = () => {
   }, [])
 
 
-  return roomsDisponibles.length > 0 ?
-    roomsDisponibles.map((value, index) => {
-      return <div key={`kdiv${index}`}>
-        <p>Game Id:{value}</p>
-        <button onClick={async () => {
-          //setear el gameId acá
-          const res = await getCartasDelMazoById(numeroMazoSeleccionado)
-          const mazo = res.data
-          socket.emit(EMIT_EVENTS.PLAYER_JOIN_GAME, { gameIdToJoin: value, usuario, mazo })
-          //history.push(To.juego_multiplayer())
-        }}>Join Game: {value}</button>
-      </div>
-    }) : <h1>No hay rooms disponibles</h1>
+  return <Container fixed>
+    {
+      roomsDisponibles.length > 0 ?
+        roomsDisponibles.map((value, index) => {
+          return <Paper variant="outlined" key={`kdiv${index}`}>
+            <Typography variant="caption" gutterBottom>Game Id:{value}</Typography>
+            <Button variant="contained" onClick={async () => {
+              //setear el gameId acá
+              const res = await getCartasDelMazoById(numeroMazoSeleccionado)
+              const mazo = res.data
+              socket.emit(EMIT_EVENTS.PLAYER_JOIN_GAME, { gameIdToJoin: value, usuario, mazo })
+              //history.push(To.juego_multiplayer())
+            }}>Unirse al juego: {value}</Button>
+          </Paper>
+        }) : <Typography variant="h3" gutterBottom align="center" sx={{marginTop: 10}}>
+          No hay salas disponibles
+        </Typography>
+    }
+  </Container>
 }
 
 export default ListadoRooms;

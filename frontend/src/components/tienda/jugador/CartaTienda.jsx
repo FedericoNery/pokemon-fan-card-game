@@ -45,7 +45,7 @@ const CartaTienda = (props) => {
                             <Defensa defensa={defensa} align="left" />
                         </Grid>
                         <Grid item xs={7}>
-                            <ImagenPokemonReducida numero={numero} />
+                            <ImagenPokemonReducida numero={numero} nombre={pokemon}/>
                             <Pokemon pokemon={pokemon} />
                         </Grid>
                     </Grid>

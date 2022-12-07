@@ -10,8 +10,9 @@ const ItemCartaEnergiaDraggeable = ({ itemObject, index, nombre, numero, energia
             role={undefined}
             dense
             button
-            ContainerComponent="li"
-            ContainerProps={{ ref: provided.innerRef }}
+            ref={provided.innerRef}
+            /* ContainerComponent="li"
+            ContainerProps={{ ref: provided.innerRef }} */
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >

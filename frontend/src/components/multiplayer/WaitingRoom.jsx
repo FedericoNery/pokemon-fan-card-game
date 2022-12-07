@@ -1,3 +1,4 @@
+import { Button, Container, Divider, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
@@ -70,13 +71,21 @@ const WaitingRoom = () => {
     socket.emit(EMIT_EVENTS.CREATE_NEW_GAME, { usuario, mazo: res.data })
   };
 
-  return <Stack spacing={2}>
-    <Item key="keyCreateRoom" onClick={handleCreateRoom}>Create Room</Item>
-    <Item key="joinRoom" onClick={() => {
-      socket.emit(EMIT_EVENTS.GET_ROOMS)
-      history.push(To.listadoDeRooms())
-    }}>Join Room</Item>
-  </Stack>
+  return <Container fixed sx={{ marginTop: 10 }}>
+    <Typography variant="h3" gutterBottom align='center'>
+      Creando partida
+    </Typography>
+    <Stack spacing={2} direction="row"
+      alignItems="center"
+      justifyContent="center"
+      divider={<Divider orientation="vertical" flexItem />}>
+      <Button variant="contained" sx={{ width: 200, height: 100 }} onClick={handleCreateRoom}>Crear sala</Button>
+      <Button variant="contained" sx={{ width: 200, height: 100 }} onClick={() => {
+        socket.emit(EMIT_EVENTS.GET_ROOMS)
+        history.push(To.listadoDeRooms())
+      }}>Unirse a la sala</Button>
+    </Stack>
+  </Container>
 }
 
 export default WaitingRoom;

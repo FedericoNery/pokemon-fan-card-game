@@ -40,7 +40,7 @@ const CartaEnergiaDraggeable = (props) => {
     const classes = useStyles();
 
     return (
-        <Draggable draggableId={itemObject.id} key={itemObject.id} index={index}>
+        <Draggable draggableId={itemObject.id} index={index}>
             {(provided) => (
                 <div
                     className={classes.root}
@@ -62,7 +62,7 @@ const CartaEnergiaDraggeable = (props) => {
                         src={`../../images/energias/${energias[0].nombre}.png`}
                         classes={classes}
                     />
-                    <Typography gutterBottom variant="h5" component="h2" align="center">
+                    <Typography gutterBottom variant="h5" component="h2" align="center" color="black">
                         {nombre}
                     </Typography>
                 </div>

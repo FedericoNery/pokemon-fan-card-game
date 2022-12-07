@@ -10,8 +10,9 @@ const ItemCartaPokemonDraggeable = ({ itemObject, index, ataque, ataque_esp, can
             role={undefined}
             dense
             button
-            ContainerComponent="li"
-            ContainerProps={{ ref: provided.innerRef }}
+            ref={provided.innerRef}
+            /* ContainerComponent="li"
+            ContainerProps={{ ref: provided.innerRef }} */
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >

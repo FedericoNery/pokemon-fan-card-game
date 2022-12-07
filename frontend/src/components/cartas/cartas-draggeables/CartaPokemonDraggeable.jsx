@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Typography, useTheme } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/system';
@@ -31,32 +31,34 @@ const CartaPokemonDraggeable = (props) => {
         },
         img: {
             maxHeight: 180,
+            minWidth: 180,
             objectFit: "contain"
         },
     });
 
+    const theme = useTheme();
+    const isSun = theme.palette.mode === "light"
     const classes = useStyles();
-
     return (
-        <Draggable draggableId={itemObject.id} key={itemObject.id} index={index}>
+        <Draggable draggableId={itemObject.id} index={index}>
             {(provided) => (
                 <div
                     id="cartaPokemonDraggeable"
                     ref={provided.innerRef}
-                    ContainerComponent="div"
-                    ContainerProps={{ ref: provided.innerRef }}
+                    /* ContainerComponent="div"
+                    ContainerProps={{ ref: provided.innerRef }} */
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     className={classes.root}
                 >
                     <Grid container spacing={1}>
                         <Grid item xs={6} spacing={1}>
-                            <Typography variant="body2" color="textSecondary" component="p" align="left">
+                            <Typography variant="body2" color={"black"} component="p" align="left">
                                 Tipo: {tipo_energia}
                             </Typography>
                         </Grid>
                         <Grid item xs={6} spacing={1}>
-                            <Typography variant="body2" color="textSecondary" component="p" align="right">
+                            <Typography variant="body2" color={"black"} component="p" align="right">
                                 Energía: {cantidad_energia}
                             </Typography>
                         </Grid>
@@ -67,13 +69,14 @@ const CartaPokemonDraggeable = (props) => {
                         sx={{
                             objectFit: "contain",
                             margin: "auto",
-                            display: "block"
+                            display: "block",
+                            minWidth: 180
                             //maxHeight: 140
                         }}
                         title={`Pokemon Image of ${pokemon}`}
                         src={`../images/pokemons/${getNumeroPokemon(numero)}.png`}
                     />
-                    <Typography gutterBottom variant="h5" component="h2" align="center">
+                    <Typography gutterBottom variant="h5" component="h2" align="center" color={"black"}>
                         {pokemon}
                     </Typography>
                     <Grid container spacing={1}>

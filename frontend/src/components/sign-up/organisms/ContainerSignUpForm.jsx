@@ -13,20 +13,13 @@ import { useHistory } from 'react-router';
 
 const ContainerSignUpForm = (props) => {
     const history = useHistory()
-    /* const useStyles = makeStyles((theme) => ({
-        root: {
-            display: "flex"
-        },
-    }));
-
-    const classes = useStyles(); */
 
     const onSignUp = async (event) => {
         event.preventDefault();
-        const payload = { 
-            email: event.target.email.value, 
+        const payload = {
+            email: event.target.email.value,
             password: event.target.password.value,
-            firstName: event.target.firstName.value, 
+            firstName: event.target.firstName.value,
             lastName: event.target.lastName.value,
             username: event.target.username.value
         }
@@ -57,7 +50,7 @@ const ContainerSignUpForm = (props) => {
                 <PasswordInput />
             </Grid>
         </Grid>
-        <ButtonSignUp /> 
+        <ButtonSignUp />
         <Grid container justifyContent="flex-end">
             <Grid item>
                 <SignIn />

@@ -33,7 +33,7 @@ const CartaPokemon = (props) => {
                 <CardContent>
                     <TipoEnergia tipo={tipo_energia} energia={cantidad_energia}/>
                 </CardContent>
-                <ImagenPokemon numero={numero} />
+                <ImagenPokemon numero={numero} nombre={pokemon} />
                 <CardContent>
                     <Pokemon pokemon={pokemon} />
                     <AtaqueDefensa ataque={ataque} defensa={defensa} />

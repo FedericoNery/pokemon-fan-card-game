@@ -45,9 +45,6 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max + 1);
   }
   
-//  console.log(getRandomInt(3));
-  // expected output: 0, 1 or 2
-
 async function getRandomUsuario(){
     var maximo = await Usuario.countDocuments()
     .then((res) => res)

@@ -49,12 +49,6 @@ app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
 
-/* http.createServer(app).listen(8000)
-console.log("Listening at:// port:%s (HTTP)", 8000) */
-
-/* app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
-require('./routes/index.js')(app) //Acá deberia ir los endpoints */
-
 const uri = 'mongodb://localhost:27017/pokemon_react';
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
 );

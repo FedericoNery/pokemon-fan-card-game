@@ -11,8 +11,8 @@ const ListItemCustom = ({ itemObject, index }) => {
           role={undefined}
           dense
           button
-          ContainerComponent="li"
-          ContainerProps={{ ref: provided.innerRef }}
+          /* ContainerComponent="li"
+          ContainerProps={{ ref: provided.innerRef }} */
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >

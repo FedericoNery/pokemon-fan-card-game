@@ -45,7 +45,6 @@ const App = (props) => {
               <Switch>
                 <Route exact path={ROUTES.LOGIN} component={Login} />
                 <Route exact path={ROUTES.SIGNUP} component={Signup} />
-                <Route exact path={ROUTES.TEST_SOCKET_IO} component={TestSocketIoDashboard} />
                 <AuthRoute>
                   <MenuPrincipal>
                     <Route exact path={ROUTES.MENU_PRINCIPAL} component={Dashboard} />
@@ -65,7 +64,7 @@ const App = (props) => {
                     <Route exact path={ROUTES.MAZO_DETALLADO_WITH_ID} component={ContainerEdicionDelMazo} />
                     <Route exact path={ROUTES.LISTADO_USUARIOS} component={ListadoUsuarios} />
                    {/*  <Route path="/" component={Dashboard}></Route> */}
-                    <Redirect to="/menu-principal"/>
+                    {/* <Redirect to="/menu-principal"/> */}
                   </MenuPrincipal>
                 </AuthRoute>
                 <Route path="/">

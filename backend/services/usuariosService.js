@@ -4,7 +4,7 @@ async function getUsuarioBy(id) {
     var usuario = await Usuario.findOne({ numero: id })
         .then((res) => res)
         .catch(err => {
-            console.log("Error" + err)
+            err => res.status(400).json('Error: ' + err)
         });
     return usuario
 }
@@ -14,7 +14,6 @@ async function getUltimoNumeroUsuario() {//Buscar por el maximo numero
         .sort({ 'numero': -1 }) // give me the max
         .then((res) => { return res })
         .catch((err) => err)
-    console.log(usuario)
     return usuario.numero
 }
 

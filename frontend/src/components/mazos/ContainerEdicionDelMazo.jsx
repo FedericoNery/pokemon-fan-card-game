@@ -14,10 +14,9 @@ import { ContextToastContainer } from '../ui/toasts/ToastContainer';
 
 const ContainerEdicionDelMazo = () => {
   const { id } = useParams();
-  const [cartasDelMazo, setCartasDelMazo] = useState([])
-  const [cartasDisponibles, setCartasDisponibles] = useState([])
   const [cartas, setCartas] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [positionY, setPositionY] = useState(0)
   const toast = useContext(ContextToastContainer)
 
   useEffect(async () => {
@@ -28,29 +27,21 @@ const ContainerEdicionDelMazo = () => {
     const resCartasEnergia = await getAllCartasEnergia()
     //setCartasDisponibles({"cartas-disponibles": [...resCartasPokemon.data, ...resCartasEnergia.data]})
     setCartas({
-      "cartas-mazo": { id: "cartas-mazo", list: res.data },
-      "cartas-disponibles": { id: "cartas-disponibles", list: [...resCartasPokemon.data, ...resCartasEnergia.data] }
+      "cartas-mazo": {
+        id: "cartas-mazo", list: res.data.map((x, index) => {
+          return { ...x, idDraggeable: index }
+        })
+      },
+      "cartas-disponibles": {
+        id: "cartas-disponibles", list: [...resCartasPokemon.data, ...resCartasEnergia.data].map((x, index) => {
+          return { ...x, idDraggeable: index * 1000 }
+        })
+      }
     })
     setIsLoading(false)
+
+    return () => { }
   }, [])
-
-  const ref = useRef()
-  const [offset, setOffset] = React.useState(0);
-  const setScroll = () => {
-    setOffset(window.scrollY);
-    console.log(window.scrollY)
-  };
-
-  React.useEffect(() => {
-    window.addEventListener("scroll", setScroll);
-    if(ref !== null || ref !== undefined ){
-      ref.current.addEventListener("scroll", setScroll);
-    }
-    return () => {
-      window.removeEventListener("scroll", setScroll);
-      ref.current.removeEventListener("scroll", setScroll);
-    };
-  }, []);
 
   const initialColumns = {
     todo: {
@@ -141,6 +132,10 @@ const ContainerEdicionDelMazo = () => {
     }
   };
 
+  const fireOnScroll = (event) => {
+    //console.log(event.target.scrollTop)
+    setPositionY(event.target.scrollTop)
+  }
 
   const actualizarMazo = async (idMazo, idsCartas) => {
     try {
@@ -152,28 +147,28 @@ const ContainerEdicionDelMazo = () => {
     }
   }
 
-  return <div style={{ height: "100%" }} ref={ref} onScrollCapture={() => console.log("scrolling")} onScroll={() => console.log("scrolling")}>{
-    !isLoading && <>
-      <Box sx={{ '& > :not(style)': { m: 1 } }}>
-        <Fab color="primary" aria-label="add" onClick={() => actualizarMazo(id, cartasDelMazo.map(x => x.numero))}>
-          <SaveIcon />
-        </Fab>
-      </Box>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Grid container spacing={2}>
-          <Grid item xs={10} sm={9} md={8}>
-            <Droppable droppableId={"cartas-mazo"}>
-              {(provided) => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                >
-                  <CartasDelMazo cartas={cartas["cartas-mazo"].list} />
-                </div>
-              )}
-            </Droppable>
-          </Grid>
-          <Grid item xs={2} sm={3} md={4}>
+  return !isLoading && <>
+  <Box sx={{ '& > :not(style)': { m: 1 } }}>
+      <Fab color="primary" aria-label="add" onClick={() => actualizarMazo(id, cartas["cartas-mazo"].list.map(x => x.numero))}>
+        <SaveIcon />
+      </Fab>
+    </Box>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Grid container>
+        <Grid item xs={11} sm={10} md={10} xl={10}>
+          <Droppable droppableId={"cartas-mazo"}>
+            {(provided) => (
+              <div
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                <CartasDelMazo cartas={cartas["cartas-mazo"].list} />
+              </div>
+            )}
+          </Droppable>
+        </Grid>
+        <Grid item xs={1} sm={2} md={2} xl={2}>
+          {/* <div style={{ "margin-top": positionY*0.7 }}> */}
             <Droppable droppableId={"cartas-disponibles"}>
               {(provided) => (
                 <div
@@ -184,13 +179,14 @@ const ContainerEdicionDelMazo = () => {
                 </div>
               )}
             </Droppable>
-          </Grid>
+         {/*  </div> */}
         </Grid>
-      </DragDropContext>
-    </>
-  }
-  </div>
+      </Grid>
+    </DragDropContext>
+  </>
+  {/* <div style={{ height: "100%", overflow: 'scroll' }} onScroll={fireOnScroll}>
 
+  </div> */}
 }
 
 export default ContainerEdicionDelMazo;

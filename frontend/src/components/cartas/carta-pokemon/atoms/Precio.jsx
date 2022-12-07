@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 
 const Precio = ({ precio }) => {
-  return <Typography variant="body2" color="textSecondary" component="p" align="left">
+  return <Typography variant="body2" color="black" component="p" align="left">
         Precio: {precio}
       </Typography>
 }
