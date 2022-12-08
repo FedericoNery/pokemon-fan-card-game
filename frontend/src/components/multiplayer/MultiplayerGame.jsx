@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useRoomData } from "../../hooks/multiplayer/useRoomData";
@@ -14,6 +14,7 @@ import BoxCartas from "../juego/BoxCartas";
 import CartasSeleccionarJugador from "../juego/CartasSeleccionarJugador";
 import ContadorRondasGanadas from "../juego/ContadorRondasGanadas";
 import InformacionJugador from "../juego/InformacionJugador";
+import { ContextToastContainer } from "../ui/toasts/ToastContainer";
 import { isJugadorUno } from "./isJugadorUno";
 import { mapJuegoToFront } from "./mapJuegoToFront";
 import { socket } from "./WaitingRoom"
@@ -28,6 +29,9 @@ const MultiplayerGame = ({ juego }) => {
   const { setGameId, setSocketId, setRoomsDisponibles, gameId } = useRoomData()
   const { setJuego } = useJuego()
   const { clearCartasSeleccionadas } = useClearCartasSeleccionadas()
+  const toast = useContext(ContextToastContainer)
+
+
   const esJugadorUno = isJugadorUno(usuario, juego.miJugador)
   //const invocoCartas = esJugadorUno ? juego.jugador1InvocoCartas : juego.jugador2InvocoCartas
   console.log("jugador1InvocoCartas", juego.jugador1InvocoCartas)
@@ -48,6 +52,7 @@ const MultiplayerGame = ({ juego }) => {
       const esJugadorUno = isJugadorUno(usuario, gameData.juego.jugador1)
       const juegoMapeado = mapJuegoToFront(gameData.juego, esJugadorUno)
       setJuego(juegoMapeado)
+      toast.info("Siguiente Ronda")
     });
     socket.on("UPDATE GAME DATA", ({ gameData }) => {
       const esJugadorUno = isJugadorUno(usuario, gameData.juego.jugador1)
@@ -56,9 +61,11 @@ const MultiplayerGame = ({ juego }) => {
     });
     socket.on("finished game", ({ juego }) => {
       //RESET todos los datos
+      toast.info("El juego ha terminado")
       history.push(To.menuPrincipal())
     });
     socket.on("start battle phase", async ({ gameData }) => {
+      toast.info("Empieza la fase de batalla")
       setWatchRivalsZone(true)
     });
 
@@ -66,6 +73,7 @@ const MultiplayerGame = ({ juego }) => {
       const esJugadorUno = isJugadorUno(usuario, gameData.juego.jugador1)
       const juegoMapeado = mapJuegoToFront(gameData.juego, esJugadorUno)
       setJuego(juegoMapeado)
+      toast.info("Finalizó la fase de invocación")
     });
 
   }, [])

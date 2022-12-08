@@ -13,16 +13,9 @@ import { useJuego } from '../../hooks/useJuego';
 import { useMazoSeleccionado } from '../../hooks/useMazoSeleccionado';
 import { useUsuario } from "../../hooks/useUsuario";
 import { To } from '../../utils/routes';
+import { ContextToastContainer } from '../ui/toasts/ToastContainer';
 import { isJugadorUno } from './isJugadorUno';
 import { mapJuegoToFront } from './mapJuegoToFront';
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
 
 export let socket = io("http://localhost:8000").connect()
 
@@ -30,6 +23,7 @@ const WaitingRoom = () => {
   const history = useHistory()
   const usuario = useUsuario()
   const numeroMazoSeleccionado = useMazoSeleccionado()
+  const toast = React.useContext(ContextToastContainer)
 
   const { setGameId, setSocketId, setRoomsDisponibles } = useRoomData()
   const { setJuego } = useJuego()
@@ -59,8 +53,10 @@ const WaitingRoom = () => {
       const esJugadorUno = isJugadorUno(usuario, gameData.juego.jugador1)
       const juegoMapeado = mapJuegoToFront(gameData.juego, esJugadorUno)
       setJuego(juegoMapeado)
+      toast.info("Arrancó la partida")
 
       history.push(To.juego_multiplayer())
+
     })
   }, [])
 

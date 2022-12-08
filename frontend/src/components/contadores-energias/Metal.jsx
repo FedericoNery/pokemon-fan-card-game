@@ -4,10 +4,12 @@ import { CODIGO_TIPO_CARTA, getBackgroundColorPokemon } from '../../utils/functi
 
 const sx = {
         backgroundColor: getBackgroundColorPokemon(CODIGO_TIPO_CARTA.METAL),
+        color: "white",
+        borderRadius: 1
     }
 
 const Metal = ({cantidad}) => {
     return <Chip label={`metal ${cantidad}`} sx={sx} />
 }
- 
+
 export default Metal;

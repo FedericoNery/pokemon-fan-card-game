@@ -4,11 +4,13 @@ import { CODIGO_TIPO_CARTA, getBackgroundColorPokemon } from '../../utils/functi
 
 const sx = {
         backgroundColor: getBackgroundColorPokemon(CODIGO_TIPO_CARTA.FAIRY),
+        color: "black",
+        borderRadius: 1
     }
 
 
 const Fairy = ({cantidad}) => {
     return <Chip label={`fairy ${cantidad}`} sx={sx} />
 }
- 
+
 export default Fairy;

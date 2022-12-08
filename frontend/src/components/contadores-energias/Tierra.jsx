@@ -4,10 +4,12 @@ import { CODIGO_TIPO_CARTA, getBackgroundColorPokemon } from '../../utils/functi
 
 const sx = {
         backgroundColor: getBackgroundColorPokemon(CODIGO_TIPO_CARTA.TIERRA),
+        color: "white",
+        borderRadius: 1
     }
 
 const Tierra = ({cantidad}) => {
     return <Chip label={`tierra ${cantidad}`} sx={sx} />
 }
- 
+
 export default Tierra;

@@ -27,7 +27,7 @@ const SeleccionarMazoMultiplayer = (props) => {
     <Skeleton variant="rectangular" width={210} height={60} />
   </> : <Container fixed sx={{marginTop: 10}}>
       <Typography variant="h3" gutterBottom align='center' color={isSun ? "black" : "white"}>
-        Seleccione un mazo
+        Seleccione un mazo para jugar
       </Typography>
     <MazosParaSeleccionar mazos={mazosDatosGenerales} />
   </Container>

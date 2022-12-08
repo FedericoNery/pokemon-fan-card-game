@@ -5,10 +5,12 @@ import { CODIGO_TIPO_CARTA, getBackgroundColorPokemon } from '../../utils/functi
 
 const sx = {
         backgroundColor: getBackgroundColorPokemon(CODIGO_TIPO_CARTA.HIERBA),
+        color: "black",
+        borderRadius: 1
     }
 
 const Hierba = ({cantidad}) => {
     return <Chip label={`hierba ${cantidad}`} sx={sx} />
 }
- 
+
 export default Hierba;

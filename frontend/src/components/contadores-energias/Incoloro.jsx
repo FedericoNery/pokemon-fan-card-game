@@ -4,10 +4,12 @@ import { CODIGO_TIPO_CARTA, getBackgroundColorPokemon } from '../../utils/functi
 
 const sx = {
         backgroundColor: getBackgroundColorPokemon(CODIGO_TIPO_CARTA.INCOLORO),
+        color: "black",
+        borderRadius: 1
     }
 
 const Incoloro = ({cantidad}) => {
     return <Chip label={`incoloro ${cantidad}`} sx={sx} />
 }
- 
+
 export default Incoloro;
