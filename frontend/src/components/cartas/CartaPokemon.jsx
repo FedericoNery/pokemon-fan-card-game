@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardContent, CardMedia, Typography, useTheme } from '@mui/material';
+import { Card, CardActionArea, CardContent, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { Box } from '@mui/system';
 import React from 'react';
@@ -11,33 +11,31 @@ const CartaPokemon = (props) => {
 
   const sxRoot = {
     maxWidth: 380,
+    //minWidth: 150,
     backgroundColor: getBackgroundColorPokemon(tipo_energia),
     border: isSeleccionada && "chocolate",
     "border-width": isSeleccionada && "medium",
     "border-style": isSeleccionada && "solid"
   }
 
-  const sxMedia = {
-    objectFit: "contain",
-    maxHeight: 180,
-    //maxHeight: 140
-  }
-
   const theme = useTheme()
   const isDark = theme.palette.mode === 'dark'
-  
-  return (
-    <Card sx={sxRoot} onClick={() => onClick(numero, indice)}>
+  const isSm = useMediaQuery(theme.breakpoints.up('xs'));
+  const isMd = useMediaQuery(theme.breakpoints.up('sm'));
+  const isLg = useMediaQuery(theme.breakpoints.up('md'));
+
+  return <Grid item>
+<Card sx={sxRoot} onClick={() => onClick(numero, indice)}>
       <CardActionArea>
         <CardContent>
-          <Grid container spacing={1}>
-            <Grid item xs={6}>
-              <Typography variant="body2" color={isDark ? "black" : "textSecondary"} component="p" align="left">
+          <Grid container spacing={1} justifyContent="space-between">
+            <Grid item>
+              <Typography variant="body2" color={isDark ? "black" : "textSecondary"} align="left">
                 Tipo: {tipo_energia}
               </Typography>
             </Grid>
-            <Grid item xs={6}>
-              <Typography variant="body2" color={isDark ? "black" : "textSecondary"} component="p" align="right">
+            <Grid item>
+              <Typography variant="body2" color={isDark ? "black" : "textSecondary"} align="right">
                 Energía: {cantidad_energia}
               </Typography>
             </Grid>
@@ -49,24 +47,25 @@ const CartaPokemon = (props) => {
           sx={{
             objectFit: "contain",
             margin: "auto",
-            display: "block"
-            //maxHeight: 140
+            display: "block",
+            width: "11vw",
+            height: "15vh",
           }}
-          title="Contemplative Reptile"
+          title={pokemon}
           src={`../images/pokemons/${getNumeroPokemon(numero)}.png`}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2" align="center" color={isDark ? "black" : "textSecondary"}>
+          <Typography gutterBottom variant="h5" align="center" color={isDark ? "black" : "textSecondary"}>
             {pokemon}
           </Typography>
-          <Grid container >
-            <Grid item xs={6} >
-              <Typography variant="body2" color={isDark ? "black" : "textSecondary"} component="p" align="left">
+          <Grid container spacing={1} justifyContent="space-between">
+            <Grid item>
+              <Typography variant="body2" color={isDark ? "black" : "textSecondary"} align="left">
                 Ataque: {ataque}
               </Typography>
             </Grid>
-            <Grid item xs={6} >
-              <Typography variant="body2" color={isDark ? "black" : "textSecondary"} component="p" align="right">
+            <Grid item>
+              <Typography variant="body2" color={isDark ? "black" : "textSecondary"}  align="right">
                 Defensa: {defensa}
               </Typography>
             </Grid>
@@ -74,7 +73,7 @@ const CartaPokemon = (props) => {
         </CardContent>
       </CardActionArea>
     </Card>
-  );
+  </Grid>
 }
 
 export default React.memo(CartaPokemon)

@@ -37,7 +37,9 @@ const ContadoresDeEnergias = ({ cantidadesEnergias }) => {
 
   return <Stack direction="row" divider={<Divider orientation="vertical" flexItem />}
     justifyContent="center"
-    alignItems="center">
+    alignItems="center"
+    display="flex"
+    flexWrap="wrap">
     <Incoloro cantidad={incoloro} />
     <Fuego cantidad={fuego} />
     <Rayo cantidad={rayo} />

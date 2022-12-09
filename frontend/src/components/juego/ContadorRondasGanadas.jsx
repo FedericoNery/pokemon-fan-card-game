@@ -1,10 +1,10 @@
-import React from 'react'
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import { Grid } from '@mui/material';
 import Rating from '@mui/material/Rating';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import React from 'react';
+import StarIcon from '../icons/StarIcon';
+import StarIconGray from '../icons/StarIconGray';
 
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
@@ -16,24 +16,24 @@ const StyledRating = styled(Rating)({
 });
 
 const ContadorRondasGanadas = ({ cantidad }) => {
-    return (
-        <Box
-          sx={{
-            '& > legend': { mt: 2 },
-          }}
-        >
-          <Typography component="p">Rondas ganadas</Typography>
-          <StyledRating
-            name="customized-color"
-            readOnly
-            value={cantidad}
-            getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
-            icon={<FavoriteIcon fontSize="inherit" />}
-            emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
-            max={2}
-          />
-        </Box>
-      ); 
+  return (
+    <Grid container spacing={2} alignItems="center">
+      <Grid item>
+        <Typography variant="overline">Rondas ganadas</Typography>
+      </Grid>
+      <Grid item>
+      <StyledRating
+        name="customized-color"
+        readOnly
+        value={cantidad}
+        getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
+        icon={<StarIcon fontSize="inherit" />}
+        emptyIcon={<StarIconGray fontSize="inherit" />}
+        max={2}
+      />
+      </Grid>
+    </Grid>
+  );
 }
- 
+
 export default ContadorRondasGanadas;

@@ -1,3 +1,4 @@
+import { useTheme } from "@emotion/react";
 import { Button, Container, Grid } from "@mui/material";
 import { CODIGO_TIPO_CARTA } from "../utils/functions";
 import ContadoresDeEnergias from "./contadores-energias/ContadoresDeEnergias";
@@ -7,6 +8,9 @@ import ContadorRondasGanadas from "./juego/ContadorRondasGanadas";
 import InformacionJugador from "./juego/InformacionJugador";
 
 const TestMultiplayerGame = () => {
+    const theme = useTheme();
+    const isSun = theme.palette.mode === "light"
+
     const energiasDelEnemigo = {
         incoloro: 10,
         fuego: 10,
@@ -139,28 +143,50 @@ const TestMultiplayerGame = () => {
         metal: 10
     }
 
-    return <Container fixed>
-        <Grid container spacing={2}>
-            <Grid item xs={2}>
-                <ContadorRondasGanadas cantidad={rondasGanadasDelEnemigo} />
-            </Grid>
-            <Grid item xs={10}>
-                <ContadoresDeEnergias cantidadesEnergias={energiasDelEnemigo} />
-            </Grid>
-        </Grid>
-        <InformacionJugador nombre="PRUEBA PRUEBA" />
-        <BoxCartas>
-            <CartasSeleccionarJugador cartas={miZonaJuego} />
-        </BoxCartas>
-
-        <Button>Invocar</Button>
-        <BoxCartas>
-            <CartasSeleccionarJugador cartas={miZonaJuego} />
-        </BoxCartas>
-        <InformacionJugador nombre="PRUEBA PRUEBA" />
-        <ContadorRondasGanadas cantidad={misRondasGanadas} />
-        <ContadoresDeEnergias cantidadesEnergias={misEnergias} />
-    </Container>
+    return <div
+        style={{
+            height: "100vh",
+            background: isSun ? "linear-gradient(0deg, lightyellow 50%, lightblue 50%)" : "linear-gradient(0deg, #292b21 50%, #212a2c 50%)"
+        }}
+    >
+        <div style={{ "margin": "2px", "height": "50vh" }}>
+            <Container maxWidth="xl">
+                <Grid container spacing={2} alignItems="center" flexWrap="nowrap">
+                    <Grid item >
+                        <ContadorRondasGanadas cantidad={rondasGanadasDelEnemigo} />
+                    </Grid>
+                    <Grid item >
+                        <ContadoresDeEnergias cantidadesEnergias={energiasDelEnemigo} />
+                    </Grid>
+                    <Grid item >
+                        <InformacionJugador nombre="PRUEBA PRUEBA" />
+                    </Grid>
+                </Grid>
+                <Grid container flexWrap="nowrap">
+                    <CartasSeleccionarJugador cartas={miZonaJuego} />
+                </Grid>
+            </Container>
+        </div>
+        <Button variant="contained" sx={{ zIndex: 100, position: "absolute", marginLeft: "30px", marginTop: "8px" }}>Invocar</Button>
+        <div style={{ "margin": "2px", "paddingTop": "20px", "height": "40vh" }}>
+            <Container maxWidth="xl">
+                <Grid container flexWrap="nowrap">
+                    <CartasSeleccionarJugador cartas={miZonaJuego} />
+                </Grid>
+                <Grid container spacing={2} alignItems="center" flexWrap="nowrap">
+                    <Grid item >
+                        <ContadorRondasGanadas cantidad={misRondasGanadas} />
+                    </Grid>
+                    <Grid item >
+                        <ContadoresDeEnergias cantidadesEnergias={misEnergias} />
+                    </Grid>
+                    <Grid item >
+                        <InformacionJugador nombre="PRUEBA PRUEBA" />
+                    </Grid>
+                </Grid>
+            </Container>
+        </div>
+    </div>
 }
 
 export default TestMultiplayerGame;

@@ -1,6 +1,6 @@
-import React from 'react'
+import { Avatar } from '@mui/material';
 import Chip from '@mui/material/Chip';
-import { makeStyles } from '@mui/styles';
+import React from 'react';
 import { CODIGO_TIPO_CARTA, getBackgroundColorPokemon } from '../../utils/functions';
 
 const sx = {
@@ -10,7 +10,8 @@ const sx = {
     }
 
 const Hierba = ({cantidad}) => {
-    return <Chip label={`hierba ${cantidad}`} sx={sx} />
+    return <Chip label={`${cantidad}`} sx={sx}
+    avatar={<Avatar alt="Hierba Energia" src="/images/energias/Hierba.png"/>}/>
 }
 
 export default Hierba;
