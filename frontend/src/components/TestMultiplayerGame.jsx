@@ -1,5 +1,5 @@
 import { useTheme } from "@emotion/react";
-import { Button, Container, Grid } from "@mui/material";
+import { Button, Container, Grid, useMediaQuery } from "@mui/material";
 import { CODIGO_TIPO_CARTA } from "../utils/functions";
 import ContadoresDeEnergias from "./contadores-energias/ContadoresDeEnergias";
 import BoxCartas from "./juego/BoxCartas";
@@ -13,7 +13,7 @@ import RivalContainer from "./multiplayer/board-containers/RivalContainer";
 const TestMultiplayerGame = () => {
     const theme = useTheme();
     const isSun = theme.palette.mode === "light"
-
+    const isLowerMd = useMediaQuery(theme.breakpoints.down('md'));
     const energiasDelEnemigo = {
         incoloro: 10,
         fuego: 10,
@@ -159,13 +159,13 @@ const TestMultiplayerGame = () => {
                     <InformacionJugador nombre="PRUEBA PRUEBA" />
                 </Grid>
             </Grid>
-            <Grid container flexWrap="nowrap">
+            <Grid container flexWrap={isLowerMd ? "wrap" : "nowrap"} justifyContent={isLowerMd && "center"}>
                 <CartasSeleccionarJugador cartas={miZonaJuego} />
             </Grid>
         </RivalContainer>
         <Button variant="contained" sx={{ zIndex: 100, position: "absolute", marginLeft: "30px", marginTop: "8px" }}>Invocar</Button>
         <MiJugador>
-            <Grid container flexWrap="nowrap">
+            <Grid container flexWrap={isLowerMd ? "wrap" : "nowrap"} justifyContent={isLowerMd && "center"}>
                 <CartasSeleccionarJugador cartas={miZonaJuego} />
             </Grid>
             <Grid container spacing={2} alignItems="center" flexWrap="nowrap">

@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -32,30 +32,35 @@ const EditarUsuario = ({ desloguearse }) => {
         }
     }
 
-    return <Box component="form" noValidate onSubmit={onActualizarUsuario}
-    sx={{ mt: 3, width: "60%", marginLeft: "calc(60% - 40%)", marginTop: "120px",justifyContent: "center", display: "flex" }}>
-        <Grid container spacing={2}
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        display="flex"
-        >
-            {
-                isLoading ?
-                <SkeletonEditarUsuario /> :
-                <CamposEditarUsuario values={values}/>
-            }
+    return <Container fixed>
+        <Typography variant="h3" gutterBottom align='center' sx={{ marginTop: 5 }}>
+            Editar mi usuario
+        </Typography>
+        <Box component="form" noValidate onSubmit={onActualizarUsuario}
+            sx={{ mt: 5, width: "60%", marginLeft: "calc(60% - 40%)", justifyContent: "center", display: "flex" }}>
+            <Grid container spacing={2}
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+                display="flex"
+            >
+                {
+                    isLoading ?
+                        <SkeletonEditarUsuario /> :
+                        <CamposEditarUsuario values={values} />
+                }
 
-        </Grid>
-    </Box>
+            </Grid>
+        </Box>
+    </Container>
 }
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators(
-      { desloguearse }, dispatch
+        { desloguearse }, dispatch
     )
-  }
+}
 
-  export default compose(
+export default compose(
     connect(null, mapDispatchToProps)
-  )(EditarUsuario)
+)(EditarUsuario)

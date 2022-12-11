@@ -1,7 +1,5 @@
 import { Button, Container, Divider, Typography } from '@mui/material';
-import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
-import { styled } from '@mui/material/styles';
 import { useSnackbar } from 'notistack';
 import * as React from 'react';
 import { useEffect } from 'react';
@@ -14,7 +12,6 @@ import { useJuego } from '../../hooks/useJuego';
 import { useMazoSeleccionado } from '../../hooks/useMazoSeleccionado';
 import { useUsuario } from "../../hooks/useUsuario";
 import { To } from '../../utils/routes';
-import { ContextToastContainer } from '../ui/toasts/ToastContainer';
 import { isJugadorUno } from './isJugadorUno';
 import { mapJuegoToFront } from './mapJuegoToFront';
 
@@ -24,17 +21,11 @@ const WaitingRoom = () => {
   const history = useHistory()
   const usuario = useUsuario()
   const numeroMazoSeleccionado = useMazoSeleccionado()
-  const toast = React.useContext(ContextToastContainer)
   const { enqueueSnackbar } = useSnackbar()
   const { setGameId, setSocketId, setRoomsDisponibles } = useRoomData()
   const { setJuego } = useJuego()
 
   useEffect(() => {
-    socket.on(SUBSCRIPTIONS_EVENTS.CONNECT, () => {
-    });
-
-    socket.on(SUBSCRIPTIONS_EVENTS.DISCONNECT, () => {
-    });
 
     socket.on(SUBSCRIPTIONS_EVENTS.NEW_GAME_CREATED, (data) => {
       const { gameId, mySocketId } = data
@@ -54,7 +45,6 @@ const WaitingRoom = () => {
       const esJugadorUno = isJugadorUno(usuario, gameData.juego.jugador1)
       const juegoMapeado = mapJuegoToFront(gameData.juego, esJugadorUno)
       setJuego(juegoMapeado)
-      //toast.info("Arrancó la partida")
       enqueueSnackbar("Arrancó la partida", { variant: "info", autoHideDuration: 3000 })
       enqueueSnackbar("Arrancó la fase de invocación", { variant: "info", autoHideDuration: 4000 });
       history.push(To.juego_multiplayer())

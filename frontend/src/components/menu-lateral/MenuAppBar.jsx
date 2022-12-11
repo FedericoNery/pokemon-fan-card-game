@@ -1,6 +1,6 @@
 import { useTheme } from '@emotion/react';
-import { ChevronLeft, ChevronRight, MenuOutlined } from '@mui/icons-material';
-import { AppBar as MuiAppBar, CssBaseline, Divider, Drawer as MuiDrawer, IconButton, MenuItem, Toolbar, Typography } from '@mui/material';
+import { ChevronLeft, MenuOutlined } from '@mui/icons-material';
+import { AppBar as MuiAppBar, CssBaseline, Divider, Drawer as MuiDrawer, IconButton, MenuItem, Toolbar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box, ThemeProvider } from '@mui/system';
 import React from 'react';
@@ -62,20 +62,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-
-const data = [
-  { country: 'Ganadas sin perder rondas', area: 50 },
-  { country: 'Ganadas perdiendo una ronda', area: 25 },
-  { country: 'Ganadas perdiendo dos rondas', area: 25 },
-]
-
-
-
 const MenuAppBar = (props) => {
   const { history, desloguearse } = props
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [auth, setAuth] = React.useState(true);
   const theme = useTheme();
 
   const openMenuAppBar = Boolean(anchorEl);
@@ -103,7 +93,7 @@ const MenuAppBar = (props) => {
         <CssBaseline />
         <AppBarCustom
           position="absolute" open={open}
-          >
+        >
           <Toolbar
             sx={{
               pr: '24px', // keep right padding when drawer closed
@@ -121,19 +111,17 @@ const MenuAppBar = (props) => {
               <MenuOutlined />
             </IconButton>
             <PokemonCardGameTypography />
-            {auth && (
-              <div>
-                <IconButtonUsuarioAutenticado onClick={handleMenu} />
-                <MenuUsuarioAutenticado
-                  isOpen={openMenuAppBar}
-                  onClose={handleClose}
-                  anchorEl={anchorEl}>
-                  <MenuItem onClick={() => history.push(To.perfilUsuario())}>Profile</MenuItem>
-                  <MenuItem onClick={handleClose}>My account</MenuItem>
-                  <MenuItem onClick={onLogout}>Logout</MenuItem>
-                </MenuUsuarioAutenticado>
-              </div>
-            )}
+            <div>
+              <IconButtonUsuarioAutenticado onClick={handleMenu} />
+              <MenuUsuarioAutenticado
+                isOpen={openMenuAppBar}
+                onClose={handleClose}
+                anchorEl={anchorEl}>
+                <MenuItem onClick={() => history.push(To.perfilUsuario())}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={onLogout}>Logout</MenuItem>
+              </MenuUsuarioAutenticado>
+            </div>
             <ButtonToggleMode />
           </Toolbar>
         </AppBarCustom>

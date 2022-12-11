@@ -10,6 +10,8 @@ import { bindActionCreators, compose } from 'redux';
 import { desloguearse } from '../../redux/actionCreators/authenticate';
 import { To } from '../../utils/routes';
 import ListJugador from '../opciones-menu-lateral/ListJugador';
+import ListJugadorResponsive from '../opciones-menu-lateral/ListJugadorResponsive';
+import ButtonDrawer from './atoms/ButtonDrawer';
 import ButtonToggleMode from './atoms/ButtonToggleMode';
 import MenuDesplegableUsuario from './atoms/MenuDesplegableUsuario';
 import PokemonCardGameTypography from './atoms/PokemonCardGameTypography';
@@ -88,79 +90,73 @@ const MenuAppBarJugador = (props) => {
   };
 
   return <ThemeProvider theme={theme}>
-  <Box sx={{ display: 'flex' }}>
-    <CssBaseline />
-    <AppBarCustom
-      position="absolute" open={open}
-    >
-      <Toolbar
-        sx={{
-          pr: '20px', // keep right padding when drawer closed
-        }}>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={toggleDrawer}
-          edge="start"
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <AppBarCustom
+        position="absolute" open={open}
+      >
+        <Toolbar
           sx={{
-            marginRight: '40px',
-            ...(open && { display: 'none' }),
+            pr: '20px', // keep right padding when drawer closed
+          }}>
+          {
+            !isLowerMd && <ButtonDrawer
+            toggleDrawer={toggleDrawer}
+            open={open} />
+          }
+          <PokemonCardGameTypography />
+          {
+            isLowerMd &&
+            <ListJugadorResponsive />
+          }
+          <MenuDesplegableUsuario
+            handleMenu={handleMenu}
+            handleClose={handleClose}
+            openMenuAppBar={openMenuAppBar}
+            anchorEl={anchorEl}
+            onLogout={onLogout}
+            history={history}
+          />
+          <ButtonToggleMode />
+        </Toolbar>
+      </AppBarCustom>
+      {!isLowerMd && <Drawer
+        variant="permanent"
+        open={open}
+      >
+        <Toolbar
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            px: [1],
           }}
         >
-          <MenuOutlined />
-        </IconButton>
-        <PokemonCardGameTypography />
-        <MenuDesplegableUsuario
-          handleMenu={handleMenu}
-          handleClose={handleClose}
-          openMenuAppBar={openMenuAppBar}
-          anchorEl={anchorEl}
-          onLogout={onLogout}
-          history={history}
-        />
-        <ButtonToggleMode />
-      </Toolbar>
-    </AppBarCustom>
-    <Drawer
-      variant="permanent"
-      open={open}
-    >
-      <Toolbar
+          <IconButton onClick={toggleDrawer}>
+            <ChevronLeft />
+          </IconButton>
+        </Toolbar>
+        <Divider />
+        <ListJugador />
+      </Drawer>
+      }
+      <Box
+        component="main"
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'flex-end',
-          px: [1],
+          backgroundColor: (theme) =>
+            theme.palette.mode === 'light'
+              ? theme.palette.grey[100]
+              : theme.palette.grey[900],
+          flexGrow: 1,
+          height: '100vh',
+          overflow: 'auto',
         }}
       >
-        <IconButton onClick={toggleDrawer}>
-          <ChevronLeft />
-        </IconButton>
-      </Toolbar>
-      <Divider />
-      <ListJugador />
-    </Drawer>
-    <Box
-      component="main"
-      sx={{
-        backgroundColor: (theme) =>
-          theme.palette.mode === 'light'
-            ? theme.palette.grey[100]
-            : theme.palette.grey[900],
-        flexGrow: 1,
-        height: '100vh',
-        overflow: 'auto',
-      }}
-    >
-      <Toolbar />
-      {props.children}
+        <Toolbar />
+        {props.children}
+      </Box>
     </Box>
-  </Box>
-</ThemeProvider>
-
-  /* isLowerMd ?
-
-  : */
+  </ThemeProvider>
 
 }
 
