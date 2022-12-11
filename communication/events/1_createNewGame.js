@@ -22,7 +22,7 @@ function createNewGame({ mazo, usuario }, gamesData, gamesIdsUsing, roomsConUnSo
         gameSocket.emit(EMIT_EVENTS.NEW_GAME_CREATED, { gameId: gameId, mySocketId: gameSocket.id });
     }
     catch (ex) {
-        console.log(ex)
+
     }
 }
 

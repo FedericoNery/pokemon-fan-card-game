@@ -126,7 +126,6 @@ class Juego {
 
     pasarASiguienteRonda(){
         if(this.estadoDeLaRonda !== EstadosDeLaPartida.JUEGO_TERMINADO){
-            console.log("PASÓ A SIGUIENTE RONDA")
             this.campo1.descartarCartasMano()
             this.campo1.descartarCartasCampo()
             this.campo2.descartarCartasMano()
@@ -176,8 +175,6 @@ class Juego {
             this.campo2.invocarCartas(cartasId)
             this.jugador2InvocoCartas = true
         }
-        console.log(this.jugador1InvocoCartas)
-        console.log(this.jugador2InvocoCartas)
     }
 
     finishedSummonPhase(){
@@ -185,7 +182,6 @@ class Juego {
     }
 
     finishCompilePhase(){
-        console.log(this.estadoDeLaRonda)
         this.estadoDeLaRonda = EstadosDeLaPartida.BATTLE_PHASE
     }
 
@@ -206,7 +202,6 @@ class Juego {
     }
 
     finishedRonda(){
-        console.log(this.estadoDeLaRonda)
         return this.estadoDeLaRonda === EstadosDeLaPartida.RONDA_TERMINADA
     }
 }

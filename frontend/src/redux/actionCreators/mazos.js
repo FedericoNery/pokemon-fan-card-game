@@ -9,13 +9,11 @@ export const cargarDatosGeneralesMazos = (idsDeLosMazos) => async dispatch => {
                 return res.data
             }
             catch (error) {
-                console.log(error)
             }
         })).then((data) => {
             dispatch(mazosActions.guardarMazosDatosGenerales(data))
         })
     }
     catch (error) {
-        console.log(error)
     }
 }

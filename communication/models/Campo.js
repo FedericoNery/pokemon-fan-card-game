@@ -75,7 +75,6 @@ class Campo {
 
   invocarCarta(carta) {
     if (this.esValidaLaInvocacionDeLaCarta(carta, this.cantidadesEnergias)) {
-      console.log("INVOCÓ")
       this.zonaJuego.invocarCarta(carta)
       this.quitarEnergiasGastadasPor(carta)
     }

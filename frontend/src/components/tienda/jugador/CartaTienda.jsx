@@ -10,7 +10,7 @@ import Energias from '../../cartas/carta-pokemon/atoms/Energias';
 import Tipo from '../../cartas/carta-pokemon/atoms/Tipo';
 
 const CartaTienda = (props) => {
-    const { ataque, ataque_esp, cantidad_energia, defensa, defensa_esp, numero, pokemon, ps, suma, tipo_energia, velocidad, precio,
+    const { ataque, cantidad_energia, defensa, numero, pokemon, tipo_energia, precio,
         onClick, isSeleccionada, indice
     } = props
 
@@ -21,12 +21,6 @@ const CartaTienda = (props) => {
         "border-width": isSeleccionada && "medium",
         "border-style": isSeleccionada && "solid",
         marginBottom: "10px"
-    }
-
-    const sxMedia = {
-        objectFit: "contain",
-        maxHeight: 180,
-        //maxHeight: 140
     }
 
     return (
@@ -49,8 +43,6 @@ const CartaTienda = (props) => {
                             <Pokemon pokemon={pokemon} />
                         </Grid>
                     </Grid>
-
-
                 </CardContent>
             </CardActionArea>
         </Card>

@@ -26,7 +26,6 @@ async function eliminarMultiplesUsuarios(idsUsuarios) {
             await Usuario.deleteOne({ numero: element })
         }
         catch (error) {
-            console.log(error)
         }
     }
 }

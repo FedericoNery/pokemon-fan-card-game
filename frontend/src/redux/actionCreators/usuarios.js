@@ -5,6 +5,5 @@ export const crearUsuario = (payload) => async dispatch => {
         await postCrearUsuario(payload)
     }
     catch(error){
-        console.log(error)
     }
 }

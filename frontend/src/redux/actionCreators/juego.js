@@ -13,7 +13,6 @@ export const iniciarJuego = (payload) => async dispatch => {
         dispatch(juegoActions.iniciarJuego(juego))
     }
     catch (error) {
-        console.log(error)
     }
 }
 
@@ -24,7 +23,6 @@ export const invocarCartasJugador = (payload) => async dispatch => {
         dispatch(juegoActions.invocarCartas(juego))
     }
     catch (error) {
-        console.log(error)
     }
 }
 
@@ -35,6 +33,5 @@ export const iniciarBatalla = (payload) => async dispatch => {
         dispatch(juegoActions.terminarRonda(juego))
     }
     catch (error) {
-        console.log(error)
     }
 }

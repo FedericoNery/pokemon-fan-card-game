@@ -28,7 +28,6 @@ const ContainerSignUpForm = (props) => {
             history.push("/")
         }
         catch (error) {
-            console.log(error)
         }
     }
 

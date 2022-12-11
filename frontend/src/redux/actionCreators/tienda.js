@@ -9,7 +9,7 @@ export const fetchCartasEdicionTienda = () => async dispatch => {
         dispatch(tiendaActions.fetchCartasFinish())
     }
     catch (error) {
-        console.log(error)
+
     }
 }
 
@@ -21,7 +21,6 @@ export const fetchCartasFiltradasTienda = (filtro) => async dispatch => {
         dispatch(tiendaActions.fetchCartasFiltradasFinish())
     }
     catch (error) {
-        console.log(error)
     }
 }
 
@@ -39,7 +38,6 @@ function mapCartasToApi(cartas) {
 
 
 function getCartasAModificar(indiceMinimo, indiceMaximo, cartas) {
-    console.log(cartas)
     const listaProcesadaDeCartas = []
     for (let index = indiceMinimo; index < indiceMaximo; index++) {
         const element = cartas[index]
@@ -62,6 +60,5 @@ export const actualizarCartasDeTiendaAdministrador = (pageNumber, pageSize) => a
         dispatch(tiendaActions.finishUpdateCartasTiendaAdministrador())
     }
     catch (error) {
-        console.log(error)
     }
 }

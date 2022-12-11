@@ -28,7 +28,6 @@ const EditarUsuario = ({ desloguearse }) => {
             await actualizarUsuario(numeroUsuario, payload)
         }
         catch (error) {
-            console.log(error)
         }
     }
 

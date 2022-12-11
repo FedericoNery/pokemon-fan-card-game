@@ -26,7 +26,6 @@ const TablaUsuarios = ({ values, retry }) => {
       retry()
     }
     catch (error) {
-      console.log(error)
     }
   };
 

@@ -30,10 +30,6 @@ function playerJoinsGame({gameIdToJoin, usuario, mazo}, io, gamesData, gameSocke
         gamesData[indexGame].setSocketIdUsuarioB(gameSocket.id)
 
 
-        // Emit an event notifying the clients that the player has joined the room.
-        //NO TIENE SENTIDO ESTE EVENTO
-        //io.sockets.in(gameIdToJoin).emit(EMIT_EVENTS.PLAYER_JOINED_ROOM, { gameId: gameIdToJoin, socketId: sock.id });
-        console.log(io.sockets.in(gameIdToJoin))
     } else {
         // Otherwise, send an error message back to the player.
         gameSocket.emit('status', "There are already 2 people playing in this room.");
@@ -43,7 +39,6 @@ function playerJoinsGame({gameIdToJoin, usuario, mazo}, io, gamesData, gameSocke
 
         //Crear Juego y guardarlo en el array de juegos
         //Que Juego se encargue de mezclar el mazo
-        console.log("ENTRO A JOINS GAME")
         var gameDataArray = gamesData.filter(x => x.getGameId() === gameIdToJoin)
         
         io.sockets.in(gameDataArray[0].socketIdUsuarioA).emit(EMIT_EVENTS.START_GAME, {gameData: gameDataArray[0]})

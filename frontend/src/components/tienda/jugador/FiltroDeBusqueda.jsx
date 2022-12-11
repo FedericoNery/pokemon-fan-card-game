@@ -45,12 +45,11 @@ const FiltroDeBusqueda = () => {
     ]
 
     return (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} alignItems="center" justifyItems="center" justifyContent="center" sx={{marginBottom: 3}}>
             <Grid item>
                 <TextField id="outlined-basic" label="Nombre" variant="outlined" />
             </Grid>
-            <Grid item>
-                <FormControl component="fieldset">
+            <Grid item alignContent="center">
                     <RadioGroup
                         aria-label="gender"
                         name="controlled-radio-buttons-group"
@@ -60,7 +59,6 @@ const FiltroDeBusqueda = () => {
                         <FormControlLabel value="Disponibles" control={<Radio />} label="Disponibles" />
                         <FormControlLabel value="Ofertas" control={<Radio />} label="Ofertas" />
                     </RadioGroup>
-                </FormControl>
             </Grid>
             <Grid item>
                 <Autocomplete
