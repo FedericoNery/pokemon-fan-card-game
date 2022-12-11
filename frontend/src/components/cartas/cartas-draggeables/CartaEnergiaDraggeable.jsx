@@ -48,15 +48,8 @@ const CartaEnergiaDraggeable = (props) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <Grid container spacing={1}>
-                        <Grid item xs={6} spacing={1}>
-                            {energias.map((x, index) =>
-                                <BadgeEnergias {...x} key={`kbadgeenergias${index}`}/>)
-                            }
-                        </Grid>
-                    </Grid>
                     <img
-                        alt=""
+                        alt={`${energias[0].nombre}`}
                         className={classes.media}
                         title={`Imagen carta energía ${energias[0].nombre}`}
                         src={`../../images/energias/${energias[0].nombre}.png`}

@@ -146,8 +146,9 @@ const ContainerEdicionDelMazo = () => {
   }
 
   return !isLoading && <>
-  <Box sx={{ '& > :not(style)': { m: 1 } }}>
-      <Fab color="primary" aria-label="add" onClick={() => actualizarMazo(id, cartas["cartas-mazo"].list.map(x => x.numero))}>
+    <Box sx={{ '& > :not(style)': { m: 1 } }}>
+      <Fab color="primary" aria-label="add" onClick={() => actualizarMazo(id, cartas["cartas-mazo"].list.map(x => x.numero))}
+      sx={{position: "fixed", zIndex: 100, bottom: 40, right: 40}}>
         <SaveIcon />
       </Fab>
     </Box>
@@ -166,25 +167,24 @@ const ContainerEdicionDelMazo = () => {
           </Droppable>
         </Grid>
         <Grid item xs={1} sm={2} md={2} xl={2}>
-          {/* <div style={{ "margin-top": positionY*0.7 }}> */}
-            <Droppable droppableId={"cartas-disponibles"}>
-              {(provided) => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                >
-                  <ListadoDeCartasDisponibles cartas={cartas["cartas-disponibles"].list} />
-                </div>
-              )}
-            </Droppable>
-         {/*  </div> */}
+          <Droppable droppableId={"cartas-disponibles"}>
+            {(provided) => (
+              <div
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+                style={{
+                  "borderStyle": "dashed",
+                  "height" : "100%"
+               }}
+              >
+                <ListadoDeCartasDisponibles cartas={cartas["cartas-disponibles"].list} />
+              </div>
+            )}
+          </Droppable>
         </Grid>
       </Grid>
     </DragDropContext>
   </>
-  {/* <div style={{ height: "100%", overflow: 'scroll' }} onScroll={fireOnScroll}>
-
-  </div> */}
 }
 
 export default ContainerEdicionDelMazo;
