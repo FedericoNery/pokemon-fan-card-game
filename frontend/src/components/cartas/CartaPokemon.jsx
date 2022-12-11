@@ -3,11 +3,10 @@ import Grid from '@mui/material/Grid';
 import { Box } from '@mui/system';
 import React from 'react';
 import { getBackgroundColorPokemon, getNumeroPokemon } from '../../utils/functions';
-import CartaTienda from "../tienda/jugador/CartaTienda"
 import CartaPokemonResponsive from './CartaPokemonResponsive';
 
 const CartaPokemon = (props) => {
-  const { ataque, ataque_esp, cantidad_energia, defensa, defensa_esp, numero, pokemon, ps, suma, tipo_energia, velocidad,
+  const { ataque, cantidad_energia, defensa, numero, pokemon, tipo_energia,
     onClick, isSeleccionada, indice
   } = props
 

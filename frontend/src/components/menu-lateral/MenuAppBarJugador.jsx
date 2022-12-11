@@ -1,5 +1,5 @@
 import { useTheme } from '@emotion/react';
-import { ChevronLeft, MenuOutlined } from '@mui/icons-material';
+import { ChevronLeft } from '@mui/icons-material';
 import { AppBar as MuiAppBar, CssBaseline, Divider, Drawer as MuiDrawer, IconButton, Toolbar, useMediaQuery } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box, ThemeProvider } from '@mui/system';

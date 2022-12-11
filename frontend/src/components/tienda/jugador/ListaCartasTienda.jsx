@@ -1,7 +1,6 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import CartaTiendaParaSeleccionar from "./CartaTiendaParaSeleccionar";
-import RowListaCartasTienda from "./RowListaCartasTienda";
 
 const chunk = (arr, size) => arr.reduce((acc, e, i) => (i % size ? acc[acc.length - 1].push(e) : acc.push([e]), acc), []);
 

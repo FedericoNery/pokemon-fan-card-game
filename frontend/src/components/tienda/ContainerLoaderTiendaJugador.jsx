@@ -8,7 +8,7 @@ import TiendaJugador from "./jugador/TiendaJugador";
 
 const ContainerLoaderTiendaJugador = ({ fetchCartasEdicionTienda, fetchCartasFiltradasTienda, isLoadingCartas, isLoadingCartasFiltradas }) => {
   const filtro = useFiltroCartasEnTienda()
-  const { loading, error, value, retry } = useAsyncRetry(async () => getCartasEnTienda(filtro), [filtro]);
+  const { loading, value } = useAsyncRetry(async () => getCartasEnTienda(filtro), [filtro]);
 
   return !loading && <TiendaJugador cartas={value.data} />
 }

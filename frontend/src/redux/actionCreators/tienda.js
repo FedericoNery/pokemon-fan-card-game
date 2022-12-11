@@ -56,7 +56,7 @@ export const actualizarCartasDeTiendaAdministrador = (pageNumber, pageSize) => a
         const indiceMaximo = pageNumber * pageSize
         const cartasAModificar = getCartasAModificar(indiceMinimo, indiceMaximo, cartas)
         const cartasMappeadas = mapCartasToApi(cartasAModificar)
-        const res = await actualizarCartasEnTienda({cartas: cartasMappeadas})
+        await actualizarCartasEnTienda({cartas: cartasMappeadas})
         dispatch(tiendaActions.finishUpdateCartasTiendaAdministrador())
     }
     catch (error) {

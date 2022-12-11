@@ -2,7 +2,7 @@ import { useJuego } from "../../hooks/useJuego";
 import MultiplayerGame from "./MultiplayerGame";
 
 const InyectorMultiplayerGame = () => {
-  const { juego, setJuego } = useJuego()
+  const { juego } = useJuego()
   return juego !== null && <MultiplayerGame juego={juego} />
 }
 

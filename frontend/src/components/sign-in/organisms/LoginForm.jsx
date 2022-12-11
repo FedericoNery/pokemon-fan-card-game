@@ -5,7 +5,6 @@ import { ContextToastContainer } from "../../ui/toasts/ToastContainer";
 import ButtonSubmit from "../atoms/ButtonSubmit";
 import EmailInput from "../atoms/EmailInput";
 import PasswordInput from "../atoms/PasswordInput";
-import RememberMe from "../atoms/RememberMe";
 import BoxCopyright from "../molecules/BoxCopyright";
 import ForgotPasswordSignUp from "../molecules/ForgotPasswordSignUp";
 
@@ -39,7 +38,6 @@ const LoginForm = (props) => {
     return <form className={classes.form} noValidate onSubmit={(values) => onLogin(values)}>
         <EmailInput />
         <PasswordInput />
-        {/* <RememberMe /> */}
         <ButtonSubmit />
         <ForgotPasswordSignUp />
         <BoxCopyright />

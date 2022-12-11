@@ -1,16 +1,16 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import SaveIcon from '@mui/icons-material/Save';
+import { Fab } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import { Box } from '@mui/system';
+import React, { useContext, useEffect, useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useParams } from 'react-router-dom';
 import { getAllCartasEnergia } from '../../core/services/cartasEnergias';
 import { getAllCartasPokemon } from '../../core/services/cartasPokemon';
 import { getCartasDelMazoById, putCartasDelMazoById } from '../../core/services/mazos';
 import CartasDelMazo from '../cartas/CartasDelMazo';
-import ListadoDeCartasDisponibles from './ListadoDeCartasDisponibles';
-import Grid from '@mui/material/Grid';
-import { Fab } from '@mui/material';
-import SaveIcon from '@mui/icons-material/Save';
-import { Box } from '@mui/system';
 import { ContextToastContainer } from '../ui/toasts/ToastContainer';
+import ListadoDeCartasDisponibles from './ListadoDeCartasDisponibles';
 
 const ContainerEdicionDelMazo = () => {
   const { id } = useParams();
@@ -22,10 +22,8 @@ const ContainerEdicionDelMazo = () => {
   useEffect(async () => {
     setIsLoading(true)
     const res = await getCartasDelMazoById(id)
-    //setCartasDelMazo({"cartas-mazo": res.data})
     const resCartasPokemon = await getAllCartasPokemon()
     const resCartasEnergia = await getAllCartasEnergia()
-    //setCartasDisponibles({"cartas-disponibles": [...resCartasPokemon.data, ...resCartasEnergia.data]})
     setCartas({
       "cartas-mazo": {
         id: "cartas-mazo", list: res.data.map((x, index) => {

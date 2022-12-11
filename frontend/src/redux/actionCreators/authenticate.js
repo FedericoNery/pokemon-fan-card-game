@@ -5,7 +5,7 @@ import jwt_decode from "jwt-decode";
 export const loguearse = (payload) => async dispatch => {
     try {
         const response = await iniciarSesion(payload)
-        const { mensaje, token } = response.data
+        const { token } = response.data
         const usuario = jwt_decode(token);
         dispatch(authenticateActions.loguearse({usuario, token}))
     }

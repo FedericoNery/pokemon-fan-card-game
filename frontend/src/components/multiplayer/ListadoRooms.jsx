@@ -1,8 +1,7 @@
-import { Button, Container, Grid, Paper, Stack, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { getCartasDelMazoById } from "../../core/services/mazos";
-import { EMIT_EVENTS, SUBSCRIPTIONS_EVENTS } from "../../core/socket/events_consts";
+import { SUBSCRIPTIONS_EVENTS } from "../../core/socket/events_consts";
 import { useRoomData } from "../../hooks/multiplayer/useRoomData";
 import { useJuego } from "../../hooks/useJuego";
 import { useMazoSeleccionado } from "../../hooks/useMazoSeleccionado";
@@ -19,7 +18,6 @@ const ListadoRooms = () => {
   const usuario = useUsuario()
   const numeroMazoSeleccionado = useMazoSeleccionado()
 
-  const { setGameId, setSocketId, setRoomsDisponibles } = useRoomData()
   const { setJuego } = useJuego()
 
   useEffect(() => {

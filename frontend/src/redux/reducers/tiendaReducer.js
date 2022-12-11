@@ -29,10 +29,8 @@ const tiendaSlice = createSlice({
         },
         guardarCartas(state, action){
             state.cartas = action.payload
-            //state.cartasFiltradas = action.payload
         },
         filtrarCartas(state, action){
-            const filtro = action.payload
         },
         fetchCartasStart(state, action){
             state.isLoadingCartas = true
@@ -68,7 +66,6 @@ const tiendaSlice = createSlice({
             state.isUpdatingCartasTienda = false
         },
         seleccionarCartaTienda(state, action){
-            const id = action.payload
             //Buscar carta segun id, y cambiar estado de seleccionada
         },
         setNombreFiltro(state, action){

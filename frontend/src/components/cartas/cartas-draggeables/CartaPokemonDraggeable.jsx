@@ -1,4 +1,4 @@
-import { Typography, useTheme } from '@mui/material';
+import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/system';
@@ -10,7 +10,7 @@ import Defensa from '../carta-pokemon/atoms/Defensa';
 
 
 const CartaPokemonDraggeable = (props) => {
-    const { ataque, ataque_esp, cantidad_energia, defensa, defensa_esp, numero, pokemon, ps, suma, tipo_energia, velocidad, itemObject, index } = props
+    const { ataque, cantidad_energia, defensa, numero, pokemon, tipo_energia, itemObject, index } = props
 
     const useStyles = makeStyles({
         root: {
@@ -36,8 +36,6 @@ const CartaPokemonDraggeable = (props) => {
         },
     });
 
-    const theme = useTheme();
-    const isSun = theme.palette.mode === "light"
     const classes = useStyles();
     return (
         <Draggable draggableId={itemObject.id} index={index}>
@@ -94,76 +92,3 @@ const CartaPokemonDraggeable = (props) => {
 }
 
 export default CartaPokemonDraggeable
-
-/*
-<Draggable draggableId={itemObject.id} key={itemObject.id} index={index}>
-            {(provided) => (
-                <div
-                ref={provided.innerRef}
-                ContainerComponent="div"
-                ContainerProps={{ ref: provided.innerRef }}
-                {...provided.draggableProps}
-                {...provided.dragHandleProps}
-            >
-                <Card className={classes.root}>
-                     <CardActionArea
-                     onClick={(e) => e.stopPropagation()}
-                    /* ref={provided.innerRef}
-                    ContainerComponent="div"
-                    ContainerProps={{ ref: provided.innerRef }}
-                {...provided.draggableProps}
-                {...provided.dragHandleProps}
-                >
-                        <CardContent>
-                            <Grid container spacing={1}>
-                                <Grid item xs={6} spacing={1}>
-                                    <Typography variant="body2" color="textSecondary" component="p" align="left">
-                                        Tipo: {tipo_energia}
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={6} spacing={1}>
-                                    <Typography variant="body2" color="textSecondary" component="p" align="right">
-                                        Energía: {cantidad_energia}
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                        </CardContent>
-                        <CardMedia
-                            className={classes.media}
-                            title="Contemplative Reptile"
-                            component="img"
-                            src={`../images/pokemons/${getNumeroPokemon(numero)}.png`}
-                            classes={classes}
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2" align="center">
-                                {pokemon}
-                            </Typography>
-                            <Grid container spacing={1}>
-                                <Grid item xs={6} spacing={1}>
-                                    <Typography variant="body2" color="textSecondary" component="p" align="left">
-                                        Ataque: {ataque}
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={6} spacing={1}>
-                                    <Typography variant="body2" color="textSecondary" component="p" align="right">
-                                        Defensa: {defensa}
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                        </CardContent>
-                     </CardActionArea>
-                    {/* <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions> }
-                </Card>
-                </div>
-            )}
-        </Draggable>
-
-        */

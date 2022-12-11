@@ -1,10 +1,12 @@
+import CloseIcon from '@mui/icons-material/Close';
+import { IconButton } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
-import { SnackbarProvider, useSnackbar } from 'notistack';
+import { SnackbarProvider } from 'notistack';
 import { createContext, useRef } from 'react';
 import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import ListadoUsuarios from './components/administrador/ListadoUsuarios';
+import ContainerUsuarios from './components/administrador/ContainerUsuarios';
 import ContainerApp from './components/ContainerApp';
 import Dashboard from './components/dashboards/Dashboard';
 import ErrorBoundary from './components/errors/ErrorBoundary';
@@ -28,9 +30,6 @@ import EditarUsuario from './components/usuario/EditarUsuario';
 import useColorMode from './hooks/ui-config/useColorMode';
 import useTheme from './hooks/ui-config/useTheme';
 import { ROUTES } from './utils/routes';
-import { IconButton } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
-import ContainerUsuarios from './components/administrador/ContainerUsuarios';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
@@ -39,7 +38,6 @@ const App = (props) => {
   const { theme, setMode } = useTheme()
   const colorMode = useColorMode(setMode)
   const ref = useRef(null)
-  //const { closeSnackbar } = useSnackbar();
 
   return <>
     <ThemeProvider theme={theme}>
@@ -69,7 +67,6 @@ const App = (props) => {
                       <Route exact path={ROUTES.CREATE_ROOM} component={CreateRoom} />
                       <Route exact path={ROUTES.LISTADO_DE_ROOMS} component={ListadoRooms} />
                       <Route exact path={ROUTES.ESPERANDO_OTRO_JUGADOR} component={EsperandoJugadorRival} />
-                      {/*  <Route exact path={ROUTES.JUEGO} component={ContainerJuego} /> */}
                       <Route exact path={ROUTES.JUEGO} component={InyectorMultiplayerGame} />
                       <Route exact path={ROUTES.JUEGO_FINALIZADO} component={JuegoFinalizado} />
                       <Route exact path={ROUTES.DATOS_USUARIO} component={DatosUsuario} />
@@ -79,7 +76,6 @@ const App = (props) => {
                       <Route exact path={ROUTES.LISTADO_USUARIOS} component={ContainerUsuarios} />
                       <Route exact path={"/test-juego"} component={TestMultiplayerGame} />
                       <Route exact path="/" component={Dashboard}></Route>
-                      {/* <Redirect to="/menu-principal"/> */}
                     </MenuPrincipal>
                   </AuthRoute>
                   <Route path="/">

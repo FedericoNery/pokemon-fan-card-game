@@ -1,26 +1,15 @@
-import { useTheme } from '@emotion/react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
-import { makeStyles } from '@mui/styles';
 import * as React from 'react';
 import ButtonToggleMode from './atoms/ButtonToggleMode';
 import Copyright from './atoms/Copyright';
 import ContainerSignUpForm from './organisms/ContainerSignUpForm';
 
 export default function SignUp() {
-    const theme = useTheme();
-
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            display: "flex"
-        },
-    }));
-
-    const classes = useStyles();
 
     return (
         <Container component="main" maxWidth="xs" sx={{display: "flow-root"}}>
