@@ -4,6 +4,7 @@ import { useState } from "react";
 import ButtonBorrarSeleccionados from "./atoms/ButtonBorrarSeleccionados";
 import { borrarUsuarios } from "../../core/services/usuarios";
 import { columns } from "./columns";
+import { Box } from "@mui/material";
 
 const TablaUsuarios = ({ values, retry }) => {
   const [selectedRows, setSelectedRows] = useState([]);
@@ -20,27 +21,30 @@ const TablaUsuarios = ({ values, retry }) => {
       )
     ]);
     setRows(selectedRows); */
-    try{
-      await borrarUsuarios({ ids : selectedRows});
+    try {
+      await borrarUsuarios({ ids: selectedRows });
       retry()
     }
-    catch(error){
+    catch (error) {
       console.log(error)
     }
   };
 
   return <>
-    <DataGrid
-      rows={values}
-      columns={columns}
-      pageSize={5}
-      rowsPerPageOptions={[5]}
-      checkboxSelection
-      disableSelectionOnClick
-      onSelectionModelChange={(selection) =>  handleSelectionChange(selection)}
-    />
-    {selectedRows.length > 0 && <ButtonBorrarSeleccionados onClick={handlePurge}/>}
+    <Box sx={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={values}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+        disableSelectionOnClick
+        onSelectionModelChange={(selection) => handleSelectionChange(selection)}
+      />
+      {selectedRows.length > 0 && <ButtonBorrarSeleccionados onClick={handlePurge} />}
+    </Box>
   </>
+
 }
 
 export default TablaUsuarios;

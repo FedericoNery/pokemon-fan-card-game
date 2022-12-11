@@ -39,7 +39,10 @@ class Campo {
 
   invocarCartas(listaIdsCartasAInvocar) {
     const cartasAInvocar = this.mano.getCartasAInvocarFrom(listaIdsCartasAInvocar)
-    this.zonaJuego.setCartas(cartasAInvocar)
+    //this.zonaJuego.setCartas(cartasAInvocar)
+    cartasAInvocar.forEach(carta => {
+      this.invocarCarta(carta)
+    });
     this.mano.quitarCartas(listaIdsCartasAInvocar)
     this.atk = this.getAtaque()
     this.def = this.getDefensa()
@@ -54,7 +57,7 @@ class Campo {
   }
 
   esValidaLaInvocacionDeLaCarta(carta, cantidadesEnergias){
-    const energias = cantidadesEnergias[carta.tipo_energia] //Si o si el tolowercase porque sino no puede acceder a la clave del objeto
+    const energias = cantidadesEnergias[carta.tipo_energia.toLowerCase()] //Si o si el tolowercase porque sino no puede acceder a la clave del objeto
     return carta.cantidad_energia <= energias
   }
 
@@ -72,6 +75,7 @@ class Campo {
 
   invocarCarta(carta) {
     if (this.esValidaLaInvocacionDeLaCarta(carta, this.cantidadesEnergias)) {
+      console.log("INVOCÓ")
       this.zonaJuego.invocarCarta(carta)
       this.quitarEnergiasGastadasPor(carta)
     }

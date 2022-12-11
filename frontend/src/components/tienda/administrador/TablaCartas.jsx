@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { useState } from 'react';
 import CheckboxDisponibleEnTienda from './CheckboxDisponibleEnTienda';
@@ -29,7 +29,7 @@ const TablaCartas = ({ cartas }) => {
             headerName: 'Disponible',
             width: 150,
             //editable: true,
-            renderCell: ({value, row}) => {
+            renderCell: ({ value, row }) => {
                 return (
                     <CheckboxDisponibleEnTienda
                         value={value}
@@ -43,7 +43,7 @@ const TablaCartas = ({ cartas }) => {
             headerName: 'En Oferta',
             width: 150,
             //editable: true,
-            renderCell: ({value, row, ...props}) => {
+            renderCell: ({ value, row, ...props }) => {
                 return (
                     <CheckboxOfertaEnTienda
                         value={value}
@@ -58,30 +58,38 @@ const TablaCartas = ({ cartas }) => {
             width: 150,
             editable: true,
         },
-    
+
     ]
-    return <Box sx={{ height: '50%', width: '100%' }}>
-        <DataGrid
-            rows={cartas}
-            columns={columns}
-            pageSize={10}
-            rowsPerPageOptions={[10]}
-            checkboxSelection
-            disableSelectionOnClick
-            getRowId={(row) => row._id}
-            density="compact"
-            sx={{
-                boxShadow: 2,
-                border: 2,
-                borderColor: 'primary.light',
-                '& .MuiDataGrid-cell:hover': {
-                    color: 'primary.main',
-                },
-            }}
-        //onSelectionModelChange={(selection) => handleSelectionChange(selection)}
-        />
-        <ContainerActualizarCartas pageNumber={pageNumber} pageSize={10}/>
-    </Box>
+    return <Container fixed>
+        <Typography variant="h3" gutterBottom align='center' sx={{ marginTop: 5 }}>
+            Listado de Cartas
+        </Typography>
+        <div style={{ display: 'flex', height: '80vh' }}>
+            <Box sx={{ height: '50vh', width: '100%' }}>
+                <DataGrid
+                    rows={cartas}
+                    columns={columns}
+                    pageSize={10}
+                    rowsPerPageOptions={[10]}
+                    checkboxSelection
+                    disableSelectionOnClick
+                    getRowId={(row) => row._id}
+                    density="compact"
+                    sx={{
+                        boxShadow: 2,
+                        border: 2,
+                        borderColor: 'primary.light',
+                        '& .MuiDataGrid-cell:hover': {
+                            color: 'primary.main',
+                        },
+                    }}
+                //onSelectionModelChange={(selection) => handleSelectionChange(selection)}
+                />
+                <ContainerActualizarCartas pageNumber={pageNumber} pageSize={10} />
+            </Box>
+        </div>
+    </Container>
+
 }
 
 export default TablaCartas

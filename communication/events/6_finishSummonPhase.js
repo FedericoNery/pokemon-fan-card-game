@@ -23,11 +23,19 @@ async function finishSummonPhase({gameId, usuarioId, cartasId}, gamesData, io){
         //io.to(socketIdUsuarioA).emit(EMIT_EVENTS.START_BATTLE_PHASE)
         //io.to(socketIdUsuarioB).emit(EMIT_EVENTS.START_BATTLE_PHASE)
 
-        gamesData[indexGame].juego.finalizarRonda()
+        //gamesData[indexGame].juego.finalizarRonda()
+        io.to(socketIdUsuarioA).emit("UPDATE GAME DATA", {gameData: gamesData[indexGame]});
+        io.to(socketIdUsuarioB).emit("UPDATE GAME DATA", {gameData: gamesData[indexGame]});
+
+        io.to(socketIdUsuarioA).emit("start battle phase");
+        io.to(socketIdUsuarioB).emit("start battle phase");
+        await sleep(5000)
         gamesData[indexGame].juego.iniciarBatalla()
         io.to(socketIdUsuarioA).emit("UPDATE GAME DATA", {gameData: gamesData[indexGame]});
         io.to(socketIdUsuarioB).emit("UPDATE GAME DATA", {gameData: gamesData[indexGame]});
-        await sleep(5000)
+        io.to(socketIdUsuarioA).emit("SHOW WINNER ROUND", {gameData: gamesData[indexGame]});
+        io.to(socketIdUsuarioB).emit("SHOW WINNER ROUND", {gameData: gamesData[indexGame]});
+        await sleep(3000)
         io.to(socketIdUsuarioA).emit(EMIT_EVENTS.FINISH_BATTLE_PHASE, {gameData: gamesData[indexGame]})
         io.to(socketIdUsuarioB).emit(EMIT_EVENTS.FINISH_BATTLE_PHASE, {gameData: gamesData[indexGame]})
 

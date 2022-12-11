@@ -71,7 +71,7 @@ const data = [
 
 
 
-const MenuAppBarVer = (props) => {
+const MenuAppBar = (props) => {
   const { history, desloguearse } = props
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -185,4 +185,4 @@ const mapDispatchToProps = dispatch => {
 export default compose(
   withRouter,
   connect(null, mapDispatchToProps)
-)(MenuAppBarVer)
+)(MenuAppBar)

@@ -1,6 +1,6 @@
 import { useTheme } from '@emotion/react';
 import { ChevronLeft, MenuOutlined } from '@mui/icons-material';
-import { AppBar as MuiAppBar, CssBaseline, Divider, Drawer as MuiDrawer, IconButton, Toolbar } from '@mui/material';
+import { AppBar as MuiAppBar, CssBaseline, Divider, Drawer as MuiDrawer, IconButton, Toolbar, useMediaQuery } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box, ThemeProvider } from '@mui/system';
 import React from 'react';
@@ -66,6 +66,7 @@ const MenuAppBarJugador = (props) => {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const theme = useTheme();
+  const isLowerMd = useMediaQuery(theme.breakpoints.down('md'));
 
   const openMenuAppBar = Boolean(anchorEl);
 
@@ -86,78 +87,81 @@ const MenuAppBarJugador = (props) => {
     setOpen(!open);
   };
 
-  return (
-    <ThemeProvider theme={theme}>
-      <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
-        <AppBarCustom
-          position="absolute" open={open}
-        >
-          <Toolbar
-            sx={{
-              pr: '20px', // keep right padding when drawer closed
-            }}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={toggleDrawer}
-              edge="start"
-              sx={{
-                marginRight: '40px',
-                ...(open && { display: 'none' }),
-              }}
-            >
-              <MenuOutlined />
-            </IconButton>
-            <PokemonCardGameTypography />
-            <MenuDesplegableUsuario
-              handleMenu={handleMenu}
-              handleClose={handleClose}
-              openMenuAppBar={openMenuAppBar}
-              anchorEl={anchorEl}
-              onLogout={onLogout}
-              history={history}
-            />
-            <ButtonToggleMode />
-          </Toolbar>
-        </AppBarCustom>
-        <Drawer
-          variant="permanent"
-          open={open}
-        >
-          <Toolbar
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-end',
-              px: [1],
-            }}
-          >
-            <IconButton onClick={toggleDrawer}>
-              <ChevronLeft />
-            </IconButton>
-          </Toolbar>
-          <Divider />
-          <ListJugador />
-        </Drawer>
-        <Box
-          component="main"
+  return <ThemeProvider theme={theme}>
+  <Box sx={{ display: 'flex' }}>
+    <CssBaseline />
+    <AppBarCustom
+      position="absolute" open={open}
+    >
+      <Toolbar
+        sx={{
+          pr: '20px', // keep right padding when drawer closed
+        }}>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={toggleDrawer}
+          edge="start"
           sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === 'light'
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-            flexGrow: 1,
-            height: '100vh',
-            overflow: 'auto',
+            marginRight: '40px',
+            ...(open && { display: 'none' }),
           }}
         >
-          <Toolbar />
-          {props.children}
-        </Box>
-      </Box>
-    </ThemeProvider>
-  );
+          <MenuOutlined />
+        </IconButton>
+        <PokemonCardGameTypography />
+        <MenuDesplegableUsuario
+          handleMenu={handleMenu}
+          handleClose={handleClose}
+          openMenuAppBar={openMenuAppBar}
+          anchorEl={anchorEl}
+          onLogout={onLogout}
+          history={history}
+        />
+        <ButtonToggleMode />
+      </Toolbar>
+    </AppBarCustom>
+    <Drawer
+      variant="permanent"
+      open={open}
+    >
+      <Toolbar
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+          px: [1],
+        }}
+      >
+        <IconButton onClick={toggleDrawer}>
+          <ChevronLeft />
+        </IconButton>
+      </Toolbar>
+      <Divider />
+      <ListJugador />
+    </Drawer>
+    <Box
+      component="main"
+      sx={{
+        backgroundColor: (theme) =>
+          theme.palette.mode === 'light'
+            ? theme.palette.grey[100]
+            : theme.palette.grey[900],
+        flexGrow: 1,
+        height: '100vh',
+        overflow: 'auto',
+      }}
+    >
+      <Toolbar />
+      {props.children}
+    </Box>
+  </Box>
+</ThemeProvider>
+
+  /* isLowerMd ?
+
+  : */
+
 }
 
 const mapDispatchToProps = dispatch => {

@@ -2,6 +2,7 @@ import { Button, Container, Divider, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
+import { useSnackbar } from 'notistack';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -24,7 +25,7 @@ const WaitingRoom = () => {
   const usuario = useUsuario()
   const numeroMazoSeleccionado = useMazoSeleccionado()
   const toast = React.useContext(ContextToastContainer)
-
+  const { enqueueSnackbar } = useSnackbar()
   const { setGameId, setSocketId, setRoomsDisponibles } = useRoomData()
   const { setJuego } = useJuego()
 
@@ -53,10 +54,10 @@ const WaitingRoom = () => {
       const esJugadorUno = isJugadorUno(usuario, gameData.juego.jugador1)
       const juegoMapeado = mapJuegoToFront(gameData.juego, esJugadorUno)
       setJuego(juegoMapeado)
-      toast.info("Arrancó la partida")
-
+      //toast.info("Arrancó la partida")
+      enqueueSnackbar("Arrancó la partida", { variant: "info", autoHideDuration: 3000 })
+      enqueueSnackbar("Arrancó la fase de invocación", { variant: "info", autoHideDuration: 4000 });
       history.push(To.juego_multiplayer())
-
     })
   }, [])
 
