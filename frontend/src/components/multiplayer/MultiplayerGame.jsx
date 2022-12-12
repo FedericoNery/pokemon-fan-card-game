@@ -10,6 +10,8 @@ import { useUsuario } from "../../hooks/useUsuario";
 import { To } from "../../utils/routes";
 import sleep from "../../utils/timeout";
 import ContadoresDeEnergias from "../contadores-energias/ContadoresDeEnergias";
+import ContadorAtaque from "../contadores/ContadorAtaque";
+import ContadorDefensa from "../contadores/ContadorDefensa";
 import CartasSeleccionarJugador from "../juego/CartasSeleccionarJugador";
 import ContadorRondasGanadas from "../juego/ContadorRondasGanadas";
 import InformacionJugador from "../juego/InformacionJugador";
@@ -22,7 +24,8 @@ import { socket } from "./WaitingRoom";
 
 
 const MultiplayerGame = ({ juego }) => {
-  const { misRondasGanadas, miMano, miZonaJuego, zonaJuegoEnemigo, misEnergias, energiasDelEnemigo, rondasGanadasDelEnemigo, miJugador, jugadorEnemigo } = juego
+  const { misRondasGanadas, miMano, miZonaJuego, zonaJuegoEnemigo, misEnergias, energiasDelEnemigo, rondasGanadasDelEnemigo, miJugador, jugadorEnemigo,
+    miAtk, miDef, enemigoAtk, enemigoDef } = juego
   const history = useHistory()
   const numerosDeCartasSeleccionadas = useCartasSeleccionadas()
   const usuario = useUsuario()
@@ -54,10 +57,10 @@ const MultiplayerGame = ({ juego }) => {
       const esJugadorUno = isJugadorUno(usuario, gameData.juego.jugador1)
       const juegoMapeado = mapJuegoToFront(gameData.juego, esJugadorUno)
 
-      if (juegoMapeado.misRondasGanadas > juegoMapeado.rondasGanadasDelEnemigo){
+      if (juegoMapeado.misRondasGanadas > juegoMapeado.rondasGanadasDelEnemigo) {
         enqueueSnackbar(`${juegoMapeado.miJugador.nombre_usuario} ganó la partida`, { variant: "info", autoHideDuration: 5000 })
       }
-      else{
+      else {
         enqueueSnackbar(`${juegoMapeado.jugadorEnemigo.nombre_usuario} ganó la partida`, { variant: "info", autoHideDuration: 5000 })
       }
 
@@ -82,7 +85,7 @@ const MultiplayerGame = ({ juego }) => {
     socket.on("SHOW WINNER ROUND", async ({ gameData }) => {
       const esJugadorUno = isJugadorUno(usuario, gameData.juego.jugador1)
       const juegoMapeado = mapJuegoToFront(gameData.juego, esJugadorUno)
-      const { miJugador, jugadorEnemigo } = juegoMapeado
+      const { miJugador, jugadorEnemigo, misRondasGanadas, rondasGanadasDelEnemigo } = juegoMapeado
       enqueueSnackbar(`${miJugador.nombre_usuario} posee ${misRondasGanadas} rondas ganadas`, { variant: "info", autoHideDuration: 2000 })
       enqueueSnackbar(`${jugadorEnemigo.nombre_usuario} posee ${rondasGanadasDelEnemigo} rondas ganadas`, { variant: "info", autoHideDuration: 2000 })
       setWatchRivalsZone(false)
@@ -105,6 +108,12 @@ const MultiplayerGame = ({ juego }) => {
           <ContadorRondasGanadas cantidad={rondasGanadasDelEnemigo} />
         </Grid>
         <Grid item >
+          <ContadorAtaque cantidad={enemigoAtk} />
+        </Grid>
+        <Grid item >
+          <ContadorDefensa cantidad={enemigoDef} />
+        </Grid>
+        <Grid item >
           <ContadoresDeEnergias cantidadesEnergias={energiasDelEnemigo} />
         </Grid>
         <Grid item >
@@ -115,7 +124,7 @@ const MultiplayerGame = ({ juego }) => {
         {watchRivalsZone && <CartasSeleccionarJugador cartas={zonaJuegoEnemigo} />}
       </Grid>
     </RivalContainer>
-    {!invocoCartas && <Button onClick={() => invocarCartas(numerosDeCartasSeleccionadas)}>Invocar</Button>}
+    {!invocoCartas && <Button variant="contained" onClick={() => invocarCartas(numerosDeCartasSeleccionadas)}>Invocar</Button>}
     <MiJugador>
       <Grid container flexWrap="nowrap">
         <>
@@ -126,6 +135,12 @@ const MultiplayerGame = ({ juego }) => {
       <Grid container spacing={2} alignItems="center" flexWrap="nowrap">
         <Grid item >
           <ContadorRondasGanadas cantidad={misRondasGanadas} />
+        </Grid>
+        <Grid item >
+          <ContadorAtaque cantidad={miAtk} />
+        </Grid>
+        <Grid item >
+          <ContadorDefensa cantidad={miDef} />
         </Grid>
         <Grid item >
           <ContadoresDeEnergias cantidadesEnergias={misEnergias} />

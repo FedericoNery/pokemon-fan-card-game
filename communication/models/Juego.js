@@ -83,6 +83,10 @@ class Juego {
     iniciarBatalla() {
         this.determinarGanadorDeLaRonda()
         this.determinarGanadorPartida()
+        this.campo1.atk = 0
+        this.campo1.def = 0
+        this.campo2.atk = 0
+        this.campo2.def = 0
         if(!this.estaFinalizado()){
             this.estadoDeLaRonda = EstadosDeLaPartida.RONDA_TERMINADA
             this.pasarASiguienteRonda()    

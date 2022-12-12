@@ -21,6 +21,7 @@ async function finishSummonPhase({gameId, usuarioId, cartasId}, gamesData, io){
         io.to(socketIdUsuarioB).emit("start battle phase");
         await sleep(5000)
         gamesData[indexGame].juego.iniciarBatalla()
+        await sleep(1000)
         io.to(socketIdUsuarioA).emit("UPDATE GAME DATA", {gameData: gamesData[indexGame]});
         io.to(socketIdUsuarioB).emit("UPDATE GAME DATA", {gameData: gamesData[indexGame]});
         io.to(socketIdUsuarioA).emit("SHOW WINNER ROUND", {gameData: gamesData[indexGame]});

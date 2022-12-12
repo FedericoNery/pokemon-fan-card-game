@@ -17,11 +17,16 @@ export function mapJuegoToFront(juego, esUno) {
       "campo1.zonaJuego.cartas": "miZonaJuego",
       "campo1.mazo.cartas": "miMazo",
       "campo1.descarte.cartas": "miDescarte",
+      "campo1.atk": "miAtk",
+      "campo1.def": "miDef",
 
       "campo2.mano.cartas": "manoEnemigo",
       "campo2.zonaJuego.cartas": "zonaJuegoEnemigo",
       "campo2.mazo.cartas": "mazoEnemigo",
       "campo2.descarte.cartas": "descarteEnemigo",
+      "campo2.atk": "enemigoAtk",
+      "campo2.def": "enemigoDef",
+
       "jugador1InvocoCartas": "jugador1InvocoCartas",
       "jugador2InvocoCartas": "jugador2InvocoCartas",
     } :
@@ -40,11 +45,16 @@ export function mapJuegoToFront(juego, esUno) {
       "campo2.zonaJuego.cartas": "miZonaJuego",
       "campo2.mazo.cartas": "miMazo",
       "campo2.descarte.cartas": "miDescarte",
+      "campo2.atk": "miAtk",
+      "campo2.def": "miDef",
 
       "campo1.mano.cartas": "manoEnemigo",
       "campo1.zonaJuego.cartas": "zonaJuegoEnemigo",
       "campo1.mazo.cartas": "mazoEnemigo",
       "campo1.descarte.cartas": "descarteEnemigo",
+      "campo1.atk": "enemigoAtk",
+      "campo1.def": "enemigoDef",
+
       "jugador1InvocoCartas": "jugador1InvocoCartas",
       "jugador2InvocoCartas": "jugador2InvocoCartas",
     }

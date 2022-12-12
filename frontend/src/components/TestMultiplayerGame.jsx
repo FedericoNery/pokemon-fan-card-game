@@ -2,6 +2,8 @@ import { useTheme } from "@emotion/react";
 import { Button, Container, Grid, useMediaQuery } from "@mui/material";
 import { CODIGO_TIPO_CARTA } from "../utils/functions";
 import ContadoresDeEnergias from "./contadores-energias/ContadoresDeEnergias";
+import ContadorAtaque from "./contadores/ContadorAtaque";
+import ContadorDefensa from "./contadores/ContadorDefensa";
 import BoxCartas from "./juego/BoxCartas";
 import CartasSeleccionarJugador from "./juego/CartasSeleccionarJugador";
 import ContadorRondasGanadas from "./juego/ContadorRondasGanadas";
@@ -153,6 +155,12 @@ const TestMultiplayerGame = () => {
                     <ContadorRondasGanadas cantidad={rondasGanadasDelEnemigo} />
                 </Grid>
                 <Grid item >
+                    <ContadorAtaque cantidad={100} />
+                </Grid>
+                <Grid item >
+                    <ContadorDefensa cantidad={100} />
+                </Grid>
+                <Grid item >
                     <ContadoresDeEnergias cantidadesEnergias={energiasDelEnemigo} />
                 </Grid>
                 <Grid item >
@@ -171,6 +179,12 @@ const TestMultiplayerGame = () => {
             <Grid container spacing={2} alignItems="center" flexWrap="nowrap">
                 <Grid item >
                     <ContadorRondasGanadas cantidad={misRondasGanadas} />
+                </Grid>
+                <Grid item >
+                    <ContadorAtaque cantidad={100} />
+                </Grid>
+                <Grid item >
+                    <ContadorDefensa cantidad={100} />
                 </Grid>
                 <Grid item >
                     <ContadoresDeEnergias cantidadesEnergias={misEnergias} />
