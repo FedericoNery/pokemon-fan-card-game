@@ -9,7 +9,7 @@ import ContainerActualizarCartas from './ContainerActualizarCartas';
 
 
 const TablaCartas = ({ cartas }) => {
-    const [pageNumber, setPageNumber] = useState(1)
+    const [pageNumber, setPageNumber] = useState(0)
     const { changeEstadoCartaEnOferta, changeEstadoCartaDisponible, changePrecioCarta } = useTiendaCartasEdition()
 
     const columns = [
@@ -65,20 +65,24 @@ const TablaCartas = ({ cartas }) => {
 
     const handleRowEditCommit = useCallback(
         (params) => {
-            const {id, value, field} = params;
+            const { id, value, field } = params;
 
-            if(field === "disponible_en_tienda"){
+            if (field === "disponible_en_tienda") {
                 changeEstadoCartaDisponible({ id })
             }
-            else if(field === "oferta_en_tienda"){
+            else if (field === "oferta_en_tienda") {
                 changeEstadoCartaEnOferta({ id })
             }
-            else if(field === "precio"){
+            else if (field === "precio") {
                 changePrecioCarta({ id, precio: value })
             }
         },
         []
     );
+
+    const onPageChange = (nextPage) => {
+        setPageNumber(nextPage)
+    }
 
     return <Container fixed>
         <Typography variant="h3" gutterBottom align='center' sx={{ marginTop: 5 }}>
@@ -103,9 +107,10 @@ const TablaCartas = ({ cartas }) => {
                             color: 'primary.main',
                         },
                     }}
-                     onCellEditCommit={handleRowEditCommit}
+                    onCellEditCommit={handleRowEditCommit}
+                    onPageChange={onPageChange}
                 />
-                <ContainerActualizarCartas pageNumber={pageNumber} pageSize={10} />
+                <ContainerActualizarCartas pageNumber={pageNumber + 1} pageSize={10} />
             </Box>
         </div>
     </Container>
