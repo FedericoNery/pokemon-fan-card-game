@@ -30,7 +30,6 @@ const ContainerEdicionDelMazo = () => {
         id: "cartas-mazo", list: res.data.map((x, index) => {
           const cartaConIndiceDraggeable = { ...x, idDraggeable: indices }
           indices += 1
-          console.log(indices)
           return cartaConIndiceDraggeable
         })
       },
@@ -38,7 +37,6 @@ const ContainerEdicionDelMazo = () => {
         id: "cartas-disponibles", list: [...resCartasPokemon.data, ...resCartasEnergia.data].map((x, index) => {
           const cartaConIndiceDraggeable = { ...x, idDraggeable: indices }
           indices += 1
-          console.log(indices)
           return cartaConIndiceDraggeable
         })
       }
@@ -52,7 +50,6 @@ const ContainerEdicionDelMazo = () => {
 
   const onDragEnd = ({ source, destination }) => {
     // Make sure we have a valid destination
-    debugger
     if (destination === undefined || destination === null) return null;
 
     // Make sure we're actually moving the item

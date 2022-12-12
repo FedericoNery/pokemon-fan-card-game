@@ -1,17 +1,19 @@
 import { Container, Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import React, { useContext } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
 import { actualizarUsuario, getUsuarioById } from '../../core/services/usuarios';
 import { useGetById } from '../../hooks/useGetById';
 import { useNumeroUsuario } from '../../hooks/useNumeroUsuario';
 import { desloguearse } from '../../redux/actionCreators/authenticate';
+import { ContextToastContainer } from '../ui/toasts/ToastContainer';
 import CamposEditarUsuario from './CamposEditarUsuario';
 import SkeletonEditarUsuario from './SkeletonEditarUsuario';
 
 const EditarUsuario = ({ desloguearse }) => {
     const numeroUsuario = useNumeroUsuario()
+    const toast = useContext(ContextToastContainer)
     const { isLoading, values } = useGetById(numeroUsuario, getUsuarioById)
 
     const onActualizarUsuario = async (event) => {
@@ -26,8 +28,10 @@ const EditarUsuario = ({ desloguearse }) => {
         }
         try {
             await actualizarUsuario(numeroUsuario, payload)
+            toast.success("Se actualizó el usuario correctamente")
         }
         catch (error) {
+            toast.error(error.toString())
         }
     }
 

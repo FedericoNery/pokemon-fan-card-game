@@ -50,6 +50,11 @@ const tiendaSlice = createSlice({
             const isDisponible = state.cartas[indiceCarta].disponible_en_tienda
             state.cartas[indiceCarta].disponible_en_tienda = !isDisponible
         },
+        changePrecioCarta(state, action){
+            const { id, precio } = action.payload
+            const indiceCarta = _.findIndex(state.cartas, { _id: id });
+            state.cartas[indiceCarta].precio = precio
+        },
         fetchCartasFiltradasStart(state, action){
             state.isLoadingCartasFiltradas = true
         },

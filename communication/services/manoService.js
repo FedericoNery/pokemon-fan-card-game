@@ -20,17 +20,17 @@ const obtenerEnergias = (mano) => {
 const obtenerEnergiasYSumarlas = (mano, energias) => {
     return {
         incoloro: contarEnergias(mano, CODIGO_TIPO_CARTA.INCOLORO) + energias.incoloro,
-        fuego: contarEnergias(mano, CODIGO_TIPO_CARTA.FUEGO) + energias.incoloro,
-        tierra: contarEnergias(mano, CODIGO_TIPO_CARTA.TIERRA) + energias.incoloro,
-        rayo: contarEnergias(mano, CODIGO_TIPO_CARTA.RAYO) + energias.incoloro,
-        dragon: contarEnergias(mano, CODIGO_TIPO_CARTA.DRAGON) + energias.incoloro,
-        hierba: contarEnergias(mano, CODIGO_TIPO_CARTA.HIERBA),
-        agua: contarEnergias(mano, CODIGO_TIPO_CARTA.AGUA),
-        fairy: contarEnergias(mano, CODIGO_TIPO_CARTA.FAIRY),
-        oscuro: contarEnergias(mano, CODIGO_TIPO_CARTA.OSCURO),
-        lucha: contarEnergias(mano, CODIGO_TIPO_CARTA.LUCHA),
-        psiquico: contarEnergias(mano, CODIGO_TIPO_CARTA.PSIQUICO),
-        metal: contarEnergias(mano, CODIGO_TIPO_CARTA.METAL),
+        fuego: contarEnergias(mano, CODIGO_TIPO_CARTA.FUEGO) + energias.fuego,
+        tierra: contarEnergias(mano, CODIGO_TIPO_CARTA.TIERRA) + energias.tierra,
+        rayo: contarEnergias(mano, CODIGO_TIPO_CARTA.RAYO) + energias.rayo,
+        dragon: contarEnergias(mano, CODIGO_TIPO_CARTA.DRAGON) + energias.dragon,
+        hierba: contarEnergias(mano, CODIGO_TIPO_CARTA.HIERBA) + energias.hierba,
+        agua: contarEnergias(mano, CODIGO_TIPO_CARTA.AGUA) + energias.agua,
+        fairy: contarEnergias(mano, CODIGO_TIPO_CARTA.FAIRY) + energias.fairy,
+        oscuro: contarEnergias(mano, CODIGO_TIPO_CARTA.OSCURO) + energias.oscuro,
+        lucha: contarEnergias(mano, CODIGO_TIPO_CARTA.LUCHA) + energias.lucha,
+        psiquico: contarEnergias(mano, CODIGO_TIPO_CARTA.PSIQUICO) + energias.psiquico,
+        metal: contarEnergias(mano, CODIGO_TIPO_CARTA.METAL) + energias.metal,
     }
 }
 

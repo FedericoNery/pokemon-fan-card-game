@@ -1,6 +1,7 @@
 import { Box, Container, Typography } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
-import { useState } from 'react';
+import { DataGrid, useGridApiRef } from '@mui/x-data-grid';
+import { useCallback, useState } from 'react';
+import { useTiendaCartasEdition } from '../../../hooks/useTiendaCartasEdition';
 import CheckboxDisponibleEnTienda from './CheckboxDisponibleEnTienda';
 import CheckboxOfertaEnTienda from './CheckboxOfertaEnTienda';
 import ContainerActualizarCartas from './ContainerActualizarCartas';
@@ -9,6 +10,7 @@ import ContainerActualizarCartas from './ContainerActualizarCartas';
 
 const TablaCartas = ({ cartas }) => {
     const [pageNumber, setPageNumber] = useState(1)
+    const { changeEstadoCartaEnOferta, changeEstadoCartaDisponible, changePrecioCarta } = useTiendaCartasEdition()
 
     const columns = [
         {
@@ -60,6 +62,24 @@ const TablaCartas = ({ cartas }) => {
         },
 
     ]
+
+    const handleRowEditCommit = useCallback(
+        (params) => {
+            const {id, value, field} = params;
+
+            if(field === "disponible_en_tienda"){
+                changeEstadoCartaDisponible({ id })
+            }
+            else if(field === "oferta_en_tienda"){
+                changeEstadoCartaEnOferta({ id })
+            }
+            else if(field === "precio"){
+                changePrecioCarta({ id, precio: value })
+            }
+        },
+        []
+    );
+
     return <Container fixed>
         <Typography variant="h3" gutterBottom align='center' sx={{ marginTop: 5 }}>
             Listado de Cartas
@@ -83,7 +103,7 @@ const TablaCartas = ({ cartas }) => {
                             color: 'primary.main',
                         },
                     }}
-                //onSelectionModelChange={(selection) => handleSelectionChange(selection)}
+                     onCellEditCommit={handleRowEditCommit}
                 />
                 <ContainerActualizarCartas pageNumber={pageNumber} pageSize={10} />
             </Box>

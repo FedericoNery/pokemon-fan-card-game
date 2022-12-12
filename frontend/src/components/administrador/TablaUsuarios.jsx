@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { DataGrid } from '@mui/x-data-grid';
 import { useState } from "react";
 import ButtonBorrarSeleccionados from "./atoms/ButtonBorrarSeleccionados";
 import { borrarUsuarios } from "../../core/services/usuarios";
 import { columns } from "./columns";
 import { Box } from "@mui/material";
+import { ContextToastContainer } from "../ui/toasts/ToastContainer";
 
 const TablaUsuarios = ({ values, retry }) => {
+  const toast = useContext(ContextToastContainer)
   const [selectedRows, setSelectedRows] = useState([]);
 
   const handleSelectionChange = (selection) => {
@@ -23,9 +25,11 @@ const TablaUsuarios = ({ values, retry }) => {
     setRows(selectedRows); */
     try {
       await borrarUsuarios({ ids: selectedRows });
+      toast.success("Se ha borrado el usuario correctamente")
       retry()
     }
     catch (error) {
+      toast.error(error.toString())
     }
   };
 

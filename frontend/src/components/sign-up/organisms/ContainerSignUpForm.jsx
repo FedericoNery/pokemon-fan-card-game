@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react'
+import React, { useContext } from 'react'
 import EmailInput from '../atoms/EmailInput';
 import FirstNameInput from '../atoms/FirstNameInput';
 import LastNameInput from '../atoms/LastNameInput';
@@ -10,9 +10,11 @@ import UsernameInput from '../atoms/UsernameInput';
 import ButtonSignUp from '../atoms/ButtonSignUp'
 import { crearUsuario } from '../../../core/services/usuarios'; //Ver de mover esto al action creator
 import { useHistory } from 'react-router';
+import { ContextToastContainer } from '../../ui/toasts/ToastContainer';
 
 const ContainerSignUpForm = (props) => {
     const history = useHistory()
+    const toast = useContext(ContextToastContainer)
 
     const onSignUp = async (event) => {
         event.preventDefault();
@@ -25,9 +27,11 @@ const ContainerSignUpForm = (props) => {
         }
         try {
             await crearUsuario(payload)
+            toast.success("Se creó el usuario con éxito")
             history.push("/")
         }
         catch (error) {
+            toast.error(error.toString())
         }
     }
 

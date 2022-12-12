@@ -56,6 +56,7 @@ router.route('/disponibles').get((req, res) => {
 
 router.route('/').put(async (req, res) => {
     const cartas = req.body.cartas
+    console.log(cartas)
     await Promise.all(cartas.map(async (element, index) => {
         await CartaPokemon.updateOne({ _id: element.id },
             {

@@ -3,6 +3,7 @@ const { getAllUsuarios, autenticar } = require('../repositories/usuariosReposito
 const mazoService = require('../services/mazoService');
 let usuarioService = require('../services/usuariosService');
 const router = require('express').Router();
+const bcrypt = require('bcryptjs');
 
 /*OBTENER TODOS LOS USUARIOS*/
 router.route('/').get(getAllUsuarios);
@@ -28,6 +29,10 @@ router.route('/').post(async (req, res) => {
     rol_usuario = "jugador"
   }
 
+  const activo = true
+  const partidas_ganadas = 0
+  const partidas_perdidas = 0
+  const passwordEncrypted = bcrypt.hashSync(password, saltRounds = 10)
   const usuario = new Usuario({
     numero,
     nombre_usuario,
@@ -37,6 +42,10 @@ router.route('/').post(async (req, res) => {
     rol_usuario,
     email,
     mazos,
+    activo,
+    partidas_ganadas,
+    partidas_perdidas,
+    password: passwordEncrypted
   })
 
   usuario.save()
