@@ -10,7 +10,7 @@ import Defensa from '../carta-pokemon/atoms/Defensa';
 
 
 const CartaPokemonDraggeable = (props) => {
-    const { ataque, cantidad_energia, defensa, numero, pokemon, tipo_energia, itemObject, index } = props
+    const { ataque, cantidad_energia, defensa, numero, pokemon, tipo_energia, itemObject, index, idDraggeable } = props
 
     const useStyles = makeStyles({
         root: {
@@ -38,24 +38,22 @@ const CartaPokemonDraggeable = (props) => {
 
     const classes = useStyles();
     return (
-        <Draggable draggableId={itemObject.id} index={index}>
+        <Draggable draggableId={itemObject.id} index={index} key={`keyDraggable${idDraggeable}`}>
             {(provided) => (
                 <div
                     id="cartaPokemonDraggeable"
                     ref={provided.innerRef}
-                    /* ContainerComponent="div"
-                    ContainerProps={{ ref: provided.innerRef }} */
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     className={classes.root}
                 >
-                    <Grid container spacing={1}>
-                        <Grid item xs={6} spacing={1}>
+                    <Grid container >
+                        <Grid item xs={6}>
                             <Typography variant="body2" color={"black"} component="p" align="left">
                                 Tipo: {tipo_energia}
                             </Typography>
                         </Grid>
-                        <Grid item xs={6} spacing={1}>
+                        <Grid item xs={6}>
                             <Typography variant="body2" color={"black"} component="p" align="right">
                                 Energía: {cantidad_energia}
                             </Typography>
@@ -78,10 +76,10 @@ const CartaPokemonDraggeable = (props) => {
                         {pokemon}
                     </Typography>
                     <Grid container spacing={1}>
-                        <Grid item xs={6} spacing={1}>
+                        <Grid item xs={6}>
                             <Ataque ataque={ataque}/>
                         </Grid>
-                        <Grid item xs={6} spacing={1}>
+                        <Grid item xs={6}>
                           <Defensa defensa={defensa}/>
                         </Grid>
                     </Grid>

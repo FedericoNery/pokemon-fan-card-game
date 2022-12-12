@@ -1,13 +1,11 @@
-import Grid from '@mui/material/Grid';
+import { Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
-import BadgeEnergias from '../BadgeEnergias';
 import { getBackgroundPredominanteColorEnergia } from '../../../utils/functions';
-import { makeStyles } from '@mui/styles';
-import { Typography } from '@mui/material';
 
 const CartaEnergiaDraggeable = (props) => {
-    const { nombre, numero, energias, index, itemObject } = props
+    const { nombre, numero, energias, index, itemObject, idDraggeable } = props
 
     const useStyles = makeStyles({
         root: {
@@ -28,7 +26,6 @@ const CartaEnergiaDraggeable = (props) => {
             display: "block",
             maxHeight: 180,
             maxWidth: 180,
-            //maxHeight: 140
         },
         img: {
             maxHeight: 180,
@@ -40,7 +37,7 @@ const CartaEnergiaDraggeable = (props) => {
     const classes = useStyles();
 
     return (
-        <Draggable draggableId={itemObject.id} index={index}>
+        <Draggable draggableId={itemObject.id} index={index} key={`keyDraggable${idDraggeable}`}>
             {(provided) => (
                 <div
                     className={classes.root}

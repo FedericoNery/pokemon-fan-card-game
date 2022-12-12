@@ -14,7 +14,7 @@ const TablaCartas = ({ cartas }) => {
         {
             field: 'numero',
             headerName: 'Código',
-            width: 200,
+            width: 70,
             editable: false
         },
         {

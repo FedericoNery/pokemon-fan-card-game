@@ -25,7 +25,7 @@ const CartaPokemonResponsive = (props) => {
                         justifyContent="center"
                         alignItems="center">
                         <Grid item>
-                            <Typography variant="overline" gutterBottom align='center'>
+                            <Typography variant="overline" gutterBottom align='center' color="black">
                                 {pokemon}
                             </Typography>
                         </Grid>
@@ -33,7 +33,7 @@ const CartaPokemonResponsive = (props) => {
                             <ImagenPokemonReducida numero={numero} nombre={pokemon} />
                         </Grid>
                         <Grid item>
-                            <Typography variant="caption" gutterBottom>
+                            <Typography variant="caption" gutterBottom color="black">
                                 CE: {cantidad_energia}&nbsp;ATK: {ataque}&nbsp;DEF: {defensa}
                             </Typography>
                         </Grid>

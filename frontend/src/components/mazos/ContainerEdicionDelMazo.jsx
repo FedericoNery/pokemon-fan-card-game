@@ -16,7 +16,6 @@ const ContainerEdicionDelMazo = () => {
   const { id } = useParams();
   const [cartas, setCartas] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [positionY, setPositionY] = useState(0)
   const toast = useContext(ContextToastContainer)
 
   useEffect(async () => {
@@ -24,15 +23,23 @@ const ContainerEdicionDelMazo = () => {
     const res = await getCartasDelMazoById(id)
     const resCartasPokemon = await getAllCartasPokemon()
     const resCartasEnergia = await getAllCartasEnergia()
+    let indices = 0
+
     setCartas({
       "cartas-mazo": {
         id: "cartas-mazo", list: res.data.map((x, index) => {
-          return { ...x, idDraggeable: index }
+          const cartaConIndiceDraggeable = { ...x, idDraggeable: indices }
+          indices += 1
+          console.log(indices)
+          return cartaConIndiceDraggeable
         })
       },
       "cartas-disponibles": {
         id: "cartas-disponibles", list: [...resCartasPokemon.data, ...resCartasEnergia.data].map((x, index) => {
-          return { ...x, idDraggeable: index * 1000 }
+          const cartaConIndiceDraggeable = { ...x, idDraggeable: indices }
+          indices += 1
+          console.log(indices)
+          return cartaConIndiceDraggeable
         })
       }
     })
@@ -41,29 +48,11 @@ const ContainerEdicionDelMazo = () => {
     return () => { }
   }, [])
 
-  const initialColumns = {
-    todo: {
-      id: "todo",
-      list: [
-        { id: "1", text: "text1" },
-        { id: "2", text: "text2" },
-        { id: "3", text: "text3" }
-      ]
-    },
-    doing: {
-      id: "doing",
-      list: [
-        { id: "4", text: "text4" },
-        { id: "5", text: "text5" },
-        { id: "6", text: "text6" }
-      ]
-    }
-  };
 
-  const [columns, setColumns] = useState(initialColumns);
 
   const onDragEnd = ({ source, destination }) => {
     // Make sure we have a valid destination
+    debugger
     if (destination === undefined || destination === null) return null;
 
     // Make sure we're actually moving the item
@@ -93,7 +82,7 @@ const ContainerEdicionDelMazo = () => {
       };
 
       // Update the state
-      setColumns((state) => ({ ...state, [newCol.id]: newCol }));
+      setCartas((state) => ({ ...state, [newCol.id]: newCol }));
       return null;
     } else {
       // If start is different from end, we need to update multiple columns
@@ -130,11 +119,6 @@ const ContainerEdicionDelMazo = () => {
     }
   };
 
-  const fireOnScroll = (event) => {
-    //console.log(event.target.scrollTop)
-    setPositionY(event.target.scrollTop)
-  }
-
   const actualizarMazo = async (idMazo, idsCartas) => {
     try {
       await putCartasDelMazoById(idMazo, idsCartas)
@@ -162,6 +146,7 @@ const ContainerEdicionDelMazo = () => {
                 {...provided.droppableProps}
               >
                 <CartasDelMazo cartas={cartas["cartas-mazo"].list} />
+                {provided.placeholder}
               </div>
             )}
           </Droppable>
@@ -178,6 +163,7 @@ const ContainerEdicionDelMazo = () => {
                }}
               >
                 <ListadoDeCartasDisponibles cartas={cartas["cartas-disponibles"].list} />
+                {provided.placeholder}
               </div>
             )}
           </Droppable>
