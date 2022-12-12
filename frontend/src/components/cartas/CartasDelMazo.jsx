@@ -6,7 +6,7 @@ const CartasDelMazo = ({cartas}) => {
 
     return cartas.length > 0 && <Grid container spacing={1}>
         {
-            cartas.map((carta, index) => <StrategyCartasPokemonDraggeables key={`kstrcartaspokemondrag${index}`} datos_carta={carta}/>)
+            cartas.map((carta, index) => <StrategyCartasPokemonDraggeables key={`kstrcartaspokemondrag${carta.idDraggeable}`} datos_carta={carta}/>)
         }
 
     </Grid>

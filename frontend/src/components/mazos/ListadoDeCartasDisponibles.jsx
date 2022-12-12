@@ -8,12 +8,12 @@ const ListadoDeCartasDisponibles = ({ cartas }) => {
     <List>
       {
         cartas.map((x, index) => {
-          const { numero } = x
+          const { numero, idDraggeable } = x
           if (numero.includes("P")) {
-            return <ItemCartaPokemonDraggeable {...x} index={index} itemObject={{ id: `${numero}cd` }} key={`kItemCartaPokemonDraggeable${index}`} />
+            return <ItemCartaPokemonDraggeable {...x} index={index} itemObject={{ id: `${numero}cd` }} key={`kItemCartaPokemonDraggeable${idDraggeable}`} />
           }
           if (numero.includes("E")) {
-            return <ItemCartaEnergiaDraggeable {...x} index={index} itemObject={{ id: `${numero}cd` }} key={`kItemCartaEnergiaDraggeable${index}`} />
+            return <ItemCartaEnergiaDraggeable {...x} index={index} itemObject={{ id: `${numero}cd` }} key={`kItemCartaEnergiaDraggeable${idDraggeable}`} />
           }
           return <></>
         })
