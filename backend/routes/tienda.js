@@ -1,4 +1,3 @@
-//let cartasPokemonService = require('../services/cartasPokemonService');
 let CartaPokemon = require('../models/cartapokemon.model');
 const router = require('express').Router();
 
@@ -11,15 +10,10 @@ router.route('/').get((req, res) => {
     const tipoEnergiaAscDesc = req.body.tipoEnergiaAscDesc
 
     query = CartaPokemon.find()
-    /* query = CartaPokemon.find({
-        pokemon: `/${nombre}/`,
-        precio: { $gt: precioMin, $lt: precioMax },
-        tipo_energia: tipoEnergia
-    }) */
+
     if (nombre && nombre.length > 0) {
         const userRegex = new RegExp(nombre, 'i')
         query.where({ pokemon: userRegex })
-        //query.where({pokemon: `/${nombre}/`})
     }
 
     if (precioMin)
@@ -61,7 +55,6 @@ router.route('/disponibles').get((req, res) => {
 });
 
 router.route('/').put(async (req, res) => {
-    //Este endpoint serviría para 
     const cartas = req.body.cartas
     await Promise.all(cartas.map(async (element, index) => {
         await CartaPokemon.updateOne({ _id: element.id },
