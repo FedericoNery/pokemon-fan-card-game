@@ -1,0 +1,282 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "POKEMON API by Fede Nery",
+    "description": "",
+    "version": "1.0"
+  },
+  "produces": ["application/json"],
+  "host": "localhost:5000",
+  "basePath": "/",
+  "paths": {
+    "/cartasenergia": {
+      "get": {
+        "x-swagger-router-controller": "cartasenergia",
+        "operationId": "swagTest",
+        "tags": ["Cartas Energia"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Cartas_Energias"
+            }
+          }
+        }
+      }
+    },
+    "/cartaspokemon": {
+      "get": {
+        "x-swagger-router-controller": "cartaspokemon",
+        "operationId": "1",
+        "tags": ["Cartas Pokemon"],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Cartas_Pokemon"
+            }
+          }
+        }
+      }
+    },
+    "/juego": {
+      "get": {
+        "x-swagger-router-controller": "juego",
+        "operationId": "juego1",
+        "tags": ["Juego"],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/juego/iniciar": {
+      "post": {
+        "x-swagger-router-controller": "juego",
+        "operationId": "juego2",
+        "tags": ["Juego"],
+        "description": "",
+        "parameters": [{
+          "name": "iniciarJuego",
+          "in": "body",
+          "schema": { "$ref": "#/definitions/IniciarJuego" },
+          "type": "string"
+        }],
+        "responses": {}
+      }
+    },
+    "/juego/invocar": {
+      "post": {
+        "x-swagger-router-controller": "juego",
+        "operationId": "juego3",
+        "tags": ["Juego"],
+        "description": "",
+        "parameters": [{
+          "name": "invocarCartas",
+          "in": "body",
+          "schema": { "$ref": "#/definitions/InvocarCartas" },
+          "type": "string"
+        }],
+        "responses": {}
+      }
+    },
+    "/mazos": {
+      "get": {
+        "x-swagger-router-controller": "mazos",
+        "operationId": "mazos1",
+        "tags": ["Mazos"],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/mazos/{id}": {
+      "get": {
+        "x-swagger-router-controller": "mazos",
+        "operationId": "mazos2",
+        "tags": ["Mazos"],
+        "description": "",
+        "parameters": [
+          { "name": "id", "type": "integer", "in": "path", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Mazo"
+            }
+          }
+        }
+      }
+    },
+    "/mazos/{id}/cartas": {
+      "get": {
+        "x-swagger-router-controller": "mazos",
+        "operationId": "mazos3",
+        "tags": ["Mazos"],
+        "description": "",
+        "parameters": [
+          { "name": "id", "type": "integer", "in": "path", "required": true }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Cartas_Mazo"
+            }
+          }
+        }
+      }
+    },
+    "/usuarios": {
+      "get": {
+        "x-swagger-router-controller": "usuarios",
+        "operationId": "1",
+        "tags": ["Usuarios"],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/usuarios/authenticate": {
+      "post": {
+        "x-swagger-router-controller": "usuarios",
+        "operationId": "2",
+        "tags": ["Usuarios"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authentication",
+            "in": "body",
+            "schema": { "$ref": "#/definitions/UsuarioAuthentication" },
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Carta_Energia": {
+      "type": "object",
+      "properties": {
+        "numero": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "energias": {
+          "properties": {
+            "numero": { "type": "integer" },
+            "nombre": { "type": "string" }
+          }
+        }
+      }
+    },
+    "Carta_Pokemon": {
+      "type": "object",
+      "properties": {
+        "numero": { "type": "string" },
+        "pokemon": { "type": "string" },
+        "ps": { "type": "string" },
+        "ataque": { "type": "string" },
+        "defensa": { "type": "string" },
+        "ataque_esp": { "type": "string" },
+        "defensa_esp": { "type": "string" },
+        "velocidad": { "type": "string" },
+        "suma": { "type": "string" },
+        "tipo_energia": { "type": "string" },
+        "cantidad_energia": { "type": "integer" }
+      }
+    },
+    "Cartas_Energias": {
+      "type": "array",
+      "items":{
+        "$ref": "#/definitions/Carta_Energia"
+      }
+    },
+    "Cartas_Pokemon": {
+      "type": "array",
+      "items":{
+        "$ref": "#/definitions/Carta_Pokemon"
+      }
+    },
+    "Usuario": {
+      "required": [
+        "numero",
+        "nombre_usuario",
+        "nombre",
+        "apellido",
+        "monedas",
+        "rol_usuario",
+        "email"
+      ],
+      "properties": {
+        "numero": { "type": "integer" },
+        "nombre_usuario": { "type": "string" },
+        "nombre": { "type": "string" },
+        "apellido": { "type": "string" },
+        "monedas": { "type": "integer" },
+        "rol_usuario": { "type": "string" },
+        "email": { "type": "string" },
+        "mazos": { "type": "array" }
+      }
+    },
+    "UsuarioAuthentication": {
+      "required": ["email"],
+      "properties": {
+        "email": { "type": "string" }
+      }
+    },
+    "IniciarJuego": {
+      "required": ["idJugadorLogueado", "idMazoSeleccionado"],
+      "properties": {
+        "idJugadorLogueado": { "type": "integer" },
+        "idMazoSeleccionado": { "type": "integer" }
+      }
+    },
+    "InvocarCartas": {
+      "required": ["cartas", "idJugador"],
+      "properties": {
+        "cartas": { "type": "array" },
+        "idJugador": { "type": "integer" }
+      }
+    },
+    "Mazo": {
+      "required": ["numero", "nombre"],
+      "properties": {
+        "numero": { "type": "integer" },
+        "nombre": { "type": "string" },
+        "cartas": { 
+          "type": "array",
+          "items":{
+            "type":   "string"
+          } 
+        }
+      }
+    },
+    "Cartas_Mazo": {
+      "type": "array",
+      "items": {
+        "oneOf":{
+          "$ref": "#/definitions/Carta_Energia",
+          "$ref": "#/definitions/Carta_Pokemon"
+        },
+        "discriminator":{
+          "propertyName": "pet_type"
+        }
+      }
+    }
+  }
+}
